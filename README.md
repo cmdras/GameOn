@@ -26,3 +26,6 @@ Discord is a similar app which is used by many gamers to interact with each othe
 * Chat with multiple people
 * Recent player activity
 * Youtube videos for user's games
+
+#### Screens
+<img src="https://github.com/cmdras/GameOn/blob/master/doc/LoginScreen.png" alt="alt text" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameSearchScreen.png" alt="alt text" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GamePlayersScreen.png" alt="alt text" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/FollowedPlayersScreen.png" alt="alt text" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/ChatScreen.png" alt="alt text" width="165" height="300">
