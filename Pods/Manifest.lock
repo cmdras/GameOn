@@ -55,6 +55,7 @@ DEPENDENCIES:
   - Alamofire
   - Firebase
   - Firebase/Auth
+  - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
   - JSQMessagesViewController
@@ -75,6 +76,6 @@ SPEC CHECKSUMS:
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
 
-PODFILE CHECKSUM: 72edc99f1a68a159bba3fbedc8089792a6bedea1
+PODFILE CHECKSUM: ba28b75ef8f789efd666eca34c4e514e1c4291bc
 
 COCOAPODS: 1.0.0

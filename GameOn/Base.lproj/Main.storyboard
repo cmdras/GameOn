@@ -53,7 +53,7 @@
                                             <color key="titleColor" red="1" green="0.72192192803506183" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="w0C-WN-w4x" kind="show" id="Maa-G3-M1H"/>
+                                            <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dtq-1z-fhe"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAU-rZ-BVX">
@@ -61,6 +61,9 @@
                                         <state key="normal" title="Register">
                                             <color key="titleColor" red="1" green="0.72192192799999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="registerAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="prN-ks-eUD"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -80,33 +83,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wbP-xf-vwe"/>
+                    <connections>
+                        <outlet property="emailText" destination="4cj-88-man" id="7rk-XD-v2H"/>
+                        <outlet property="passwordText" destination="KVG-MS-HFh" id="hsB-Oc-5oJ"/>
+                        <segue destination="13c-du-r5L" kind="show" identifier="loginSegue" id="ohc-va-7cy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="86" y="-72"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="fAu-mk-ReF">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="w0C-WN-w4x" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="N1D-Ec-GoA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="13c-du-r5L" kind="relationship" relationship="rootViewController" id="16I-j7-8lk"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Doq-da-f4E" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="841" y="-72"/>
+            <point key="canvasLocation" x="684" y="-91"/>
         </scene>
         <!--Players-->
         <scene sceneID="Fg9-nj-XPN">
             <objects>
-                <viewController id="85O-oj-cbe" sceneMemberID="viewController">
+                <viewController id="85O-oj-cbe" customClass="PlayersViewController" customModule="GameOn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IL5-jb-5Su"/>
                         <viewControllerLayoutGuide type="bottom" id="2W0-gQ-KVZ"/>
@@ -126,7 +116,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGF-QW-8Kj">
-                                <rect key="frame" x="236" y="64" width="139" height="30"/>
+                                <rect key="frame" x="236" y="20" width="139" height="30"/>
                                 <state key="normal" title="Search Players">
                                     <color key="titleColor" red="1" green="0.72192192799999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -158,7 +148,7 @@
         <!--Chat-->
         <scene sceneID="G6m-jQ-2tq">
             <objects>
-                <viewController id="AuJ-Oa-2vh" sceneMemberID="viewController">
+                <viewController id="AuJ-Oa-2vh" customClass="ChatViewController" customModule="GameOn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oQL-io-j3I"/>
                         <viewControllerLayoutGuide type="bottom" id="kcU-mw-Bl5"/>
@@ -168,13 +158,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61B-lN-o2d">
-                                <rect key="frame" x="131" y="114" width="112" height="48"/>
+                                <rect key="frame" x="131" y="70" width="112" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" red="0.9971032366" green="1" blue="0.99673825039999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZW-XK-bYY">
-                                <rect key="frame" x="281" y="64" width="94" height="30"/>
+                                <rect key="frame" x="281" y="20" width="94" height="30"/>
                                 <state key="normal" title="New Chat">
                                     <color key="titleColor" red="1" green="0.72192192799999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -183,7 +173,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oPn-4Z-hsI">
-                                <rect key="frame" x="0.0" y="170" width="375" height="448"/>
+                                <rect key="frame" x="0.0" y="126" width="375" height="492"/>
                                 <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                         </subviews>
@@ -206,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xWK-UL-Gal" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2556" y="927.88605697151434"/>
+            <point key="canvasLocation" x="2564" y="1028"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hr2-E9-OZ7">
@@ -257,7 +247,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IwU-WX-rRg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3343.1999999999998" y="933.28335832083962"/>
+            <point key="canvasLocation" x="3374" y="1028"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="xim-9a-PwX">
@@ -291,7 +281,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wEo-7j-Q1q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4109.6000000000004" y="932.38380809595208"/>
+            <point key="canvasLocation" x="4110" y="1028"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="0sD-7N-lUp">
@@ -323,7 +313,7 @@
         <!--Games-->
         <scene sceneID="0n0-pN-Oah">
             <objects>
-                <viewController id="WuB-mP-O2h" sceneMemberID="viewController">
+                <viewController id="WuB-mP-O2h" customClass="UsersGamesViewController" customModule="GameOn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AoP-wY-Hxf"/>
                         <viewControllerLayoutGuide type="bottom" id="pCV-XC-sQ5"/>
@@ -342,7 +332,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9z7-rh-CBg">
-                                <rect key="frame" x="0.0" y="166" width="375" height="452"/>
+                                <rect key="frame" x="0.0" y="166" width="375" height="501"/>
                                 <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1L6-ip-RCH">
@@ -378,10 +368,11 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Games" id="s3d-b7-KUw"/>
+                    <navigationItem key="navigationItem" id="rXZ-Kz-vQt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZ2-UJ-hoT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2564" y="-400.74962518740631"/>
+            <point key="canvasLocation" x="2564" y="-498"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="UE8-2X-N6F">
@@ -418,7 +409,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FS6-FU-N9K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3373.5999999999999" y="-401.64917541229386"/>
+            <point key="canvasLocation" x="3374" y="-499"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="1Hz-2d-2rc">
@@ -501,7 +492,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PVd-cR-0l4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4109.6000000000004" y="-402.54872563718146"/>
+            <point key="canvasLocation" x="4110" y="-499"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Uih-Aq-bDE">
@@ -521,7 +512,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kLj-es-2gS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1610" y="-73"/>
+            <point key="canvasLocation" x="1556" y="-91"/>
         </scene>
     </scenes>
 </document>
