@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0984B1C2D6F6E31706BCBD1C /* Pods_GameOn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F046E3E8D08E014CDBBD7B1 /* Pods_GameOn.framework */; };
 		8309286A1E23FB2200AEFF5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830928691E23FB2200AEFF5F /* AppDelegate.swift */; };
 		8309286F1E23FB2200AEFF5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8309286D1E23FB2200AEFF5F /* Main.storyboard */; };
 		830928711E23FB2200AEFF5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 830928701E23FB2200AEFF5F /* Assets.xcassets */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08D7C0FD5EA2FAE33BE0336D /* Pods-GameOn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOn.release.xcconfig"; path = "Pods/Target Support Files/Pods-GameOn/Pods-GameOn.release.xcconfig"; sourceTree = "<group>"; };
+		4F046E3E8D08E014CDBBD7B1 /* Pods_GameOn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameOn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		830928661E23FB2200AEFF5F /* GameOn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		830928691E23FB2200AEFF5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8309286E1E23FB2200AEFF5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -22,6 +25,7 @@
 		830928731E23FB2200AEFF5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		830928751E23FB2200AEFF5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8309287B1E2566B400AEFF5F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DE5A5BFB5534B46146190745 /* Pods-GameOn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GameOn/Pods-GameOn.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0984B1C2D6F6E31706BCBD1C /* Pods_GameOn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15458990D385F17E1ACD2ADE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DE5A5BFB5534B46146190745 /* Pods-GameOn.debug.xcconfig */,
+				08D7C0FD5EA2FAE33BE0336D /* Pods-GameOn.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8309285D1E23FB2100AEFF5F = {
 			isa = PBXGroup;
 			children = (
 				830928681E23FB2200AEFF5F /* GameOn */,
 				830928671E23FB2200AEFF5F /* Products */,
+				15458990D385F17E1ACD2ADE /* Pods */,
+				C40DF8E7FA35D2671B05D1F6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +80,14 @@
 			path = GameOn;
 			sourceTree = "<group>";
 		};
+		C40DF8E7FA35D2671B05D1F6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F046E3E8D08E014CDBBD7B1 /* Pods_GameOn.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 830928781E23FB2200AEFF5F /* Build configuration list for PBXNativeTarget "GameOn" */;
 			buildPhases = (
+				44CBD892D86419F406832865 /* 📦 Check Pods Manifest.lock */,
 				830928621E23FB2200AEFF5F /* Sources */,
 				830928631E23FB2200AEFF5F /* Frameworks */,
 				830928641E23FB2200AEFF5F /* Resources */,
+				64A8640062CC9AD5A6C87024 /* 📦 Embed Pods Frameworks */,
+				1188FF770E6D0925D3E6CED1 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -97,6 +124,7 @@
 					830928651E23FB2200AEFF5F = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = C4Q2FUWZY3;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -131,6 +159,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1188FF770E6D0925D3E6CED1 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GameOn/Pods-GameOn-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		44CBD892D86419F406832865 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		64A8640062CC9AD5A6C87024 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GameOn/Pods-GameOn-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		830928621E23FB2200AEFF5F /* Sources */ = {
@@ -259,6 +335,7 @@
 		};
 		830928791E23FB2200AEFF5F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE5A5BFB5534B46146190745 /* Pods-GameOn.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = C4Q2FUWZY3;
@@ -272,6 +349,7 @@
 		};
 		8309287A1E23FB2200AEFF5F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08D7C0FD5EA2FAE33BE0336D /* Pods-GameOn.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = C4Q2FUWZY3;
