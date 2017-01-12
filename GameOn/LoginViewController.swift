@@ -82,20 +82,6 @@ class LoginViewController: UIViewController {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let barVC = segue.destination as? UITabBarController {
-            
-            let gamesVC = barVC.viewControllers!.first as! UsersGamesViewController
-            let playersVC = barVC.viewControllers![1] as! PlayersViewController
-            let chatVC = barVC.viewControllers![2] as! ChatViewController
-            gamesVC.userID = self.userID
-            playersVC.userID = self.userID
-            chatVC.userID = self.userID
-            
-        }
-    }
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

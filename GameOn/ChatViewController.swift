@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import Firebase
 
 class ChatViewController: UIViewController {
-    var userID: String?
+    let userID: String = FIRAuth.auth()!.currentUser!.uid
 
     override func viewDidLoad() {
         super.viewDidLoad()
         print("+++++++")
-        print("\(userID!)")
+        print("\(userID)")
         print("+++++++")
         
     }
