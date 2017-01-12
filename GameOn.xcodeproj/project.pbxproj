@@ -19,6 +19,7 @@
 		835010EB1E26997F008CAB58 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835010EA1E26997F008CAB58 /* ChatViewController.swift */; };
 		8388E2F21E27A3F600BBE4F3 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8388E2F11E27A3F600BBE4F3 /* GameCell.swift */; };
 		8388E2F61E27B49600BBE4F3 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8388E2F51E27B49600BBE4F3 /* FriendCell.swift */; };
+		8388E2F81E27DC9900BBE4F3 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8388E2F71E27DC9900BBE4F3 /* ChatListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		835010EA1E26997F008CAB58 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8388E2F11E27A3F600BBE4F3 /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 		8388E2F51E27B49600BBE4F3 /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		8388E2F71E27DC9900BBE4F3 /* ChatListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		DE5A5BFB5534B46146190745 /* Pods-GameOn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GameOn/Pods-GameOn.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +98,7 @@
 				830928751E23FB2200AEFF5F /* Info.plist */,
 				835010E31E2684D6008CAB58 /* GoogleService-Info.plist */,
 				8388E2F51E27B49600BBE4F3 /* FriendCell.swift */,
+				8388E2F71E27DC9900BBE4F3 /* ChatListCell.swift */,
 			);
 			path = GameOn;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8388E2F61E27B49600BBE4F3 /* FriendCell.swift in Sources */,
+				8388E2F81E27DC9900BBE4F3 /* ChatListCell.swift in Sources */,
 				835010E71E268BB1008CAB58 /* UsersGamesViewController.swift in Sources */,
 				835010E91E2696F7008CAB58 /* PlayersViewController.swift in Sources */,
 				8309287C1E2566B400AEFF5F /* LoginViewController.swift in Sources */,
