@@ -40,6 +40,10 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "gameInfoSegue", sender: nil)
+    }
+    
     
 
 

@@ -1,5 +1,5 @@
 //
-//  GameCell.swift
+//  SearchGameCell.swift
 //  GameOn
 //
 //  Created by Christopher Ras on 12/01/2017.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class GameCell: UITableViewCell {
-    @IBOutlet weak var gameImage: UIImageView!
-    @IBOutlet weak var gameTitle: UILabel!
-    @IBOutlet weak var gameRelease: UILabel!
-    
+class SearchGameCell: UITableViewCell {
+    @IBOutlet weak var searchGameImage: UIImageView!
+    @IBOutlet weak var searchGameTitle: UILabel!
+    @IBOutlet weak var searchGameRelease: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
