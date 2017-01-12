@@ -182,7 +182,9 @@
                             <constraint firstItem="15X-Bv-3ry" firstAttribute="top" secondItem="1W6-46-Fly" secondAttribute="bottom" constant="8" id="jya-rg-d5I"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="h17-xV-oxB"/>
+                    <navigationItem key="navigationItem" id="h17-xV-oxB">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="YHF-E2-PmJ"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="friendListTable" destination="15X-Bv-3ry" id="VgF-jg-Lb3"/>
                     </connections>
@@ -270,7 +272,9 @@
                             <constraint firstItem="oPn-4Z-hsI" firstAttribute="centerX" secondItem="61B-lN-o2d" secondAttribute="centerX" id="rTc-pv-Xcw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="e0G-ik-yIM"/>
+                    <navigationItem key="navigationItem" id="e0G-ik-yIM">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="OkZ-8q-LR1"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="chatListTable" destination="oPn-4Z-hsI" id="tC7-xe-KTp"/>
                     </connections>
@@ -596,7 +600,13 @@
                             <constraint firstAttribute="trailing" secondItem="1L6-ip-RCH" secondAttribute="trailing" id="zKX-T8-dtw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rXZ-Kz-vQt"/>
+                    <navigationItem key="navigationItem" id="rXZ-Kz-vQt">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="NaR-tR-OhI">
+                            <connections>
+                                <action selector="logoutPressed:" destination="WuB-mP-O2h" id="cQ7-IE-4MQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="gamesTable" destination="9z7-rh-CBg" id="sIG-UI-DkT"/>
                         <segue destination="OX8-6s-T1p" kind="show" identifier="gameInfoSegue" id="z0M-C8-sEj"/>

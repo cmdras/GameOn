@@ -19,6 +19,8 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
         print("&&&&&&&&")
         print("\(userID)")
         print("&&&&&&&&")
+        
+        self.navigationItem.hidesBackButton = true
 
     }
 

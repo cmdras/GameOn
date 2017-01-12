@@ -20,6 +20,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print("\(userID)")
         print("+++++++")
         
+        self.navigationItem.hidesBackButton = true
+        
     }
 
     override func didReceiveMemoryWarning() {

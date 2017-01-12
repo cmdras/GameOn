@@ -13,7 +13,7 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var gamesTable: UITableView!
     
     
-    let titles = ["Overwatch", "Mario"]
+    let titles = ["Game1", "Game2"]
     let userID: String = FIRAuth.auth()!.currentUser!.uid
 
     override func viewDidLoad() {
@@ -21,6 +21,8 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
         print("*********")
         print("\(userID)")
         print("*********")
+        
+        self.navigationItem.hidesBackButton = true
 
     }
 
@@ -42,6 +44,11 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "gameInfoSegue", sender: nil)
+    }
+    
+    @IBAction func logoutPressed(_ sender: UIBarButtonItem) {
+        try! FIRAuth.auth()!.signOut()
+        dismiss(animated: true, completion: nil)
     }
     
     
