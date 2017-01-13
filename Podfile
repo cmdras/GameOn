@@ -13,5 +13,6 @@ target 'GameOn' do
   pod 'Firebase/Database'
   pod 'JSQMessagesViewController'
   pod 'Alamofire'
+  pod 'AlamofireImage'
 
 end
