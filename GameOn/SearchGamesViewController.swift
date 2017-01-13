@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Alamofire
 
 class SearchGamesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var searchGamesTable: UITableView!
+    
+    @IBOutlet weak var searchField: UITextField!
     
     var games = ["game1", "game2"]
 
@@ -33,6 +36,9 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
         return cell
     }
 
+    @IBAction func searchButtonTouched(_ sender: Any) {
+        
+    }
     
     
 }
