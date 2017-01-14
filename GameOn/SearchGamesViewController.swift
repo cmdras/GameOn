@@ -22,7 +22,7 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
     
     var gameTitles = Array<String>()
     var gameDates = Array<String>()
-    var gameImages = Array<UIImage>()
+    var gameImages = Array<String>()
     var searchResults = Array<Game>()
 
     override func viewDidLoad() {
@@ -45,8 +45,13 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
         cell.searchGameTitle.text = gameTitles[indexPath.row]
        
         cell.searchGameRelease.text = gameDates[indexPath.row]
-       
-        cell.searchGameImage.image = gameImages[indexPath.row]
+        
+        if (gameImages[indexPath.row] != "") {
+            let url = URL(string: gameImages[indexPath.row])
+            cell.searchGameImage.af_setImage(withURL: url!)
+        } else {
+            cell.searchGameImage.image = #imageLiteral(resourceName: "stock")
+        }
         
         return cell
     }
@@ -73,39 +78,29 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
                         let gameData = json[i] as! NSDictionary
                         if (gameData["cover"] != nil) {
                             let coverData = gameData["cover"] as! NSDictionary
-                            currentGame.coverUrl = "https:\(coverData["url"])"
+                            self.gameImages.append("https:\(coverData["url"]!)")
+                            //currentGame.coverUrl = "https:\(coverData["url"])"
+                        } else {
+                            self.gameDates.append("")
                         }
                         if (gameData["name"] != nil) {
-                            currentGame.title = gameData["name"] as? String
+                            //currentGame.title = gameData["name"] as? String
+                            self.gameTitles.append((gameData["name"] as? String)!)
                         }
                         if (gameData["release_dates"] != nil) {
                             let releaseDateArray = gameData["release_dates"] as! NSArray
                             let firstDateData = releaseDateArray[0] as! NSDictionary
                             let releaseDate = firstDateData["human"] as! String
-                            currentGame.releaseDate = releaseDate
+                            self.gameDates.append(releaseDate)
+                            //currentGame.releaseDate = releaseDate
                         }
                         
-                        self.searchResults.append(currentGame)
+                        //self.searchResults.append(currentGame)
                     }
-                    for game in self.searchResults {
-                        Alamofire.request(game.coverUrl!).responseImage { response in
-                            if let cover = response.result.value {
-                                self.gameImages.append(cover)
-                            } else {
-                                self.gameImages.append(#imageLiteral(resourceName: "stock"))
-                            }
-                            if (game.title != nil) {
-                                self.gameTitles.append(game.title!)
-                            }
-                            if (game.releaseDate != nil) {
-                                self.gameDates.append(game.releaseDate!)
-                            }
-                            self.searchGamesTable.reloadData()
-                        }
-                    }
+                    self.searchGamesTable.reloadData()
                 }
-                
         }
+        
     }
     
 }
