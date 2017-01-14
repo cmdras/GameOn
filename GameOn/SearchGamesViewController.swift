@@ -27,11 +27,18 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SearchGamesViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,39 +71,51 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
             
             self.present(alertController, animated: true, completion: nil)
         } else {
+            self.gameTitles.removeAll()
+            self.gameImages.removeAll()
+            self.gameDates.removeAll()
             dataRequest(searchTerm: self.searchField.text!)
         }
+        
+        view.endEditing(true)
+        
     }
     
+    /// Retrieve data from IGDB API
     func dataRequest (searchTerm: String) -> Void {
-        Alamofire.request("https://igdbcom-internet-game-database-v1.p.mashape.com/games/?search=\(searchTerm)&fields=*", headers: headers)
+        let noSpaceUrl = searchTerm.replacingOccurrences(of: " ", with: "+")
+        Alamofire.request("https://igdbcom-internet-game-database-v1.p.mashape.com/games/?search=\(noSpaceUrl)&fields=*", headers: headers)
             .responseJSON { (responseData) -> Void in
                 if((responseData.result.value) != nil) {
                     let json = responseData.result.value as! NSArray
                     for i in stride(from: 0, to: 10, by: 1) {
-                        let currentGame = Game()
                         let gameData = json[i] as! NSDictionary
-                        if (gameData["cover"] != nil) {
-                            let coverData = gameData["cover"] as! NSDictionary
-                            self.gameImages.append("https:\(coverData["url"]!)")
-                            //currentGame.coverUrl = "https:\(coverData["url"])"
+                        
+                        if let nameKey = gameData["name"] {
+                            self.gameTitles.append((nameKey as? String)!)
                         } else {
-                            self.gameDates.append("")
+                            // If no name is found, skip this game
+                            // To prevent empty cells
+                            continue
                         }
-                        if (gameData["name"] != nil) {
-                            //currentGame.title = gameData["name"] as? String
-                            self.gameTitles.append((gameData["name"] as? String)!)
+                        if  let coverKey = gameData["cover"] {
+                            let coverData = coverKey as! NSDictionary
+                            self.gameImages.append("https:\(coverData["url"]!)")
+                        } else {
+                            self.gameImages.append("")
                         }
-                        if (gameData["release_dates"] != nil) {
-                            let releaseDateArray = gameData["release_dates"] as! NSArray
+                        
+                        if let dateKey = gameData["release_dates"] {
+                            let releaseDateArray = dateKey as! NSArray
                             let firstDateData = releaseDateArray[0] as! NSDictionary
                             let releaseDate = firstDateData["human"] as! String
                             self.gameDates.append(releaseDate)
-                            //currentGame.releaseDate = releaseDate
+                        } else {
+                            self.gameDates.append("")
                         }
-                        
-                        //self.searchResults.append(currentGame)
                     }
+                    self.searchGamesTable.reloadData()
+                } else {
                     self.searchGamesTable.reloadData()
                 }
         }
