@@ -11,6 +11,7 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import Firebase
 
 class SearchGamesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var searchGamesTable: UITableView!

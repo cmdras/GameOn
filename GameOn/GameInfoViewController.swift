@@ -7,19 +7,23 @@
 //
 
 import UIKit
+import Firebase
 
 class GameInfoViewController: UIViewController {
     @IBOutlet weak var gameTitleLabel: UILabel!
     @IBOutlet weak var gameImage: UIImageView!
     @IBOutlet weak var gameSummary: UITextView!
     
+    var ref: FIRDatabaseReference?
     var selectedGame: Game?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         if (selectedGame != nil) {
             loadGame(game: selectedGame!)
+            ref = FIRDatabase.database().reference(withPath: "users")
         }
+
     }
     
     func loadGame(game: Game) {
@@ -35,5 +39,8 @@ class GameInfoViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    @IBAction func addGameTouched(_ sender: Any) {
+        self.selectedGame?.saveToFirebase(myFirebase: ref!)
     }
 }

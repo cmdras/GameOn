@@ -684,6 +684,9 @@
                                         <state key="normal" title="Add Game To My List">
                                             <color key="titleColor" red="1" green="0.72192192799999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="addGameTouched:" destination="OX8-6s-T1p" eventType="touchUpInside" id="Cfp-26-Trv"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
