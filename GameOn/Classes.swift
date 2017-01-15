@@ -19,7 +19,7 @@ class Game {
     func saveToFirebase(myFirebase: FIRDatabaseReference) {
         let dict = ["title": self.title!, "releaseDate": self.releaseDate!, "coverUrl": self.coverUrl!, "summary": self.summary!]
         
-        myFirebase.child(FIRAuth.auth()!.currentUser!.uid).child("Games").child(self.title!).setValue(dict)
+        myFirebase.child(FIRAuth.auth()!.currentUser!.uid).child("Games").child(self.title!.replacingOccurrences(of: ".", with: " ")).setValue(dict)
     }
     
 }

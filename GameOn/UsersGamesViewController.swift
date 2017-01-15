@@ -5,6 +5,7 @@
 //  Created by Christopher Ras on 11/01/2017.
 //  Copyright © 2017 Chris Ras. All rights reserved.
 //
+//  Delete functionality adapted from: http://stackoverflow.com/questions/39631998/how-to-delete-from-firebase-database
 
 import UIKit
 import Firebase
@@ -82,7 +83,7 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
     
     func myDeleteFunction(childIWantToRemove: String) {
         
-        ref.child(userID).child("Games").child(childIWantToRemove).removeValue { (error, ref) in
+        ref.child(userID).child("Games").child(childIWantToRemove.replacingOccurrences(of: ".", with: " ")).removeValue { (error, ref) in
             if error != nil {
                 print("error \(error)")
             } else {
