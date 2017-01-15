@@ -6,7 +6,7 @@
 //  Copyright © 2017 Chris Ras. All rights reserved.
 //  
 //  Keyboard hiding code adapted from: http://stackoverflow.com/questions/24126678/close-ios-keyboard-by-touching-anywhere-using-swift
-//
+//  Image download code adapted from: https://www.youtube.com/watch?v=1m-VLnoixz8
 
 import UIKit
 import Alamofire
@@ -58,7 +58,8 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
         
         if (searchResults[indexPath.row].coverUrl! != "") {
             let url = URL(string: searchResults[indexPath.row].coverUrl!)
-            cell.searchGameImage.af_setImage(withURL: url!)
+            //cell.searchGameImage.af_setImage(withURL: url!)
+            cell.searchGameImage.af_setImage(withURL: url!, placeholderImage: #imageLiteral(resourceName: "stock"), filter: nil,  imageTransition: .crossDissolve(0.5), runImageTransitionIfCached: true, completion: nil)
         } else {
             cell.searchGameImage.image = #imageLiteral(resourceName: "stock")
         }
@@ -100,7 +101,7 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
             .responseJSON { (responseData) -> Void in
                 if((responseData.result.value) != nil) {
                     let json = responseData.result.value as! NSArray
-                    for i in stride(from: 0, to: 10, by: 1) {
+                    for i in stride(from: 0, to: json.count, by: 1) {
                         let game = Game()
                         let gameData = json[i] as! NSDictionary
                         
