@@ -35,3 +35,9 @@ Usage: UIImage.af_setImage(withURL: url!)
 * Added error handling for release_date and image url
 * when pressing a search result, the game info will now load
 * **no major issues**
+
+##### Day 7
+* Added game storage functionality in Firebase
+* Users games are now shown in personal list
+* Delete functionality added
+* **no major issues**
