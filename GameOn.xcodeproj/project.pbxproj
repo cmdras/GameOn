@@ -23,6 +23,7 @@
 		8388E2F81E27DC9900BBE4F3 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8388E2F71E27DC9900BBE4F3 /* ChatListCell.swift */; };
 		8388E2FA1E27E65800BBE4F3 /* SearchGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8388E2F91E27E65800BBE4F3 /* SearchGamesViewController.swift */; };
 		8388E2FC1E27E96A00BBE4F3 /* SearchGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8388E2FB1E27E96A00BBE4F3 /* SearchGameCell.swift */; };
+		83DA3BDE1E2AEC6500451824 /* GameInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DA3BDD1E2AEC6500451824 /* GameInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		8388E2F71E27DC9900BBE4F3 /* ChatListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		8388E2F91E27E65800BBE4F3 /* SearchGamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchGamesViewController.swift; sourceTree = "<group>"; };
 		8388E2FB1E27E96A00BBE4F3 /* SearchGameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchGameCell.swift; sourceTree = "<group>"; };
+		83DA3BDD1E2AEC6500451824 /* GameInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameInfoViewController.swift; sourceTree = "<group>"; };
 		DE5A5BFB5534B46146190745 /* Pods-GameOn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GameOn/Pods-GameOn.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +110,7 @@
 				835010E31E2684D6008CAB58 /* GoogleService-Info.plist */,
 				8388E2F51E27B49600BBE4F3 /* FriendCell.swift */,
 				8388E2F71E27DC9900BBE4F3 /* ChatListCell.swift */,
+				83DA3BDD1E2AEC6500451824 /* GameInfoViewController.swift */,
 			);
 			path = GameOn;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83DA3BDE1E2AEC6500451824 /* GameInfoViewController.swift in Sources */,
 				8388E2FA1E27E65800BBE4F3 /* SearchGamesViewController.swift in Sources */,
 				8388E2F61E27B49600BBE4F3 /* FriendCell.swift in Sources */,
 				8388E2F81E27DC9900BBE4F3 /* ChatListCell.swift in Sources */,

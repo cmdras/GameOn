@@ -4,6 +4,8 @@
 //
 //  Created by Christopher Ras on 12/01/2017.
 //  Copyright © 2017 Chris Ras. All rights reserved.
+//  
+//  Keyboard hiding code adapted from: http://stackoverflow.com/questions/24126678/close-ios-keyboard-by-touching-anywhere-using-swift
 //
 
 import UIKit
@@ -24,11 +26,12 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
     var gameDates = Array<String>()
     var gameImages = Array<String>()
     var searchResults = Array<Game>()
+    var selectedGame: Game?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SearchGamesViewController.dismissKeyboard))
-        
+        tap.cancelsTouchesInView = false 
         view.addGestureRecognizer(tap)
         
     }
@@ -42,25 +45,30 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gameTitles.count
+        return searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = searchGamesTable.dequeueReusableCell(withIdentifier: "searchedGamesCell", for: indexPath)
             as! SearchGameCell
         
-        cell.searchGameTitle.text = gameTitles[indexPath.row]
+        cell.searchGameTitle.text = searchResults[indexPath.row].title!
        
-        cell.searchGameRelease.text = gameDates[indexPath.row]
+        cell.searchGameRelease.text = searchResults[indexPath.row].releaseDate!
         
-        if (gameImages[indexPath.row] != "") {
-            let url = URL(string: gameImages[indexPath.row])
+        if (searchResults[indexPath.row].coverUrl! != "") {
+            let url = URL(string: searchResults[indexPath.row].coverUrl!)
             cell.searchGameImage.af_setImage(withURL: url!)
         } else {
             cell.searchGameImage.image = #imageLiteral(resourceName: "stock")
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedGame = searchResults[indexPath.row]
+        performSegue(withIdentifier: "gameSearchInfoSegue", sender: nil)
     }
 
     @IBAction func searchButtonTouched(_ sender: Any) {
@@ -71,14 +79,18 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
             
             self.present(alertController, animated: true, completion: nil)
         } else {
-            self.gameTitles.removeAll()
-            self.gameImages.removeAll()
-            self.gameDates.removeAll()
+            self.searchResults.removeAll()
             dataRequest(searchTerm: self.searchField.text!)
         }
         
         view.endEditing(true)
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let infoVC = segue.destination as? GameInfoViewController {
+            infoVC.selectedGame = self.selectedGame
+        }
     }
     
     /// Retrieve data from IGDB API
@@ -89,10 +101,11 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
                 if((responseData.result.value) != nil) {
                     let json = responseData.result.value as! NSArray
                     for i in stride(from: 0, to: 10, by: 1) {
+                        let game = Game()
                         let gameData = json[i] as! NSDictionary
                         
                         if let nameKey = gameData["name"] {
-                            self.gameTitles.append((nameKey as? String)!)
+                            game.title = nameKey as? String
                         } else {
                             // If no name is found, skip this game
                             // To prevent empty cells
@@ -100,9 +113,9 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
                         }
                         if  let coverKey = gameData["cover"] {
                             let coverData = coverKey as! NSDictionary
-                            self.gameImages.append("https:\(coverData["url"]!)")
+                            game.coverUrl = "https:\(coverData["url"]!)"
                         } else {
-                            self.gameImages.append("")
+                            game.coverUrl = ""
                         }
                         
                         if let dateKey = gameData["release_dates"] {
@@ -110,9 +123,16 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
                             let firstDateData = releaseDateArray[0] as! NSDictionary
                             let releaseDate = firstDateData["human"] as! String
                             self.gameDates.append(releaseDate)
+                            game.releaseDate = releaseDate
                         } else {
-                            self.gameDates.append("")
+                            game.releaseDate = ""
                         }
+                        if let summaryKey = gameData["summary"] {
+                            game.summary = gameData["summary"] as? String
+                        } else {
+                            game.summary = ""
+                        }
+                        self.searchResults.append(game)
                     }
                     self.searchGamesTable.reloadData()
                 } else {

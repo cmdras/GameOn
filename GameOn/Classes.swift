@@ -12,4 +12,5 @@ class Game {
     var title: String?
     var releaseDate: String?
     var coverUrl: String?
+    var summary: String?
 }

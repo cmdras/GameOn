@@ -120,7 +120,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O2u-gV-2DJ" id="M39-Ac-WhD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ceg-59-hek">
@@ -228,7 +228,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bog-5n-xIb" id="KaY-uk-TPY">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UHr-Ql-oBi">
@@ -436,7 +436,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D3f-pN-wQp" id="Das-df-37b">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3uI-cn-2Kz">
@@ -502,6 +502,7 @@
                     <connections>
                         <outlet property="searchField" destination="2Z5-sy-MsA" id="lHQ-7p-3Qq"/>
                         <outlet property="searchGamesTable" destination="6NC-n6-uls" id="CyN-QH-4Ox"/>
+                        <segue destination="OX8-6s-T1p" kind="show" identifier="gameSearchInfoSegue" id="QUg-RE-vYX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d9G-5S-JhL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -537,7 +538,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YKa-ht-HNL" id="4EM-tn-5a2">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="12r-To-KD9">
@@ -632,10 +633,10 @@
             </objects>
             <point key="canvasLocation" x="3503.1999999999998" y="-498.80059970014997"/>
         </scene>
-        <!--View Controller-->
+        <!--Game Info View Controller-->
         <scene sceneID="UE8-2X-N6F">
             <objects>
-                <viewController id="OX8-6s-T1p" sceneMemberID="viewController">
+                <viewController id="OX8-6s-T1p" customClass="GameInfoViewController" customModule="GameOn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HDL-YA-89w"/>
                         <viewControllerLayoutGuide type="bottom" id="x6L-v2-mgA"/>
@@ -644,25 +645,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSE-hf-VTe">
-                                <rect key="frame" x="130" y="120" width="115" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Info" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSE-hf-VTe">
+                                <rect key="frame" x="10" y="87" width="343" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="weN-Ta-yNw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTv-1b-l7r">
-                                <rect key="frame" x="90" y="505" width="195" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Players playing this game">
-                                    <color key="titleColor" red="1" green="0.72192192799999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="3WX-T0-occ" kind="show" id="ATE-TI-35d"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Tpq-G9-UFx">
-                                <rect key="frame" x="10" y="161" width="354" height="336"/>
+                                <rect key="frame" x="10" y="404" width="354" height="206"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -670,9 +663,46 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gpd-XA-Xna">
+                                <rect key="frame" x="86" y="194" width="202" height="202"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7NR-dj-v8S">
+                                <rect key="frame" x="94" y="126" width="174" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTv-1b-l7r">
+                                        <rect key="frame" x="0.0" y="0.0" width="174" height="30"/>
+                                        <state key="normal" title="Players playing this game">
+                                            <color key="titleColor" red="1" green="0.72192192799999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="3WX-T0-occ" kind="show" id="ATE-TI-35d"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMb-i0-mNI">
+                                        <rect key="frame" x="0.0" y="30" width="174" height="30"/>
+                                        <state key="normal" title="Add Game To My List">
+                                            <color key="titleColor" red="1" green="0.72192192799999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="7NR-dj-v8S" secondAttribute="trailing" constant="91" id="AyK-r7-4oJ"/>
+                            <constraint firstItem="7NR-dj-v8S" firstAttribute="top" secondItem="HDL-YA-89w" secondAttribute="bottom" constant="62" id="Jj5-hY-OtC"/>
+                            <constraint firstItem="jSE-hf-VTe" firstAttribute="leading" secondItem="RVd-uB-XPy" secondAttribute="leadingMargin" constant="-6" id="OGd-ES-NK5"/>
+                            <constraint firstItem="7NR-dj-v8S" firstAttribute="leading" secondItem="RVd-uB-XPy" secondAttribute="leadingMargin" constant="78" id="ajD-6a-YDH"/>
+                            <constraint firstItem="jSE-hf-VTe" firstAttribute="top" secondItem="HDL-YA-89w" secondAttribute="bottom" constant="23" id="kAy-5C-qsQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jSE-hf-VTe" secondAttribute="trailing" constant="6" id="trM-0b-Z8c"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="gameImage" destination="gpd-XA-Xna" id="kAX-YJ-UBF"/>
+                        <outlet property="gameSummary" destination="Tpq-G9-UFx" id="5fF-vx-aj7"/>
+                        <outlet property="gameTitleLabel" destination="jSE-hf-VTe" id="IDL-hy-fvj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FS6-FU-N9K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -839,4 +869,7 @@
             <point key="canvasLocation" x="2564" y="1027.736131934033"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="QUg-RE-vYX"/>
+    </inferredMetricsTieBreakers>
 </document>
