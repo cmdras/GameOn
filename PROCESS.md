@@ -41,3 +41,7 @@ Usage: UIImage.af_setImage(withURL: url!)
 * Users games are now shown in personal list
 * Delete functionality added
 * **no major issues**
+
+##### Day 8
+* Did not work much on the project
+* Viewed Tutorials for implementing chat
