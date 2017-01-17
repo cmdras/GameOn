@@ -21,7 +21,7 @@ class GameInfoViewController: UIViewController {
         super.viewDidLoad()
         if (selectedGame != nil) {
             loadGame(game: selectedGame!)
-            ref = FIRDatabase.database().reference(withPath: "users")
+            ref = FIRDatabase.database().reference()
         }
 
     }

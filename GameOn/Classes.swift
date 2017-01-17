@@ -15,11 +15,23 @@ class Game {
     var releaseDate: String?
     var coverUrl: String?
     var summary: String?
+    var username: String?
     
     func saveToFirebase(myFirebase: FIRDatabaseReference) {
+        let currentUser = FIRAuth.auth()!.currentUser!.uid
         let dict = ["title": self.title!, "releaseDate": self.releaseDate!, "coverUrl": self.coverUrl!, "summary": self.summary!]
+        myFirebase.child("users").child(currentUser).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            self.username = value?["username"] as? String
+            
+            myFirebase.child("users").child(currentUser).child("Games").child(self.title!.replacingOccurrences(of: ".", with: " ")).setValue(dict)
+            myFirebase.child("Games").child(self.title!.replacingOccurrences(of: ".", with: " ")).child(self.username!).setValue(currentUser)
+            
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
         
-        myFirebase.child(FIRAuth.auth()!.currentUser!.uid).child("Games").child(self.title!.replacingOccurrences(of: ".", with: " ")).setValue(dict)
     }
     
 }
