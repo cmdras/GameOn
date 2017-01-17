@@ -45,3 +45,8 @@ Usage: UIImage.af_setImage(withURL: url!)
 ##### Day 8
 * Did not work much on the project
 * Viewed Tutorials for implementing chat
+
+##### Day 9
+* Finished chat tutorial, did not implement yet
+* Added a register screen that asks the user for a username
+* Games should keep track of which users are playing them. This however is not fully functional
