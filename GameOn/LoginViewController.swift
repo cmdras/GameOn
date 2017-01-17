@@ -32,32 +32,6 @@ class LoginViewController: UIViewController {
         ref = FIRDatabase.database().reference()
     }
     
-    @IBAction func registerAction(_ sender: Any) {
-        
-        if self.emailText.text == "" || self.passwordText.text == "" {
-            let alertController = UIAlertController(title: "Oops", message: "Please enter an email and password", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            
-            self.present(alertController, animated: true, completion: nil)
-        }else {
-            FIRAuth.auth()?.createUser(withEmail: self.emailText.text!, password: self.passwordText.text!, completion: { (user, error) in
-                if error == nil {
-                    self.userID = user!.uid
-                    self.ref.child("users").child(user!.uid).setValue(["Email": user!.email])
-                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
-                } else {
-                    let alertController = UIAlertController(title: "Oops", message: error?.localizedDescription, preferredStyle: .alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alertController.addAction(defaultAction)
-                    self.present(alertController, animated: true, completion: nil)
-                }
-            })
-            
-        }
-        
-    }
-    
     @IBAction func loginAction(_ sender: Any) {
         
         if self.emailText.text == "" || self.passwordText.text == "" {

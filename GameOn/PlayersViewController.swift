@@ -11,17 +11,25 @@ import Firebase
 
 class PlayersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var friendListTable: UITableView!
+    var ref: FIRDatabaseReference!
+    
     let userID: String = FIRAuth.auth()!.currentUser!.uid
-    let friends = ["user1", "user2"]
+    var friends = Array<String>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("&&&&&&&&")
-        print("\(userID)")
-        print("&&&&&&&&")
-        
+        ref = FIRDatabase.database().reference(withPath: "usernames")
+        retrieveListOfGames(ref: ref)
         self.navigationItem.hidesBackButton = true
 
+    }
+    
+    func retrieveListOfGames(ref: FIRDatabaseReference) {
+        ref.observe(.value, with: { snapshot in
+            self.friends.removeAll()
+            self.friends = ((snapshot.value! as? NSDictionary)?.allKeys as? [String])!
+            self.friendListTable.reloadData()
+        })
     }
 
     override func didReceiveMemoryWarning() {

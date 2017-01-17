@@ -14,7 +14,6 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var gamesTable: UITableView!
     
     var usersGames = Array<Game>()
-    let titles = ["Game1", "Game2"]
     let userID: String = FIRAuth.auth()!.currentUser!.uid
     var ref: FIRDatabaseReference!
 

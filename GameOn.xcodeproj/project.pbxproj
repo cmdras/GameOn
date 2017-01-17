@@ -13,6 +13,7 @@
 		830928711E23FB2200AEFF5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 830928701E23FB2200AEFF5F /* Assets.xcassets */; };
 		830928741E23FB2200AEFF5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 830928721E23FB2200AEFF5F /* LaunchScreen.storyboard */; };
 		8309287C1E2566B400AEFF5F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8309287B1E2566B400AEFF5F /* LoginViewController.swift */; };
+		831C4C921E2E756800482CFC /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C4C911E2E756800482CFC /* RegistrationViewController.swift */; };
 		835010E41E2684D6008CAB58 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 835010E31E2684D6008CAB58 /* GoogleService-Info.plist */; };
 		835010E71E268BB1008CAB58 /* UsersGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835010E61E268BB1008CAB58 /* UsersGamesViewController.swift */; };
 		835010E91E2696F7008CAB58 /* PlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835010E81E2696F7008CAB58 /* PlayersViewController.swift */; };
@@ -36,6 +37,7 @@
 		830928731E23FB2200AEFF5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		830928751E23FB2200AEFF5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8309287B1E2566B400AEFF5F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		831C4C911E2E756800482CFC /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		835010E31E2684D6008CAB58 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		835010E51E2688FB008CAB58 /* GameOn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GameOn.entitlements; sourceTree = "<group>"; };
 		835010E61E268BB1008CAB58 /* UsersGamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersGamesViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				835010E51E2688FB008CAB58 /* GameOn.entitlements */,
 				830928691E23FB2200AEFF5F /* AppDelegate.swift */,
 				8309286D1E23FB2200AEFF5F /* Main.storyboard */,
+				831C4C911E2E756800482CFC /* RegistrationViewController.swift */,
 				8388E2F91E27E65800BBE4F3 /* SearchGamesViewController.swift */,
 				8376593A1E2975890022B663 /* Classes.swift */,
 				8388E2FB1E27E96A00BBE4F3 /* SearchGameCell.swift */,
@@ -258,6 +261,7 @@
 				8388E2FA1E27E65800BBE4F3 /* SearchGamesViewController.swift in Sources */,
 				8388E2F61E27B49600BBE4F3 /* FriendCell.swift in Sources */,
 				8388E2F81E27DC9900BBE4F3 /* ChatListCell.swift in Sources */,
+				831C4C921E2E756800482CFC /* RegistrationViewController.swift in Sources */,
 				835010E71E268BB1008CAB58 /* UsersGamesViewController.swift in Sources */,
 				835010E91E2696F7008CAB58 /* PlayersViewController.swift in Sources */,
 				8309287C1E2566B400AEFF5F /* LoginViewController.swift in Sources */,
