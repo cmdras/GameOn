@@ -59,7 +59,6 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
         
         if (searchResults[indexPath.row].coverUrl! != "") {
             let url = URL(string: searchResults[indexPath.row].coverUrl!)
-            //cell.searchGameImage.af_setImage(withURL: url!)
             cell.searchGameImage.af_setImage(withURL: url!, placeholderImage: #imageLiteral(resourceName: "stock"), filter: nil,  imageTransition: .crossDissolve(0.5), runImageTransitionIfCached: true, completion: nil)
         } else {
             cell.searchGameImage.image = #imageLiteral(resourceName: "stock")

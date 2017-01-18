@@ -16,12 +16,16 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
     var usersGames = Array<Game>()
     let userID: String = FIRAuth.auth()!.currentUser!.uid
     var ref: FIRDatabaseReference!
+    var gamesRef: FIRDatabaseReference!
+    var username: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         
         ref = FIRDatabase.database().reference(withPath: "users")
+        gamesRef = FIRDatabase.database().reference(withPath: "Games")
+        self.getUsername(ref: ref, currentUser: userID)
         self.retrieveListOfGames(ref: ref)
     }
     
@@ -32,6 +36,13 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
                 self.usersGames.append(self.recreateGame(dict: child.value! as! [String : String]))
             }
             self.gamesTable.reloadData()
+        })
+    }
+    
+    func getUsername(ref: FIRDatabaseReference, currentUser: String) {
+        ref.child(currentUser).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            self.username = value?["username"] as? String
         })
     }
     
@@ -89,6 +100,16 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
                 print("success *******")
             }
         }
+        
+        gamesRef.child(childIWantToRemove.replacingOccurrences(of: ".", with: " ")).observeSingleEvent(of: .value, with: { snapshot in
+            
+            let value = snapshot.value as? NSDictionary
+            let newDict = value as? NSMutableDictionary
+            newDict?[self.username!] = nil
+            self.gamesRef.child(childIWantToRemove.replacingOccurrences(of: ".", with: " ")).setValue(newDict!)
+            print("success &&&&&&&&")
+        
+        })
     }
     
     @IBAction func logoutPressed(_ sender: UIBarButtonItem) {
