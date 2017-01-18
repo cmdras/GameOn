@@ -95,27 +95,51 @@
 		830928681E23FB2200AEFF5F /* GameOn */ = {
 			isa = PBXGroup;
 			children = (
+				831C4C941E2F836100482CFC /* Model */,
+				831C4C951E2F838E00482CFC /* View */,
+				831C4C931E2F827A00482CFC /* Controllers */,
 				835010E51E2688FB008CAB58 /* GameOn.entitlements */,
 				830928691E23FB2200AEFF5F /* AppDelegate.swift */,
-				8309286D1E23FB2200AEFF5F /* Main.storyboard */,
-				831C4C911E2E756800482CFC /* RegistrationViewController.swift */,
-				8388E2F91E27E65800BBE4F3 /* SearchGamesViewController.swift */,
-				8376593A1E2975890022B663 /* Game.swift */,
-				8388E2FB1E27E96A00BBE4F3 /* SearchGameCell.swift */,
-				8388E2F11E27A3F600BBE4F3 /* GameCell.swift */,
-				835010E81E2696F7008CAB58 /* PlayersViewController.swift */,
-				835010EA1E26997F008CAB58 /* ChatViewController.swift */,
-				835010E61E268BB1008CAB58 /* UsersGamesViewController.swift */,
-				8309287B1E2566B400AEFF5F /* LoginViewController.swift */,
 				830928701E23FB2200AEFF5F /* Assets.xcassets */,
-				830928721E23FB2200AEFF5F /* LaunchScreen.storyboard */,
 				830928751E23FB2200AEFF5F /* Info.plist */,
 				835010E31E2684D6008CAB58 /* GoogleService-Info.plist */,
-				8388E2F51E27B49600BBE4F3 /* FriendCell.swift */,
-				8388E2F71E27DC9900BBE4F3 /* ChatListCell.swift */,
-				83DA3BDD1E2AEC6500451824 /* GameInfoViewController.swift */,
 			);
 			path = GameOn;
+			sourceTree = "<group>";
+		};
+		831C4C931E2F827A00482CFC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8388E2F71E27DC9900BBE4F3 /* ChatListCell.swift */,
+				8388E2FB1E27E96A00BBE4F3 /* SearchGameCell.swift */,
+				8388E2F11E27A3F600BBE4F3 /* GameCell.swift */,
+				8388E2F51E27B49600BBE4F3 /* FriendCell.swift */,
+				831C4C911E2E756800482CFC /* RegistrationViewController.swift */,
+				8388E2F91E27E65800BBE4F3 /* SearchGamesViewController.swift */,
+				835010E81E2696F7008CAB58 /* PlayersViewController.swift */,
+				835010E61E268BB1008CAB58 /* UsersGamesViewController.swift */,
+				835010EA1E26997F008CAB58 /* ChatViewController.swift */,
+				8309287B1E2566B400AEFF5F /* LoginViewController.swift */,
+				83DA3BDD1E2AEC6500451824 /* GameInfoViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		831C4C941E2F836100482CFC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8376593A1E2975890022B663 /* Game.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		831C4C951E2F838E00482CFC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8309286D1E23FB2200AEFF5F /* Main.storyboard */,
+				830928721E23FB2200AEFF5F /* LaunchScreen.storyboard */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		C40DF8E7FA35D2671B05D1F6 /* Frameworks */ = {
