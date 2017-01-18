@@ -35,21 +35,33 @@ class RegistrationViewController: UIViewController {
             
             self.present(alertController, animated: true, completion: nil)
         }else {
-            FIRAuth.auth()?.createUser(withEmail: self.emailInput.text!, password: self.passwordInput.text!, completion: { (user, error) in
-                if error == nil {
-                    self.userID = user!.uid
-                    self.ref.child("users").child(user!.uid).setValue(["Email": user!.email])
-                    self.ref.child("users").child(user!.uid).setValue(["username": self.userNameInput.text!])
-                    self.ref.child("usernames").child(self.userNameInput.text!).setValue(["ID": user!.uid])
-                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
-                } else {
-                    let alertController = UIAlertController(title: "Oops", message: error?.localizedDescription, preferredStyle: .alert)
+            ref.child("usernames").observeSingleEvent(of: .value, with: { (snapshot) in
+                if(snapshot.hasChild(self.userNameInput.text!)) {
+                    let alertController = UIAlertController(title: "Oops", message: "Username already taken. Try a different username.", preferredStyle: .alert)
                     let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                     alertController.addAction(defaultAction)
+                    
                     self.present(alertController, animated: true, completion: nil)
+                    self.userNameInput.text = ""
+                    
+                } else {
+                    FIRAuth.auth()?.createUser(withEmail: self.emailInput.text!, password: self.passwordInput.text!, completion: { (user, error) in
+                        if error == nil {
+                            self.userID = user!.uid
+                            self.ref.child("users").child(user!.uid).setValue(["Email": user!.email])
+                            self.ref.child("users").child(user!.uid).setValue(["username": self.userNameInput.text!])
+                            self.ref.child("usernames").child(self.userNameInput.text!).setValue(["ID": user!.uid])
+                            self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                        } else {
+                            let alertController = UIAlertController(title: "Oops", message: error?.localizedDescription, preferredStyle: .alert)
+                            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                            alertController.addAction(defaultAction)
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                    })
+
                 }
             })
-            
         }
         
     }
