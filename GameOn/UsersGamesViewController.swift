@@ -18,6 +18,7 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
     var ref: FIRDatabaseReference!
     var gamesRef: FIRDatabaseReference!
     var username: String?
+    var selectedGame: Game?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +80,7 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedGame = usersGames[indexPath.row]
         performSegue(withIdentifier: "gameInfoSegue", sender: nil)
     }
     
@@ -110,6 +112,14 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
             print("success &&&&&&&&")
         
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let infoVC = segue.destination as? GameInfoViewController {
+            infoVC.selectedGame = self.selectedGame
+            infoVC.hideAddButton = true
+            infoVC.hidePlayerButton = false
+        }
     }
     
     @IBAction func logoutPressed(_ sender: UIBarButtonItem) {

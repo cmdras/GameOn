@@ -69,6 +69,7 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedGame = searchResults[indexPath.row]
+        self.searchField.text = ""
         performSegue(withIdentifier: "gameSearchInfoSegue", sender: nil)
     }
 
@@ -91,6 +92,8 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let infoVC = segue.destination as? GameInfoViewController {
             infoVC.selectedGame = self.selectedGame
+            infoVC.hideAddButton = false
+            infoVC.hidePlayerButton = true
         }
     }
     

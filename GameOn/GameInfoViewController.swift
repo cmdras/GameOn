@@ -13,9 +13,13 @@ class GameInfoViewController: UIViewController {
     @IBOutlet weak var gameTitleLabel: UILabel!
     @IBOutlet weak var gameImage: UIImageView!
     @IBOutlet weak var gameSummary: UITextView!
+    @IBOutlet weak var playerButton: UIButton!
+    @IBOutlet weak var addButton: UIButton!
     
     var ref: FIRDatabaseReference?
     var selectedGame: Game?
+    var hidePlayerButton = false
+    var hideAddButton = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +27,11 @@ class GameInfoViewController: UIViewController {
             loadGame(game: selectedGame!)
             ref = FIRDatabase.database().reference()
         }
+        
+        self.addButton.isHidden = hideAddButton
+        self.playerButton.isHidden = hidePlayerButton
+        
+        
 
     }
     
@@ -42,5 +51,6 @@ class GameInfoViewController: UIViewController {
     }
     @IBAction func addGameTouched(_ sender: Any) {
         self.selectedGame?.saveToFirebase(myFirebase: ref!)
+        navigationController?.popToRootViewController(animated: true)
     }
 }

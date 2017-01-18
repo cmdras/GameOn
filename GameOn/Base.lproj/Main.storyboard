@@ -784,9 +784,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="kMb-i0-mNI" id="5J4-rn-4V5"/>
                         <outlet property="gameImage" destination="gpd-XA-Xna" id="kAX-YJ-UBF"/>
                         <outlet property="gameSummary" destination="Tpq-G9-UFx" id="5fF-vx-aj7"/>
                         <outlet property="gameTitleLabel" destination="jSE-hf-VTe" id="IDL-hy-fvj"/>
+                        <outlet property="playerButton" destination="vTv-1b-l7r" id="8jl-X8-rP3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FS6-FU-N9K" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -955,7 +957,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="l3a-5T-Qsk"/>
-        <segue reference="QUg-RE-vYX"/>
+        <segue reference="ohc-va-7cy"/>
+        <segue reference="z0M-C8-sEj"/>
     </inferredMetricsTieBreakers>
 </document>
