@@ -50,3 +50,11 @@ Usage: UIImage.af_setImage(withURL: url!)
 * Finished chat tutorial, did not implement yet
 * Added a register screen that asks the user for a username
 * Games should keep track of which users are playing them. This however is not fully functional
+
+##### Day 10
+* Games are now stored correctly in Firebase, because I wrote a function that can add a key value pair to a Firebase, instead of overwriting it
+* Games are now properly deleted from all lists if the user deletes a game from the personal list
+* Made sure that new usernames are unique. (Odd characters such as spaces are still allowed, so I have to change that)
+* Made a few minor improvements to segues and selections.
+* Users can now see which players are playing a particular game by touching the button
+* **no major issues**
