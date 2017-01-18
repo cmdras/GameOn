@@ -81,6 +81,7 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedGame = usersGames[indexPath.row]
+        gamesTable.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "gameInfoSegue", sender: nil)
     }
     

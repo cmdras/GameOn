@@ -45,12 +45,20 @@ class GameInfoViewController: UIViewController {
             gameImage.image = #imageLiteral(resourceName: "stock")
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    @IBAction func playersButtonTouched(_ sender: Any) {
+        performSegue(withIdentifier: "playersOfGameSegue", sender: nil)
     }
+    
+
     @IBAction func addGameTouched(_ sender: Any) {
         self.selectedGame?.saveToFirebase(myFirebase: ref!)
         navigationController?.popToRootViewController(animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let playersVC = segue.destination as? GamePlayersViewController {
+            playersVC.selectedGame = self.selectedGame
+        }
     }
 }
