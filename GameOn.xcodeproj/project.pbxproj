@@ -18,6 +18,7 @@
 		831C4C991E2FB5EA00482CFC /* GamePlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C4C981E2FB5EA00482CFC /* GamePlayerCell.swift */; };
 		831C4C9B1E30DDCF00482CFC /* FollowedPlayersGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C4C9A1E30DDCE00482CFC /* FollowedPlayersGamesViewController.swift */; };
 		831C4C9F1E30E07200482CFC /* FollowedPlayerGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C4C9E1E30E07200482CFC /* FollowedPlayerGameCell.swift */; };
+		831C4CA11E30EC3F00482CFC /* ChatRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C4CA01E30EC3F00482CFC /* ChatRoomVC.swift */; };
 		835010E41E2684D6008CAB58 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 835010E31E2684D6008CAB58 /* GoogleService-Info.plist */; };
 		835010E71E268BB1008CAB58 /* UsersGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835010E61E268BB1008CAB58 /* UsersGamesViewController.swift */; };
 		835010E91E2696F7008CAB58 /* PlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835010E81E2696F7008CAB58 /* PlayersViewController.swift */; };
@@ -46,6 +47,7 @@
 		831C4C981E2FB5EA00482CFC /* GamePlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePlayerCell.swift; sourceTree = "<group>"; };
 		831C4C9A1E30DDCE00482CFC /* FollowedPlayersGamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowedPlayersGamesViewController.swift; sourceTree = "<group>"; };
 		831C4C9E1E30E07200482CFC /* FollowedPlayerGameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowedPlayerGameCell.swift; sourceTree = "<group>"; };
+		831C4CA01E30EC3F00482CFC /* ChatRoomVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomVC.swift; sourceTree = "<group>"; };
 		835010E31E2684D6008CAB58 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		835010E51E2688FB008CAB58 /* GameOn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GameOn.entitlements; sourceTree = "<group>"; };
 		835010E61E268BB1008CAB58 /* UsersGamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersGamesViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				8309287B1E2566B400AEFF5F /* LoginViewController.swift */,
 				83DA3BDD1E2AEC6500451824 /* GameInfoViewController.swift */,
 				831C4C961E2FB59800482CFC /* GamePlayersViewController.swift */,
+				831C4CA01E30EC3F00482CFC /* ChatRoomVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				831C4C971E2FB59800482CFC /* GamePlayersViewController.swift in Sources */,
 				8388E2F81E27DC9900BBE4F3 /* ChatListCell.swift in Sources */,
 				831C4C921E2E756800482CFC /* RegistrationViewController.swift in Sources */,
+				831C4CA11E30EC3F00482CFC /* ChatRoomVC.swift in Sources */,
 				835010E71E268BB1008CAB58 /* UsersGamesViewController.swift in Sources */,
 				835010E91E2696F7008CAB58 /* PlayersViewController.swift in Sources */,
 				8309287C1E2566B400AEFF5F /* LoginViewController.swift in Sources */,
