@@ -57,7 +57,7 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
     }
     
     override func didPressAccessoryButton(_ sender: UIButton!) {
-        let alert = UIAlertController(title: "Media Messages", message: "Please Select A Media", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Media Messages", message: "Please Select A Media Type", preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let photos = UIAlertAction(title: "Photos", style: .default, handler: {(alert: UIAlertAction) in
             self.chooseMedia(type: kUTTypeImage)
