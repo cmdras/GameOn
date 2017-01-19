@@ -127,12 +127,12 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
                             self.gameDates.append(releaseDate)
                             game.releaseDate = releaseDate
                         } else {
-                            game.releaseDate = ""
+                            game.releaseDate = "Release date unknown"
                         }
                         if let summaryKey = gameData["summary"] {
-                            game.summary = gameData["summary"] as? String
+                            game.summary = summaryKey as? String
                         } else {
-                            game.summary = ""
+                            game.summary = "No summary found"
                         }
                         self.searchResults.append(game)
                     }
