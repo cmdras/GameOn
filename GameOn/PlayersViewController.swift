@@ -52,6 +52,7 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
             as! FriendCell
         self.friendKeys = [String](friends.keys)
         cell.username.text = self.friendKeys![indexPath.row]
+        cell.profileImage.image = #imageLiteral(resourceName: "user_stock")
         return cell
     }
     
