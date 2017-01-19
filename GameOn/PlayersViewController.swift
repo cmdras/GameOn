@@ -18,6 +18,8 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Followed Players"
+        
         ref = FIRDatabase.database().reference(withPath: "usernames")
         retrieveListOfGames(ref: ref)
         self.navigationItem.hidesBackButton = true

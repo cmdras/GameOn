@@ -22,6 +22,7 @@ class GamePlayersViewController: UIViewController, UITableViewDataSource, UITabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Players of \(selectedGame!.title!)"
         ref = FIRDatabase.database().reference(withPath: "users")
         gamesRef = FIRDatabase.database().reference(withPath: "Games")
         self.getUsername(ref: ref!, currentUser: currentUser)
@@ -38,11 +39,26 @@ class GamePlayersViewController: UIViewController, UITableViewDataSource, UITabl
         let cell = gamePlayersTable.dequeueReusableCell(withIdentifier: "playerNameCell", for: indexPath)
             as! GamePlayerCell
         cell.playerUsername.text = users.allKeys[indexPath.row] as? String
-        if (cell.playerUsername.text == self.username) {
-            cell.addPlayerButton.isHidden = true
-        }
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        gamePlayersTable.deselectRow(at: indexPath, animated: true)
+        if (users.allKeys[indexPath.row] as? String != self.username) {
+            let playerKey = self.users.allKeys[indexPath.row] as! String
+            let playerValue = self.users[playerKey] as! String
+            
+            let addPlayerAlert = UIAlertController(title: "Follow Player", message: "Do you want to follow \(users.allKeys[indexPath.row] as! String)", preferredStyle: UIAlertControllerStyle.alert)
+            addPlayerAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+                self.followPlayer(ref: self.ref!.child(self.currentUser), key: playerKey, value: playerValue)
+            }))
+            addPlayerAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in
+            }))
+            
+            present(addPlayerAlert, animated: true, completion: nil)
+        }
+    }
+
     
     func getPlayersForGame(gamesRef: FIRDatabaseReference) {
         gamesRef.child(selectedGame!.title!.replacingOccurrences(of: ".", with: " ")).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -55,6 +71,20 @@ class GamePlayersViewController: UIViewController, UITableViewDataSource, UITabl
         ref.child(currentUser).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             self.username = value?["username"] as? String
+        })
+    }
+    
+    func followPlayer(ref: FIRDatabaseReference, key: String, value: String) {
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.hasChild("Following Players") {
+                let followedPlayers = snapshot.childSnapshot(forPath: "Following Players")
+                let dict = followedPlayers.value as! NSDictionary
+                let newDict = dict as! NSMutableDictionary
+                newDict[key] = value
+                ref.child("Following Players").setValue(newDict)
+            } else {
+                ref.child("Following Players").setValue([key: value])
+            }
         })
     }
 
