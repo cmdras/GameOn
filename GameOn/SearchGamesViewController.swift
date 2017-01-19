@@ -92,8 +92,6 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let infoVC = segue.destination as? GameInfoViewController {
             infoVC.selectedGame = self.selectedGame
-            infoVC.hideAddButton = false
-            infoVC.hidePlayerButton = true
         }
     }
     
