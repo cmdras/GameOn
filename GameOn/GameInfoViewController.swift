@@ -18,8 +18,6 @@ class GameInfoViewController: UIViewController {
     
     var ref: FIRDatabaseReference?
     var selectedGame: Game?
-    var hidePlayerButton = false
-    var hideAddButton = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +25,6 @@ class GameInfoViewController: UIViewController {
             loadGame(game: selectedGame!)
             ref = FIRDatabase.database().reference()
         }
-        
-        self.addButton.isHidden = hideAddButton
-        self.playerButton.isHidden = hidePlayerButton
-        
-        
-
     }
     
     func loadGame(game: Game) {

@@ -11,26 +11,28 @@ import Firebase
 
 class PlayersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var friendListTable: UITableView!
-    var ref: FIRDatabaseReference!
     
-    let userID: String = FIRAuth.auth()!.currentUser!.uid
-    var friends = Array<String>()
+    let ref = FIRDatabase.database().reference(withPath: "users")
+    let userID = FIRAuth.auth()!.currentUser!.uid
+    var friends = [String:String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Followed Players"
-        
-        ref = FIRDatabase.database().reference(withPath: "usernames")
-        retrieveListOfGames(ref: ref)
+        let userRef = ref.child(userID)
+        retrieveListOfFriends(ref: userRef)
         self.navigationItem.hidesBackButton = true
 
     }
     
-    func retrieveListOfGames(ref: FIRDatabaseReference) {
+    func retrieveListOfFriends(ref: FIRDatabaseReference) {
         ref.observe(.value, with: { snapshot in
-            self.friends.removeAll()
-            self.friends = ((snapshot.value! as? NSDictionary)?.allKeys as? [String])!
-            self.friendListTable.reloadData()
+            if snapshot.hasChild("Following Players") {
+                let followedDict = snapshot.childSnapshot(forPath: "Following Players")
+                self.friends.removeAll()
+                self.friends = followedDict.value! as! [String:String]
+                self.friendListTable.reloadData()
+            }
         })
     }
 
@@ -45,7 +47,8 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = friendListTable.dequeueReusableCell(withIdentifier: "friendListCell", for: indexPath)
             as! FriendCell
-        cell.username.text = friends[indexPath.row]
+        let friendKeys = [String](friends.keys)
+        cell.username.text = friendKeys[indexPath.row]
         return cell
     }
     

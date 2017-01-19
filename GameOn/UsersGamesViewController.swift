@@ -118,8 +118,6 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let infoVC = segue.destination as? GameInfoViewController {
             infoVC.selectedGame = self.selectedGame
-            infoVC.hideAddButton = true
-            infoVC.hidePlayerButton = false
         }
     }
     
