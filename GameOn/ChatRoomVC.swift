@@ -5,6 +5,7 @@
 //  Created by Christopher Ras on 19/01/2017.
 //  Copyright © 2017 Chris Ras. All rights reserved.
 //
+//  Back button code adapted from http://stackoverflow.com/questions/27713747/execute-action-when-back-bar-button-of-uinavigationcontroller-is-pressed
 
 import UIKit
 import JSQMessagesViewController
@@ -15,6 +16,7 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
     
     private var messages = [JSQMessage]()
     let picker = UIImagePickerController()
+    var roomID: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()

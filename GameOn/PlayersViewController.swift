@@ -13,10 +13,12 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var friendListTable: UITableView!
     
     let ref = FIRDatabase.database().reference(withPath: "users")
+    let chatRoomRef = FIRDatabase.database().reference().child("Chatrooms")
     let userID = FIRAuth.auth()!.currentUser!.uid
     var segueType = ""
     var friends = [String:String]()
     var friendKeys: [String]?
+    var username: String?
     var selectedUsername: String?
     var selectedUserId: String?
 
@@ -28,6 +30,7 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
         self.title = "Followed Players"
         let userRef = ref.child(userID)
         retrieveListOfFriends(ref: userRef)
+        getUsername(ref: ref, currentUser: userID)
         self.navigationItem.hidesBackButton = true
         self.tabBarController?.tabBar.isHidden = false
 
@@ -80,7 +83,10 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
                 gamesVC.userID = self.selectedUserId
             }
         } else if segueType == "New Chat" {
-            print("Wooo")
+            let roomID = createNewChat(playerUsername: self.selectedUsername!, playerUserId: self.selectedUserId!)
+            if let chatVC = segue.destination as? ChatRoomVC {
+                chatVC.roomID = roomID
+            }
         }
     }
         
@@ -90,5 +96,19 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
         dismiss(animated: true, completion: nil)
     }
     
+    func getUsername(ref: FIRDatabaseReference, currentUser: String) {
+        ref.child(currentUser).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            self.username = value?["username"] as? String
+        })
+    }
+    
+    func createNewChat(playerUsername: String, playerUserId: String) -> String{
+        let newChatRoomRef = chatRoomRef.childByAutoId()
+        newChatRoomRef.setValue(["Chat participants": [username!, playerUsername]])
+        ref.child(userID).child("Chatrooms").childByAutoId().setValue([playerUsername:newChatRoomRef.key])
+        ref.child(playerUserId).child("Chatrooms").childByAutoId().setValue([username!:newChatRoomRef.key])
+        return newChatRoomRef.key
+    }
 
 }
