@@ -65,3 +65,10 @@ Usage: UIImage.af_setImage(withURL: url!)
 * Made a start to chat functionality. Users can send messages, but there is no recipient yet, and messages are not stored in Firebase.
 * Implemented media messages.
 * **no major issues**
+
+##### Day 12 23-1-2017
+* I made a few improvements to the segues to the chat screen. This was in preperation for chat implementation
+* I configured Firebase in such a way that new chatrooms can be made. Open chats are shown as well in the open chats tab
+* I implemented text chat functionality. Users can send messages and see messages that are received.
+* I still have to implement media messages, and have to do some error handling for when a user tries to open a new chat while there already is one. I also still have to figure out a smart way to allow users to delete chatrooms.
+* **no major issues**
