@@ -86,6 +86,8 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
             let roomID = createNewChat(playerUsername: self.selectedUsername!, playerUserId: self.selectedUserId!)
             if let chatVC = segue.destination as? ChatRoomVC {
                 chatVC.roomID = roomID
+                chatVC.player = selectedUsername
+                chatVC.myUsername = username
             }
         }
     }

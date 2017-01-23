@@ -7,29 +7,37 @@
 //
 //  Back button code adapted from http://stackoverflow.com/questions/27713747/execute-action-when-back-bar-button-of-uinavigationcontroller-is-pressed
 
+import Firebase
 import UIKit
 import JSQMessagesViewController
 import MobileCoreServices
 import AVKit
 
-class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     private var messages = [JSQMessage]()
+    let ref = FIRDatabase.database().reference().child("users")
+    let currentUser = FIRAuth.auth()?.currentUser!.uid
     let picker = UIImagePickerController()
+    var myUsername: String?
     var roomID: String?
-    var chatWith: String?
+    var player: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(roomID)
-        print(chatWith)
+        let roomRef = FIRDatabase.database().reference().child("Chatrooms").child(roomID!).child("Messages")
+        MessageHandler.Instance.delegate = self
         self.tabBarController?.tabBar.isHidden = true
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ChatRoomVC.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
-        self.senderId = "1"
-        self.senderDisplayName = "Chris"
+        self.senderId = currentUser!
+        self.senderDisplayName = myUsername!
         picker.delegate = self
+        
+        
+        MessageHandler.Instance.observeMessages(messagesRef: roomRef)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,7 +50,12 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
         let bubbleFactory = JSQMessagesBubbleImageFactory()
-        return bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.blue)
+        let message = messages[indexPath.item]
+        if message.senderId == currentUser! {
+            return bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.blue)
+        } else {
+            return bubbleFactory?.incomingMessagesBubbleImage(with: UIColor.orange)
+        }
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
@@ -59,8 +72,11 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
     }
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text))
-        collectionView.reloadData()
+        
+        let messagesRef = FIRDatabase.database().reference().child("Chatrooms").child(roomID!)
+        
+        MessageHandler.Instance.sendMessage(senderID: senderId, senderName: senderDisplayName, text: text, messagesRef: messagesRef)
+        
         finishSendingMessage()
     }
     
@@ -113,12 +129,16 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
         collectionView.reloadData()
     }
     
+    func messageReceived(senderID: String, senderName: String, text: String) {
+        messages.append(JSQMessage(senderId: senderID, displayName: senderName, text: text))
+        collectionView.reloadData()
+    }
+    
     func back(sender: UIBarButtonItem) {
         self.tabBarController?.tabBar.isHidden = false
         //_ = navigationController?.popViewController(animated: true)
         performSegue(withIdentifier: "backButtonSegue", sender: nil)
     }
-    
     
 
 }

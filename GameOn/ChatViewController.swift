@@ -14,6 +14,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let userID: String = FIRAuth.auth()!.currentUser!.uid
     var myChatsRef: FIRDatabaseReference?
     var roomKeys = [String]()
+    var username: String?
     var openChats = [String: String]()
     var selectedRoomID: String?
     var selectedPlayer: String?
@@ -22,6 +23,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         let userRef = FIRDatabase.database().reference().child("users").child(userID)
+        getUsername(ref: userRef)
         self.navigationItem.hidesBackButton = true
         self.tabBarController?.tabBar.isHidden = false
         retrieveOpenChats(ref: userRef)
@@ -70,12 +72,20 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         performSegue(withIdentifier: "newChatSegue", sender: nil)
     }
     
+    func getUsername(ref: FIRDatabaseReference) {
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            self.username = value?["username"] as? String
+        })
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let chatUsersVC = segue.destination as? PlayersViewController {
             chatUsersVC.segueType = "New Chat"
         } else if let chatVC = segue.destination as? ChatRoomVC {
-            chatVC.chatWith = selectedPlayer
+            chatVC.player = selectedPlayer
             chatVC.roomID = selectedRoomID
+            chatVC.myUsername = username
         }
     }
 
