@@ -137,7 +137,14 @@ class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePic
     func back(sender: UIBarButtonItem) {
         self.tabBarController?.tabBar.isHidden = false
         //_ = navigationController?.popViewController(animated: true)
-        performSegue(withIdentifier: "backButtonSegue", sender: nil)
+        //performSegue(withIdentifier: "backButtonSegue", sender: nil)
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+        for aViewController:UIViewController in viewControllers {
+            if aViewController.isKind(of: ChatViewController.self) {
+                _=self.navigationController?.popToViewController(aViewController, animated: true)
+                
+            }
+        }
     }
     
 

@@ -31,7 +31,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func retrieveOpenChats(ref: FIRDatabaseReference) {
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.observe(.value, with: { (snapshot) in
             if snapshot.hasChild("Chatrooms") {
                 let chatRoomRef = snapshot.childSnapshot(forPath: "Chatrooms")
                 let chatrooms = chatRoomRef.value as! NSDictionary
@@ -88,5 +88,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             chatVC.myUsername = username
         }
     }
+    
 
 }
