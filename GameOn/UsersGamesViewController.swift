@@ -36,6 +36,7 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
             for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
                 self.usersGames.append(self.recreateGame(dict: child.value! as! [String : String]))
             }
+            print("New data added")
             self.gamesTable.reloadData()
         })
     }

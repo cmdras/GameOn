@@ -262,6 +262,7 @@
                     <connections>
                         <outlet property="friendListTable" destination="15X-Bv-3ry" id="VgF-jg-Lb3"/>
                         <segue destination="g8T-i6-Kct" kind="show" identifier="followedPlayerSegue" id="KvQ-NC-FYn"/>
+                        <segue destination="bcU-Y4-KtU" kind="show" identifier="openChatSegue" id="yP3-W6-Qtn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b9D-5h-V8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -292,7 +293,7 @@
                                     <color key="titleColor" red="1" green="0.72192192799999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="hpw-Ie-a1h" kind="show" id="GKO-MG-exU"/>
+                                    <action selector="newChatTouched:" destination="AuJ-Oa-2vh" eventType="touchUpInside" id="veK-PN-6Gy"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oPn-4Z-hsI">
@@ -352,62 +353,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="chatListTable" destination="oPn-4Z-hsI" id="tC7-xe-KTp"/>
+                        <segue destination="85O-oj-cbe" kind="show" identifier="newChatSegue" id="EvT-qt-6hx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xWK-UL-Gal" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3503.1999999999998" y="1027.736131934033"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="hr2-E9-OZ7">
-            <objects>
-                <viewController id="hpw-Ie-a1h" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Fa0-gr-SP8"/>
-                        <viewControllerLayoutGuide type="bottom" id="Y2G-xx-etO"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="LMN-SG-vUN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UlE-Vx-vO2">
-                                <rect key="frame" x="65" y="180" width="89" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.9971032366" green="1" blue="0.99673825039999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xV-1e-5w2">
-                                <rect key="frame" x="65" y="266" width="89" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.9971032366" green="1" blue="0.99673825039999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qeg-Jc-c2H">
-                                <rect key="frame" x="260" y="180" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Chat">
-                                    <color key="titleColor" red="1" green="0.72192192799999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="bcU-Y4-KtU" kind="show" id="euV-kr-gaZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3N-4z-0NI">
-                                <rect key="frame" x="260" y="277" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Chat">
-                                    <color key="titleColor" red="1" green="0.72192192799999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IwU-WX-rRg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4312.8000000000002" y="1027.736131934033"/>
+            <point key="canvasLocation" x="3502" y="1209"/>
         </scene>
         <!--Chat RoomVC-->
         <scene sceneID="xim-9a-PwX">
@@ -425,7 +376,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wEo-7j-Q1q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5048.8000000000002" y="1027.736131934033"/>
+            <point key="canvasLocation" x="5049" y="1227"/>
         </scene>
         <!--Followed Players Games View Controller-->
         <scene sceneID="0sD-7N-lUp">
@@ -992,10 +943,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NJf-hX-fGQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2564" y="1027.736131934033"/>
+            <point key="canvasLocation" x="2481" y="1228"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="EvT-qt-6hx"/>
         <segue reference="ohc-va-7cy"/>
         <segue reference="ogZ-kh-qD6"/>
     </inferredMetricsTieBreakers>

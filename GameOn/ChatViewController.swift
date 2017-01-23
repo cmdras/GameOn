@@ -16,11 +16,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("+++++++")
-        print("\(userID)")
-        print("+++++++")
-        
         self.navigationItem.hidesBackButton = true
+        self.tabBarController?.tabBar.isHidden = false
         
     }
 
@@ -39,5 +36,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
+    @IBAction func newChatTouched(_ sender: Any) {
+        performSegue(withIdentifier: "newChatSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let chatUsersVC = segue.destination as? PlayersViewController {
+            chatUsersVC.segueType = "New Chat"
+        }
+    }
 
 }

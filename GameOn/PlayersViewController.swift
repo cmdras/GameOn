@@ -14,6 +14,7 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     
     let ref = FIRDatabase.database().reference(withPath: "users")
     let userID = FIRAuth.auth()!.currentUser!.uid
+    var segueType = ""
     var friends = [String:String]()
     var friendKeys: [String]?
     var selectedUsername: String?
@@ -21,10 +22,14 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if segueType != "New Chat" {
+            segueType = "Game List"
+        }
         self.title = "Followed Players"
         let userRef = ref.child(userID)
         retrieveListOfFriends(ref: userRef)
         self.navigationItem.hidesBackButton = true
+        self.tabBarController?.tabBar.isHidden = false
 
     }
     
@@ -60,15 +65,25 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
         friendListTable.deselectRow(at: indexPath, animated: true)
         self.selectedUsername = self.friendKeys![indexPath.row]
         self.selectedUserId = self.friends[self.selectedUsername!]
-        performSegue(withIdentifier: "followedPlayerSegue", sender: nil)
+        if segueType == "Game List" {
+            performSegue(withIdentifier: "followedPlayerSegue", sender: nil)
+        } else if segueType == "New Chat" {
+            performSegue(withIdentifier: "openChatSegue", sender: nil)
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let gamesVC = segue.destination as? FollowedPlayersGamesViewController {
-            gamesVC.username = self.selectedUsername
-            gamesVC.userID = self.selectedUserId
+        if segueType == "Game List" {
+            if let gamesVC = segue.destination as? FollowedPlayersGamesViewController {
+                gamesVC.username = self.selectedUsername
+                gamesVC.userID = self.selectedUserId
+            }
+        } else if segueType == "New Chat" {
+            print("Wooo")
         }
     }
+        
     
     @IBAction func logOutTouched(_ sender: Any) {
         try! FIRAuth.auth()!.signOut()

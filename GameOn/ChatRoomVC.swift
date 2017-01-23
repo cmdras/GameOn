@@ -19,6 +19,9 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ChatRoomVC.back(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
         self.senderId = "1"
         self.senderDisplayName = "Chris"
         picker.delegate = self
@@ -103,6 +106,11 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
         
         self.dismiss(animated: true, completion: nil)
         collectionView.reloadData()
+    }
+    
+    func back(sender: UIBarButtonItem) {
+        self.tabBarController?.tabBar.isHidden = false
+        _ = navigationController?.popViewController(animated: true)
     }
     
     

@@ -120,7 +120,6 @@
 		831C4C931E2F827A00482CFC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				831C4C9C1E30DFFF00482CFC /* Cells */,
 				831C4C9A1E30DDCE00482CFC /* FollowedPlayersGamesViewController.swift */,
 				831C4C911E2E756800482CFC /* RegistrationViewController.swift */,
 				8388E2F91E27E65800BBE4F3 /* SearchGamesViewController.swift */,
@@ -146,6 +145,7 @@
 		831C4C951E2F838E00482CFC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				831C4C9C1E30DFFF00482CFC /* Cells */,
 				8309286D1E23FB2200AEFF5F /* Main.storyboard */,
 				830928721E23FB2200AEFF5F /* LaunchScreen.storyboard */,
 			);
