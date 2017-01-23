@@ -5,6 +5,7 @@
 //  Created by Christopher Ras on 11/01/2017.
 //  Copyright © 2017 Chris Ras. All rights reserved.
 //
+//  Pop to specific view adapted from: http://stackoverflow.com/questions/26132658/pop-2-view-controllers-in-nav-controller-in-swift
 
 import UIKit
 import Firebase
