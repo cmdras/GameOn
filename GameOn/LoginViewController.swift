@@ -32,6 +32,10 @@ class LoginViewController: UIViewController {
         ref = FIRDatabase.database().reference()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        ref.removeAllObservers()
+    }
+    
     @IBAction func loginAction(_ sender: Any) {
         
         if self.emailText.text == "" || self.passwordText.text == "" {

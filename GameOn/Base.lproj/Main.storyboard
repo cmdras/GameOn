@@ -223,7 +223,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O2u-gV-2DJ" id="M39-Ac-WhD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ceg-59-hek">
@@ -239,7 +239,6 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="Ceg-59-hek" firstAttribute="top" secondItem="M39-Ac-WhD" secondAttribute="top" constant="2" id="1Q0-6n-Lzc"/>
                                                 <constraint firstItem="Ceg-59-hek" firstAttribute="leading" secondItem="M39-Ac-WhD" secondAttribute="leading" constant="8" id="6WV-YI-ecH"/>
@@ -250,6 +249,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="qXH-79-qWJ" secondAttribute="bottom" constant="49" id="ykW-rR-2sI"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="profileImage" destination="Ceg-59-hek" id="2ai-IK-5km"/>
                                             <outlet property="username" destination="qXH-79-qWJ" id="1Eo-KY-AbW"/>
@@ -337,7 +337,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bog-5n-xIb" id="KaY-uk-TPY">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UHr-Ql-oBi">
@@ -356,7 +356,6 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="a6W-DU-ghj" firstAttribute="trailing" secondItem="KaY-uk-TPY" secondAttribute="trailingMargin" id="6yg-XD-XLi"/>
                                                 <constraint firstItem="UHr-Ql-oBi" firstAttribute="leading" secondItem="KaY-uk-TPY" secondAttribute="leading" constant="8" id="83B-tS-BZE"/>
@@ -366,6 +365,7 @@
                                                 <constraint firstItem="UHr-Ql-oBi" firstAttribute="top" secondItem="KaY-uk-TPY" secondAttribute="top" constant="2" id="u2Q-ZC-TkU"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="profileImage" destination="UHr-Ql-oBi" id="wbX-YC-K8w"/>
                                             <outlet property="username" destination="a6W-DU-ghj" id="Qm0-pY-43G"/>
@@ -454,7 +454,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dMS-TD-NgD" id="Cac-mF-VOD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JoA-kI-3cz">
@@ -496,7 +496,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="Sfe-40-LH7" secondAttribute="bottom" constant="7" id="yuc-Gv-VZ4"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="gameImage" destination="JoA-kI-3cz" id="mRS-zo-Q2N"/>
                                             <outlet property="gameRelease" destination="Sfe-40-LH7" id="8IA-8E-5bM"/>
@@ -580,7 +580,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D3f-pN-wQp" id="Das-df-37b">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3uI-cn-2Kz">
@@ -618,7 +618,7 @@
                                                 <constraint firstItem="AOU-qJ-Eot" firstAttribute="top" secondItem="eiX-2d-Mrs" secondAttribute="bottom" constant="8" id="vm5-dy-ZgE"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="searchGameImage" destination="3uI-cn-2Kz" id="RG9-S5-twz"/>
                                             <outlet property="searchGameRelease" destination="AOU-qJ-Eot" id="PPD-sz-Idp"/>
@@ -677,14 +677,14 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9z7-rh-CBg">
-                                <rect key="frame" x="0.0" y="102" width="375" height="516"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="524"/>
                                 <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="gameInfoCell" id="YKa-ht-HNL" customClass="GameCell" customModule="GameOn" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YKa-ht-HNL" id="4EM-tn-5a2">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="12r-To-KD9">
@@ -714,7 +714,6 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="12r-To-KD9" firstAttribute="leading" secondItem="4EM-tn-5a2" secondAttribute="leading" constant="8" id="EiL-4G-bN1"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="AjJ-BN-7BX" secondAttribute="bottom" constant="7.5" id="UVB-F6-Ih5"/>
@@ -728,6 +727,7 @@
                                                 <constraint firstItem="AjJ-BN-7BX" firstAttribute="leading" secondItem="12r-To-KD9" secondAttribute="trailing" constant="8" id="yQr-zk-Wxs"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="gameImage" destination="12r-To-KD9" id="O7d-bE-4pB"/>
                                             <outlet property="gameRelease" destination="AjJ-BN-7BX" id="ebs-Zy-OUF"/>
@@ -741,7 +741,10 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1L6-ip-RCH">
-                                <rect key="frame" x="248" y="72" width="127" height="30"/>
+                                <rect key="frame" x="248" y="64" width="127" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="127" id="kBQ-0v-Otl"/>
+                                </constraints>
                                 <state key="normal" title="Search Games">
                                     <color key="titleColor" red="1" green="0.72192192799999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -752,19 +755,18 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="9z7-rh-CBg" firstAttribute="trailing" secondItem="1L6-ip-RCH" secondAttribute="trailing" id="8bV-yp-1G5"/>
                             <constraint firstItem="PqK-o9-HyM" firstAttribute="top" secondItem="KEv-9p-6Q6" secondAttribute="top" id="9st-kV-aFg"/>
-                            <constraint firstItem="9z7-rh-CBg" firstAttribute="top" secondItem="1L6-ip-RCH" secondAttribute="bottom" id="BhN-Kj-UpZ"/>
+                            <constraint firstItem="1L6-ip-RCH" firstAttribute="top" secondItem="AoP-wY-Hxf" secondAttribute="bottom" id="CV1-hN-w7I"/>
                             <constraint firstItem="9z7-rh-CBg" firstAttribute="bottom" secondItem="pCV-XC-sQ5" secondAttribute="top" id="NP5-Z8-NLf"/>
                             <constraint firstAttribute="bottom" secondItem="PqK-o9-HyM" secondAttribute="bottom" id="Uln-ZL-cgJ"/>
-                            <constraint firstItem="1L6-ip-RCH" firstAttribute="top" secondItem="AoP-wY-Hxf" secondAttribute="bottom" constant="8" id="ZcW-tC-mDp"/>
-                            <constraint firstItem="1L6-ip-RCH" firstAttribute="leading" secondItem="KEv-9p-6Q6" secondAttribute="leading" constant="248" id="fpa-l4-maf"/>
+                            <constraint firstAttribute="trailing" secondItem="1L6-ip-RCH" secondAttribute="trailing" id="XIa-eE-9sH"/>
                             <constraint firstItem="9z7-rh-CBg" firstAttribute="leading" secondItem="KEv-9p-6Q6" secondAttribute="leading" id="g0H-in-En6"/>
                             <constraint firstItem="pCV-XC-sQ5" firstAttribute="top" secondItem="9z7-rh-CBg" secondAttribute="bottom" id="hZA-sE-qt2"/>
+                            <constraint firstItem="9z7-rh-CBg" firstAttribute="top" secondItem="1L6-ip-RCH" secondAttribute="bottom" id="jkl-dH-pfO"/>
                             <constraint firstItem="PqK-o9-HyM" firstAttribute="leading" secondItem="KEv-9p-6Q6" secondAttribute="leading" id="rRE-a8-Nl1"/>
                             <constraint firstAttribute="trailing" secondItem="PqK-o9-HyM" secondAttribute="trailing" id="rqU-82-Lm3"/>
+                            <constraint firstItem="1L6-ip-RCH" firstAttribute="leading" secondItem="KEv-9p-6Q6" secondAttribute="leading" constant="248" id="sq6-Xf-i2K"/>
                             <constraint firstAttribute="trailing" secondItem="9z7-rh-CBg" secondAttribute="trailing" id="unZ-rA-esV"/>
-                            <constraint firstAttribute="trailing" secondItem="1L6-ip-RCH" secondAttribute="trailing" id="zKX-T8-dtw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rXZ-Kz-vQt">
@@ -934,21 +936,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GameOnScreen" translatesAutoresizingMaskIntoConstraints="NO" id="yKV-wz-iZB">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="-49" width="375" height="667"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yKV-wz-iZB" secondAttribute="height" multiplier="375:667" id="J9a-Ri-WNq"/>
                                     <constraint firstAttribute="width" secondItem="yKV-wz-iZB" secondAttribute="height" multiplier="375:667" id="MIE-OB-h4f"/>
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n0a-jP-wbS">
-                                <rect key="frame" x="0.0" y="28" width="375" height="639"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="546"/>
                                 <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="playerNameCell" id="Z16-dY-jpM" customClass="GamePlayerCell" customModule="GameOn" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z16-dY-jpM" id="Hgr-PL-hT0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tje-Ak-pgp">
@@ -976,7 +978,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="m1T-x1-MkH" secondAttribute="bottom" constant="11" id="xxj-dA-roI"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.9971032366" green="1" blue="0.99673825039999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="playerImage" destination="Hgr-PL-hT0" id="ezn-Za-eZi"/>
@@ -998,7 +1000,6 @@
                             <constraint firstItem="yKV-wz-iZB" firstAttribute="width" secondItem="yKV-wz-iZB" secondAttribute="height" multiplier="375:667" id="Wo8-vV-6Ma"/>
                             <constraint firstItem="ebq-at-QVO" firstAttribute="top" secondItem="yKV-wz-iZB" secondAttribute="bottom" id="Xk8-lA-gZO"/>
                             <constraint firstAttribute="trailing" secondItem="n0a-jP-wbS" secondAttribute="trailing" id="gCh-95-CUg"/>
-                            <constraint firstItem="yKV-wz-iZB" firstAttribute="top" secondItem="Zef-04-Tcg" secondAttribute="top" id="gK0-lH-vMA"/>
                             <constraint firstItem="yKV-wz-iZB" firstAttribute="leading" secondItem="Zef-04-Tcg" secondAttribute="leading" id="gsf-Qu-a3q"/>
                             <constraint firstItem="n0a-jP-wbS" firstAttribute="leading" secondItem="Zef-04-Tcg" secondAttribute="leading" id="zTE-dT-XbF"/>
                         </constraints>

@@ -51,12 +51,15 @@ class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePic
         mediaRef = roomRef!.child("Media Messages")
         MessageHandler.Instance.observeMessages(messagesRef: messagesRef!)
         MessageHandler.Instance.observeMediaMessages(messagesRef: mediaRef!)
+        
+        self.scrollToBottom(animated: true)
     }
     
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        roomRef!.removeAllObservers()
+        messagesRef!.removeAllObservers()
+        mediaRef!.removeAllObservers()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -95,6 +98,7 @@ class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePic
         
         MessageHandler.Instance.sendMessage(senderID: senderId, senderName: senderDisplayName, text: text, messagesRef: messagesRef)
         
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
         finishSendingMessage()
     }
     
@@ -150,7 +154,15 @@ class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePic
     
     func messageReceived(senderID: String, senderName: String, text: String) {
         messages.append(JSQMessage(senderId: senderID, displayName: senderName, text: text))
+        
+        if senderID != self.senderId {
+            JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
+            JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+            
+        }
+        
         collectionView.reloadData()
+        self.scrollToBottom(animated: true)
     }
     
     func mediaReceived(senderID: String, senderName: String, url: String) {

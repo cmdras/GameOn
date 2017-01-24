@@ -21,8 +21,6 @@ class GameVideosVC: UIViewController, UIWebViewDelegate {
     }
     
     func makeSearchQuery(game: Game) {
-        print("debug1")
-        
         let searchTitle = game.title!.replacingOccurrences(of: " ", with: "+")
         if let url = URL(string: "https://m.youtube.com/results?q=\(searchTitle)") {
             print(url)

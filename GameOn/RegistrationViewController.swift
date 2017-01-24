@@ -26,6 +26,10 @@ class RegistrationViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        ref.removeAllObservers()
+    }
+    
     @IBAction func registerTouched(_ sender: Any) {
         
         if self.emailInput.text == "" || self.passwordInput.text == "" || self.userNameInput.text == "" {
