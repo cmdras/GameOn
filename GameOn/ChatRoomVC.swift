@@ -12,7 +12,7 @@ import UIKit
 import JSQMessagesViewController
 import MobileCoreServices
 import AVKit
-import AlamofireImage
+import SDWebImage
 
 class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -156,15 +156,8 @@ class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePic
             do {
                 let data = try Data(contentsOf: mediaURL)
                 if let _ = UIImage(data: data) {
-                    let downloader = ImageDownloader()
-                    let urlRequest = URLRequest(url: URL(string: url)!)
-                    
-                    print(mediaURL)
-                    
-                    downloader.download(urlRequest) { response in
-                        print("start download")
-                        if let image = response.result.value {
-                            print(image)
+                    let _ = SDWebImageDownloader.shared().downloadImage(with: mediaURL, options: [], progress: nil, completed: { (image, data, error, finished) in
+                        DispatchQueue.main.async {
                             let photo = JSQPhotoMediaItem(image: image)
                             if senderID == self.senderId {
                                 photo?.appliesMediaViewMaskAsOutgoing = true
@@ -173,14 +166,19 @@ class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePic
                             }
                             
                             self.messages.append(JSQMessage(senderId: senderID, displayName: senderName, media: photo))
-                            
-                            print("image finished downloading")
-                        } else {
-                            print("somethings up")
+                            self.collectionView.reloadData()
                         }
-                        self.collectionView.reloadData()
-                        print("collection view reloaded")
+                    })
+                } else {
+                    let video = JSQVideoMediaItem(fileURL: mediaURL, isReadyToPlay: true)
+                    if senderID == self.senderId {
+                        video?.appliesMediaViewMaskAsOutgoing = true
+                    } else {
+                        video?.appliesMediaViewMaskAsOutgoing = false
                     }
+                    
+                    messages.append(JSQMessage(senderId: senderID, displayName: senderName, media: video))
+                    self.collectionView.reloadData()
                 }
             } catch {
                 // errors

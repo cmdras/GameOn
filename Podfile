@@ -14,5 +14,6 @@ target 'GameOn' do
   pod 'JSQMessagesViewController'
   pod 'Alamofire'
   pod 'AlamofireImage'
+  pod 'SDWebImage'
 
 end
