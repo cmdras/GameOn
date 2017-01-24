@@ -21,6 +21,7 @@
 		831C4CA11E30EC3F00482CFC /* ChatRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C4CA01E30EC3F00482CFC /* ChatRoomVC.swift */; };
 		831C4CA91E36178D00482CFC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C4CA81E36178D00482CFC /* Constants.swift */; };
 		831C4CAB1E36185100482CFC /* MessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C4CAA1E36185100482CFC /* MessageHandler.swift */; };
+		83368B501E379AFB00440FA1 /* GameVideosVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83368B4F1E379AFB00440FA1 /* GameVideosVC.swift */; };
 		835010E41E2684D6008CAB58 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 835010E31E2684D6008CAB58 /* GoogleService-Info.plist */; };
 		835010E71E268BB1008CAB58 /* UsersGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835010E61E268BB1008CAB58 /* UsersGamesViewController.swift */; };
 		835010E91E2696F7008CAB58 /* PlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835010E81E2696F7008CAB58 /* PlayersViewController.swift */; };
@@ -52,6 +53,7 @@
 		831C4CA01E30EC3F00482CFC /* ChatRoomVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomVC.swift; sourceTree = "<group>"; };
 		831C4CA81E36178D00482CFC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		831C4CAA1E36185100482CFC /* MessageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageHandler.swift; sourceTree = "<group>"; };
+		83368B4F1E379AFB00440FA1 /* GameVideosVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameVideosVC.swift; sourceTree = "<group>"; };
 		835010E31E2684D6008CAB58 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		835010E51E2688FB008CAB58 /* GameOn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GameOn.entitlements; sourceTree = "<group>"; };
 		835010E61E268BB1008CAB58 /* UsersGamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersGamesViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				83DA3BDD1E2AEC6500451824 /* GameInfoViewController.swift */,
 				831C4C961E2FB59800482CFC /* GamePlayersViewController.swift */,
 				831C4CA01E30EC3F00482CFC /* ChatRoomVC.swift */,
+				83368B4F1E379AFB00440FA1 /* GameVideosVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				831C4CA91E36178D00482CFC /* Constants.swift in Sources */,
 				831C4CAB1E36185100482CFC /* MessageHandler.swift in Sources */,
 				8388E2FA1E27E65800BBE4F3 /* SearchGamesViewController.swift in Sources */,
+				83368B501E379AFB00440FA1 /* GameVideosVC.swift in Sources */,
 				8388E2F61E27B49600BBE4F3 /* FriendCell.swift in Sources */,
 				831C4C991E2FB5EA00482CFC /* GamePlayerCell.swift in Sources */,
 				831C4C971E2FB59800482CFC /* GamePlayersViewController.swift in Sources */,

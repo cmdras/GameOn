@@ -25,6 +25,8 @@ class GameInfoViewController: UIViewController {
             loadGame(game: selectedGame!)
             ref = FIRDatabase.database().reference()
         }
+        
+        self.title = "Game Info"
     }
     
     func loadGame(game: Game) {
@@ -42,6 +44,10 @@ class GameInfoViewController: UIViewController {
         performSegue(withIdentifier: "playersOfGameSegue", sender: nil)
     }
     
+    @IBAction func watchGamesButtonTouched(_ sender: Any) {
+        performSegue(withIdentifier: "watchVideos", sender: nil)
+    }
+    
 
     @IBAction func addGameTouched(_ sender: Any) {
         self.selectedGame?.saveToFirebase(myFirebase: ref!)
@@ -51,6 +57,8 @@ class GameInfoViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let playersVC = segue.destination as? GamePlayersViewController {
             playersVC.selectedGame = self.selectedGame
+        } else if let watchVideosVC = segue.destination as? GameVideosVC {
+            watchVideosVC.game = selectedGame
         }
     }
 }

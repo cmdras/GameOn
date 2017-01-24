@@ -28,6 +28,7 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
         gamesRef = FIRDatabase.database().reference(withPath: "Games")
         self.getUsername(ref: ref, currentUser: userID)
         self.retrieveListOfGames(ref: ref)
+        self.title = "My Games"
     }
     
     func retrieveListOfGames(ref: FIRDatabaseReference) {

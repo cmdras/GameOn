@@ -30,6 +30,8 @@ class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePic
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = player
+        
         MessageHandler.Instance.delegate = self
         self.tabBarController?.tabBar.isHidden = true
         self.navigationItem.hidesBackButton = true

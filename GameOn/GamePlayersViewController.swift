@@ -62,8 +62,18 @@ class GamePlayersViewController: UIViewController, UITableViewDataSource, UITabl
     
     func getPlayersForGame(gamesRef: FIRDatabaseReference) {
         gamesRef.child(selectedGame!.title!.replacingOccurrences(of: ".", with: " ")).observeSingleEvent(of: .value, with: { (snapshot) in
-            self.users = snapshot.value as! NSDictionary
-            self.gamePlayersTable.reloadData()
+            let gamePlayers = snapshot.value as? NSDictionary
+            if gamePlayers != nil {
+                self.users = gamePlayers!
+                self.gamePlayersTable.reloadData()
+            } else {
+                let alertController = UIAlertController(title: "No players :(", message: "No one seems to be playing \(self.selectedGame!.title!)", preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(defaultAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+            }
+            
         })
     }
     

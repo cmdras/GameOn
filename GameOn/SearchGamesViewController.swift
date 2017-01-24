@@ -31,6 +31,7 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Search Games" 
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SearchGamesViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false 
         view.addGestureRecognizer(tap)
@@ -68,6 +69,7 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchGamesTable.deselectRow(at: indexPath, animated: true)
         self.selectedGame = searchResults[indexPath.row]
         self.searchField.text = ""
         performSegue(withIdentifier: "gameSearchInfoSegue", sender: nil)

@@ -15,12 +15,14 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     let ref = FIRDatabase.database().reference(withPath: "users")
     let chatRoomRef = FIRDatabase.database().reference().child("Chatrooms")
     let userID = FIRAuth.auth()!.currentUser!.uid
+    var myOpenChatRoomsRef: FIRDatabaseReference?
     var segueType = ""
     var friends = [String:String]()
     var friendKeys: [String]?
     var username: String?
     var selectedUsername: String?
     var selectedUserId: String?
+    var chatAlreadyExists: Bool?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,7 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         self.title = "Followed Players"
         let userRef = ref.child(userID)
+        myOpenChatRoomsRef = userRef.child("Chatrooms")
         retrieveListOfFriends(ref: userRef)
         getUsername(ref: ref, currentUser: userID)
         self.navigationItem.hidesBackButton = true
@@ -72,6 +75,12 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
             performSegue(withIdentifier: "followedPlayerSegue", sender: nil)
         } else if segueType == "New Chat" {
             performSegue(withIdentifier: "openChatSegue", sender: nil)
+//            chatroomExists(playerUsername: self.selectedUsername!)
+//            if self.chatAlreadyExists! {
+//                print("already exists")
+//            } else {
+//                print("new chat")
+//            }
         }
         
     }
@@ -103,6 +112,27 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
             let value = snapshot.value as? NSDictionary
             self.username = value?["username"] as? String
         })
+    }
+    
+    func chatroomExists(playerUsername: String) {
+        myOpenChatRoomsRef!.observeSingleEvent(of: .value, with: {(snapshot) in
+            let openChats = snapshot.value as? NSDictionary
+            let keys = openChats!.allKeys
+            for key in keys {
+                let chatRoom = openChats?[key] as? NSDictionary
+                let chatParticipant = chatRoom?.allKeys[0] as? String
+                if chatParticipant! == playerUsername {
+                    self.chatAlreadyExists = true
+                }
+            }
+            
+            if self.chatAlreadyExists == nil {
+                self.chatAlreadyExists = false
+            }
+            
+        })
+        
+        
     }
     
     func createNewChat(playerUsername: String, playerUserId: String) -> String{

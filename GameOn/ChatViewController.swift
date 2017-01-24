@@ -28,6 +28,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationItem.hidesBackButton = true
         self.tabBarController?.tabBar.isHidden = false
         retrieveOpenChats(ref: userRef)
+        self.title = "My Chatrooms"
         
     }
     
