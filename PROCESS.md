@@ -72,3 +72,11 @@ Usage: UIImage.af_setImage(withURL: url!)
 * I implemented text chat functionality. Users can send messages and see messages that are received.
 * I still have to implement media messages, and have to do some error handling for when a user tries to open a new chat while there already is one. I also still have to figure out a smart way to allow users to delete chatrooms.
 * **no major issues**
+
+##### Day 13 24-1-2017
+* I added background images to all views. Made it so that it would show even through the cells
+* Media messages are now stored on firebase. The problem with my current method is that it is pretty slow, and it wont stay in order of send time, so I should check if I can fix that.
+* Added a webview, which can show the user youtube videos about a certain game. 
+* Fixed the messy constraints, and made sure that all tableviews are somewhat on the same position.
+* Fixed the bug that would crash the app if a list of players is requested for a game that no one is playing.
+* **no major issues**
