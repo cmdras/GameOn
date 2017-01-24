@@ -12,12 +12,15 @@ import UIKit
 import JSQMessagesViewController
 import MobileCoreServices
 import AVKit
+import AlamofireImage
 
 class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     private var messages = [JSQMessage]()
     let ref = FIRDatabase.database().reference().child("users")
     var roomRef: FIRDatabaseReference?
+    var messagesRef: FIRDatabaseReference?
+    var mediaRef: FIRDatabaseReference?
     let currentUser = FIRAuth.auth()?.currentUser!.uid
     let picker = UIImagePickerController()
     var myUsername: String?
@@ -41,8 +44,11 @@ class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePic
         imgBackground.clipsToBounds = true
         self.collectionView.backgroundView = imgBackground
         
-        roomRef = FIRDatabase.database().reference().child("Chatrooms").child(roomID!).child("Messages")
-        MessageHandler.Instance.observeMessages(messagesRef: roomRef!)
+        roomRef = FIRDatabase.database().reference().child("Chatrooms").child(roomID!)
+        messagesRef = roomRef!.child("Messages")
+        mediaRef = roomRef!.child("Media Messages")
+        MessageHandler.Instance.observeMessages(messagesRef: messagesRef!)
+        MessageHandler.Instance.observeMediaMessages(messagesRef: mediaRef!)
     }
     
     
@@ -125,14 +131,15 @@ class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePic
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let mediaMessagesRef = FIRDatabase.database().reference().child("Chatrooms").child(roomID!)
         
-        if let pick = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            let img = JSQPhotoMediaItem(image: pick)
-            self.messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, media: img))
+        if let pic = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            let data = UIImageJPEGRepresentation(pic, 0.01)
             
-        } else if let vidUrl = info[UIImagePickerControllerMediaURL] as? URL {
-            let video = JSQVideoMediaItem(fileURL: vidUrl, isReadyToPlay: true)
-            self.messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, media: video))
+            MessageHandler.Instance.storeMedia(image: data, video: nil, senderID: senderId, senderName: senderDisplayName, mediaMessagesRef: mediaMessagesRef)
+            
+        } else if let vidURL = info[UIImagePickerControllerMediaURL] as? URL {
+            MessageHandler.Instance.storeMedia(image: nil, video: vidURL, senderID: senderId, senderName: senderDisplayName, mediaMessagesRef: mediaMessagesRef)
         }
         
         self.dismiss(animated: true, completion: nil)
@@ -142,6 +149,43 @@ class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePic
     func messageReceived(senderID: String, senderName: String, text: String) {
         messages.append(JSQMessage(senderId: senderID, displayName: senderName, text: text))
         collectionView.reloadData()
+    }
+    
+    func mediaReceived(senderID: String, senderName: String, url: String) {
+        if let mediaURL = URL(string: url) {
+            do {
+                let data = try Data(contentsOf: mediaURL)
+                if let _ = UIImage(data: data) {
+                    let downloader = ImageDownloader()
+                    let urlRequest = URLRequest(url: URL(string: url)!)
+                    
+                    print(mediaURL)
+                    
+                    downloader.download(urlRequest) { response in
+                        print("start download")
+                        if let image = response.result.value {
+                            print(image)
+                            let photo = JSQPhotoMediaItem(image: image)
+                            if senderID == self.senderId {
+                                photo?.appliesMediaViewMaskAsOutgoing = true
+                            } else {
+                                photo?.appliesMediaViewMaskAsOutgoing = false
+                            }
+                            
+                            self.messages.append(JSQMessage(senderId: senderID, displayName: senderName, media: photo))
+                            
+                            print("image finished downloading")
+                        } else {
+                            print("somethings up")
+                        }
+                        self.collectionView.reloadData()
+                        print("collection view reloaded")
+                    }
+                }
+            } catch {
+                // errors
+            }
+        }
     }
     
     func back(sender: UIBarButtonItem) {
