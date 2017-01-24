@@ -17,6 +17,7 @@ class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePic
     
     private var messages = [JSQMessage]()
     let ref = FIRDatabase.database().reference().child("users")
+    var roomRef: FIRDatabaseReference?
     let currentUser = FIRAuth.auth()?.currentUser!.uid
     let picker = UIImagePickerController()
     var myUsername: String?
@@ -25,7 +26,7 @@ class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePic
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let roomRef = FIRDatabase.database().reference().child("Chatrooms").child(roomID!).child("Messages")
+        
         MessageHandler.Instance.delegate = self
         self.tabBarController?.tabBar.isHidden = true
         self.navigationItem.hidesBackButton = true
@@ -35,11 +36,20 @@ class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePic
         self.senderDisplayName = myUsername!
         picker.delegate = self
         
+        let imgBackground:UIImageView = UIImageView(image: #imageLiteral(resourceName: "GameOnScreen"))
+        imgBackground.contentMode = UIViewContentMode.scaleAspectFill
+        imgBackground.clipsToBounds = true
+        self.collectionView.backgroundView = imgBackground
         
-        MessageHandler.Instance.observeMessages(messagesRef: roomRef)
-        
+        roomRef = FIRDatabase.database().reference().child("Chatrooms").child(roomID!).child("Messages")
+        MessageHandler.Instance.observeMessages(messagesRef: roomRef!)
     }
-
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        roomRef!.removeAllObservers()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -52,9 +62,9 @@ class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePic
         let bubbleFactory = JSQMessagesBubbleImageFactory()
         let message = messages[indexPath.item]
         if message.senderId == currentUser! {
-            return bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.blue)
+            return bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.orange)
         } else {
-            return bubbleFactory?.incomingMessagesBubbleImage(with: UIColor.orange)
+            return bubbleFactory?.incomingMessagesBubbleImage(with: UIColor.darkGray)
         }
     }
     
@@ -136,8 +146,6 @@ class ChatRoomVC: JSQMessagesViewController, MessageReceivedDelegate, UIImagePic
     
     func back(sender: UIBarButtonItem) {
         self.tabBarController?.tabBar.isHidden = false
-        //_ = navigationController?.popViewController(animated: true)
-        //performSegue(withIdentifier: "backButtonSegue", sender: nil)
         let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
         for aViewController:UIViewController in viewControllers {
             if aViewController.isKind(of: ChatViewController.self) {
