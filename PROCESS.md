@@ -80,3 +80,9 @@ Usage: UIImage.af_setImage(withURL: url!)
 * Fixed the messy constraints, and made sure that all tableviews are somewhat on the same position.
 * Fixed the bug that would crash the app if a list of players is requested for a game that no one is playing.
 * **no major issues**
+
+##### Day 14 25-1-2017
+* I fixed a major bug that would overwrite existing chats. If a user would open a new chat with someone the user is already chatting with, that chat would be overwritten in both of them. 
+* Added logout functionality for Chat list screen
+* Did not do much else, as I wasnt feeling well
+* Issue: The bug that would overwrite chats had to be fixed with a check. To implement the check however was challenging. Dax helped me with implementing a completion handler.
