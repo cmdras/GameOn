@@ -82,6 +82,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         })
     }
     
+    @IBAction func logOutTouched(_ sender: Any) {
+        try! FIRAuth.auth()!.signOut()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let chatUsersVC = segue.destination as? PlayersViewController {
             chatUsersVC.segueType = "New Chat"

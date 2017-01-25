@@ -394,7 +394,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="e0G-ik-yIM">
-                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="OkZ-8q-LR1"/>
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="OkZ-8q-LR1">
+                            <connections>
+                                <action selector="logOutTouched:" destination="AuJ-Oa-2vh" id="EZs-mC-cHq"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="chatListTable" destination="oPn-4Z-hsI" id="tC7-xe-KTp"/>
