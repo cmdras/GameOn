@@ -34,6 +34,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func retrieveOpenChats(ref: FIRDatabaseReference) {
         ref.observe(.value, with: { (snapshot) in
+            
             if snapshot.hasChild("Chatrooms") {
                 let chatRoomRef = snapshot.childSnapshot(forPath: "Chatrooms")
                 let chatrooms = chatRoomRef.value as! NSDictionary

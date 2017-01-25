@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 
+typealias chatroomExistsComplete = (Bool, String?) -> ()
+
 class PlayersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var friendListTable: UITableView!
     
@@ -16,6 +18,7 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     let chatRoomRef = FIRDatabase.database().reference().child("Chatrooms")
     let userID = FIRAuth.auth()!.currentUser!.uid
     var myOpenChatRoomsRef: FIRDatabaseReference?
+    var roomID: String?
     var segueType = ""
     var friends = [String:String]()
     var friendKeys: [String]?
@@ -74,13 +77,17 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
         if segueType == "Game List" {
             performSegue(withIdentifier: "followedPlayerSegue", sender: nil)
         } else if segueType == "New Chat" {
-            performSegue(withIdentifier: "openChatSegue", sender: nil)
-//            chatroomExists(playerUsername: self.selectedUsername!)
-//            if self.chatAlreadyExists! {
-//                print("already exists")
-//            } else {
-//                print("new chat")
-//            }
+            chatroomExists(playerUsername: selectedUsername!, completion: { (exists, chatroomID) in
+                if exists {
+                    self.roomID = chatroomID
+                    self.performSegue(withIdentifier: "openChatSegue", sender: nil)
+                }
+                if self.roomID == nil {
+                    self.roomID = self.createNewChat(playerUsername: self.selectedUsername!, playerUserId: self.selectedUserId!)
+                    self.performSegue(withIdentifier: "openChatSegue", sender: nil)
+                }
+                
+            })
         }
         
     }
@@ -92,11 +99,10 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
                 gamesVC.userID = self.selectedUserId
             }
         } else if segueType == "New Chat" {
-            let roomID = createNewChat(playerUsername: self.selectedUsername!, playerUserId: self.selectedUserId!)
             if let chatVC = segue.destination as? ChatRoomVC {
-                chatVC.roomID = roomID
-                chatVC.player = selectedUsername
-                chatVC.myUsername = username
+                chatVC.roomID = self.roomID!
+                chatVC.player = self.selectedUsername
+                chatVC.myUsername = self.username
             }
         }
     }
@@ -114,21 +120,22 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
         })
     }
     
-    func chatroomExists(playerUsername: String) {
+    func chatroomExists(playerUsername: String, completion: @escaping chatroomExistsComplete) {
         myOpenChatRoomsRef!.observeSingleEvent(of: .value, with: {(snapshot) in
+            
+            
             let openChats = snapshot.value as? NSDictionary
             let keys = openChats!.allKeys
             for key in keys {
                 let chatRoom = openChats?[key] as? NSDictionary
-                let chatParticipant = chatRoom?.allKeys[0] as? String
-                if chatParticipant! == playerUsername {
-                    self.chatAlreadyExists = true
+                if let chatParticipant = chatRoom?.allKeys[0] as? String {
+                    if chatParticipant == playerUsername {
+                        completion(true, chatRoom?[chatParticipant] as? String)
+                    }
                 }
             }
             
-            if self.chatAlreadyExists == nil {
-                self.chatAlreadyExists = false
-            }
+            completion(false, nil)
             
         })
         
