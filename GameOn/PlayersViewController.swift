@@ -17,7 +17,7 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     let ref = FIRDatabase.database().reference(withPath: "users")
     let chatRoomRef = FIRDatabase.database().reference().child("Chatrooms")
     let userID = FIRAuth.auth()!.currentUser!.uid
-    var myOpenChatRoomsRef: FIRDatabaseReference?
+    var userRef: FIRDatabaseReference?
     var roomID: String?
     var segueType = ""
     var friends = [String:String]()
@@ -33,9 +33,9 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
             segueType = "Game List"
         }
         self.title = "Followed Players"
-        let userRef = ref.child(userID)
-        myOpenChatRoomsRef = userRef.child("Chatrooms")
-        retrieveListOfFriends(ref: userRef)
+        userRef = ref.child(userID)
+        //myOpenChatRoomsRef = userRef.child("Chatrooms")
+        retrieveListOfFriends(ref: userRef!)
         getUsername(ref: ref, currentUser: userID)
         self.navigationItem.hidesBackButton = true
         self.tabBarController?.tabBar.isHidden = false
@@ -121,24 +121,25 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func chatroomExists(playerUsername: String, completion: @escaping chatroomExistsComplete) {
-        myOpenChatRoomsRef!.observeSingleEvent(of: .value, with: {(snapshot) in
-            
-            
-            let openChats = snapshot.value as? NSDictionary
-            let keys = openChats!.allKeys
-            for key in keys {
-                let chatRoom = openChats?[key] as? NSDictionary
-                if let chatParticipant = chatRoom?.allKeys[0] as? String {
-                    if chatParticipant == playerUsername {
-                        completion(true, chatRoom?[chatParticipant] as? String)
+        userRef!.observeSingleEvent(of: .value, with: {(snapshot) in
+            if snapshot.hasChild("Chatrooms") {
+                let myOpenChatRoomsRef = snapshot.childSnapshot(forPath: "Chatrooms")
+                let openChats = myOpenChatRoomsRef.value as? NSDictionary
+                let keys = openChats!.allKeys
+                for key in keys {
+                    let chatRoom = openChats?[key] as? NSDictionary
+                    if let chatParticipant = chatRoom?.allKeys[0] as? String {
+                        if chatParticipant == playerUsername {
+                            completion(true, chatRoom?[chatParticipant] as? String)
+                        }
                     }
                 }
+                
+                completion(false, nil)
+            } else {
+                completion(false, nil)
             }
-            
-            completion(false, nil)
-            
         })
-        
         
     }
     
