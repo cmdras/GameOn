@@ -1007,7 +1007,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.9971032366" green="1" blue="0.99673825039999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="playerImage" destination="Hgr-PL-hT0" id="ezn-Za-eZi"/>
+                                            <outlet property="playerImage" destination="tje-Ak-pgp" id="aMM-A0-DMr"/>
                                             <outlet property="playerUsername" destination="m1T-x1-MkH" id="ZTj-pF-tkY"/>
                                         </connections>
                                     </tableViewCell>

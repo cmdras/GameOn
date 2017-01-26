@@ -39,6 +39,7 @@ class GamePlayersViewController: UIViewController, UITableViewDataSource, UITabl
         let cell = gamePlayersTable.dequeueReusableCell(withIdentifier: "playerNameCell", for: indexPath)
             as! GamePlayerCell
         cell.playerUsername.text = users.allKeys[indexPath.row] as? String
+        cell.playerImage.image = #imageLiteral(resourceName: "user_stock")
         return cell
     }
     

@@ -10,13 +10,16 @@ import UIKit
 import Firebase
 
 typealias chatroomExistsComplete = (Bool, String?) -> ()
+typealias imageURLRetrieved = (String?) -> ()
 
 class PlayersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var friendListTable: UITableView!
     
     let ref = FIRDatabase.database().reference(withPath: "users")
     let chatRoomRef = FIRDatabase.database().reference().child("Chatrooms")
+    let usernamesRef = FIRDatabase.database().reference().child("usernames")
     let userID = FIRAuth.auth()!.currentUser!.uid
+    var imageURLS = [String]()
     var userRef: FIRDatabaseReference?
     var roomID: String?
     var segueType = ""
@@ -32,9 +35,9 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
         if segueType != "New Chat" {
             segueType = "Game List"
         }
+        
         self.title = "Followed Players"
         userRef = ref.child(userID)
-        //myOpenChatRoomsRef = userRef.child("Chatrooms")
         retrieveListOfFriends(ref: userRef!)
         getUsername(ref: ref, currentUser: userID)
         self.navigationItem.hidesBackButton = true
@@ -48,6 +51,7 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
                 let followedDict = snapshot.childSnapshot(forPath: "Following Players")
                 self.friends.removeAll()
                 self.friends = followedDict.value! as! [String:String]
+                self.friendKeys = [String](self.friends.keys)
                 self.friendListTable.reloadData()
             }
         })
@@ -64,9 +68,18 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = friendListTable.dequeueReusableCell(withIdentifier: "friendListCell", for: indexPath)
             as! FriendCell
-        self.friendKeys = [String](friends.keys)
+        
         cell.username.text = self.friendKeys![indexPath.row]
-        cell.profileImage.image = #imageLiteral(resourceName: "user_stock")
+        
+        getUsersPhoto(username: self.friendKeys![indexPath.row], completion: {(imageURL) in
+            if imageURL != nil {
+                let url = URL(string: imageURL!)
+                cell.profileImage.af_setImage(withURL: url!, placeholderImage: #imageLiteral(resourceName: "user_stock"), filter: nil,  imageTransition: .crossDissolve(0.5), runImageTransitionIfCached: true, completion: nil)
+            } else {
+                cell.profileImage.image = #imageLiteral(resourceName: "user_stock")
+            }
+        })
+        
         return cell
     }
     
@@ -141,6 +154,18 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         })
         
+    }
+    
+    func getUsersPhoto(username: String, completion: @escaping imageURLRetrieved) {
+        usernamesRef.child(username).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let userInfo = snapshot.value as? NSDictionary {
+                if userInfo["ProfileImage"] != nil {
+                    completion((userInfo["ProfileImage"]) as? String)
+                }
+            }
+        
+        
+        })
     }
     
     func createNewChat(playerUsername: String, playerUserId: String) -> String{
