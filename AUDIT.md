@@ -1,4 +1,4 @@
-<img src='https://bettercodehub.com/edge/badge/cmdras/GameOn'>
+<img src='https://github.com/cmdras/GameOn/blob/master/doc/GithubAnalysis2.png'>
 
 ##### Todo
 
