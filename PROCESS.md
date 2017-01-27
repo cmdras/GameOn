@@ -86,3 +86,10 @@ Usage: UIImage.af_setImage(withURL: url!)
 * Added logout functionality for Chat list screen
 * Did not do much else, as I wasnt feeling well
 * Issue: The bug that would overwrite chats had to be fixed with a check. To implement the check however was challenging. Dax helped me with implementing a completion handler.
+
+##### Day 15 26-1-2017
+* I added a check that would check if the chatrooms child exists.
+* Users can add a profile image, and the username is automatically added to the FIRAuth displayname
+* The images are not loaded properly however, so I have to figure out a way that the image urls are retrieved easily
+* Fixed the issue that images are not placed in the right order. Downloading the images also seems to go faster, but not significantly, by following the tutorial on Ray Wenderlich (https://www.raywenderlich.com/140836/firebase-tutorial-real-time-chat-2)
+* **no other major issues**
