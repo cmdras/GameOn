@@ -1,0 +1,6 @@
+exclude:
+- /Pods/.*
+component_depth: 1
+languages:
+- ruby
+- swift
