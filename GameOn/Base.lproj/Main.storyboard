@@ -42,11 +42,11 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DQ3-6A-JKW">
                                 <rect key="frame" x="16" y="97" width="343" height="120"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4cj-88-man">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4cj-88-man">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KVG-MS-HFh">
                                         <rect key="frame" x="0.0" y="30" width="343" height="30"/>
@@ -1120,10 +1120,10 @@
         <image name="GameOnScreen" width="414" height="736"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EvT-qt-6hx"/>
+        <segue reference="z0M-C8-sEj"/>
+        <segue reference="ohc-va-7cy"/>
         <segue reference="Xt1-Hk-1aB"/>
         <segue reference="B6w-je-AkM"/>
-        <segue reference="l3a-5T-Qsk"/>
-        <segue reference="z0M-C8-sEj"/>
+        <segue reference="EvT-qt-6hx"/>
     </inferredMetricsTieBreakers>
 </document>

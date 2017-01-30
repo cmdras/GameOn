@@ -10,25 +10,27 @@ import UIKit
 import Firebase
 
 class GameInfoViewController: UIViewController {
+    // MARK: - Properties
+    let ref = FIRDatabase.database().reference()
+    var selectedGame: Game?
+    
+    // MARK: - Outlets
     @IBOutlet weak var gameTitleLabel: UILabel!
     @IBOutlet weak var gameImage: UIImageView!
     @IBOutlet weak var gameSummary: UITextView!
     @IBOutlet weak var playerButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     
-    var ref: FIRDatabaseReference?
-    var selectedGame: Game?
-
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         if (selectedGame != nil) {
             loadGame(game: selectedGame!)
-            ref = FIRDatabase.database().reference()
         }
-        
         self.title = "Game Info"
     }
     
+    // MARK: - Helper Functions
     func loadGame(game: Game) {
         gameTitleLabel.text = game.title
         gameSummary.text = game.summary
@@ -40,6 +42,7 @@ class GameInfoViewController: UIViewController {
         }
     }
     
+    // MARK: - IBAction Functions
     @IBAction func playersButtonTouched(_ sender: Any) {
         performSegue(withIdentifier: "playersOfGameSegue", sender: nil)
     }
@@ -48,12 +51,12 @@ class GameInfoViewController: UIViewController {
         performSegue(withIdentifier: "watchVideos", sender: nil)
     }
     
-
     @IBAction func addGameTouched(_ sender: Any) {
-        self.selectedGame?.saveToFirebase(myFirebase: ref!)
+        self.selectedGame?.saveToFirebase(myFirebase: ref)
         navigationController?.popToRootViewController(animated: true)
     }
     
+    // MARK: - Segue Preparation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let playersVC = segue.destination as? GamePlayersViewController {
             playersVC.selectedGame = self.selectedGame

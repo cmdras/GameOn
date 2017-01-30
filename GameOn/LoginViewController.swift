@@ -8,16 +8,17 @@
 
 import UIKit
 import Firebase
-import FirebaseDatabase
-
 
 class LoginViewController: UIViewController {
-    var ref: FIRDatabaseReference!
+    // MARK: - Properties
+    let ref = FIRDatabase.database().reference()
     var userID: String?
-
+    
+    // MARK: - Outlets
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,15 +28,14 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
             }
         }
-        
         self.passwordText.isSecureTextEntry = true
-        ref = FIRDatabase.database().reference()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         ref.removeAllObservers()
     }
     
+    // MARK: - IBAction Functions
     @IBAction func loginAction(_ sender: Any) {
         
         if self.emailText.text == "" || self.passwordText.text == "" {
@@ -58,10 +58,4 @@ class LoginViewController: UIViewController {
         }
         
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-
 }

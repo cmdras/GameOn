@@ -9,17 +9,21 @@
 import UIKit
 
 class GameVideosVC: UIViewController, UIWebViewDelegate {
-    
-    @IBOutlet weak var webView: UIWebView!
+    // MARK: - Properties
     var game: Game?
     var gameTitle: String?
-
+    
+    // MARK: - Outlets
+    @IBOutlet weak var webView: UIWebView!
+    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.delegate = self
         makeSearchQuery(game: game!)
     }
     
+    // MARK: - Helper Functions
     func makeSearchQuery(game: Game) {
         let searchTitle = game.title!.replacingOccurrences(of: " ", with: "+")
         if let url = URL(string: "https://m.youtube.com/results?q=\(searchTitle)") {
