@@ -13,11 +13,11 @@ typealias chatroomExistsComplete = (Bool, String?) -> ()
 typealias imageURLRetrieved = (String?) -> ()
 
 class PlayersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet weak var friendListTable: UITableView!
-    
+    // MARK: - Properties
     let ref = FIRDatabase.database().reference(withPath: "users")
     let chatRoomRef = FIRDatabase.database().reference().child("Chatrooms")
     let usernamesRef = FIRDatabase.database().reference().child("usernames")
+    let username = FIRAuth.auth()!.currentUser!.displayName
     let userID = FIRAuth.auth()!.currentUser!.uid
     var imageURLS = [String]()
     var userRef: FIRDatabaseReference?
@@ -25,11 +25,14 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     var segueType = ""
     var friends = [String:Any]()
     var friendKeys: [String]?
-    var username = FIRAuth.auth()!.currentUser!.displayName
     var selectedUsername: String?
     var selectedUserId: String?
     var chatAlreadyExists: Bool?
+    
+    // MARK: - Outlets
+    @IBOutlet weak var friendListTable: UITableView!
 
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         if segueType != "New Chat" {
@@ -41,9 +44,9 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
         retrieveListOfFriends(ref: userRef!)
         self.navigationItem.hidesBackButton = true
         self.tabBarController?.tabBar.isHidden = false
-
     }
     
+    // MARK: - Helper Functions
     func retrieveListOfFriends(ref: FIRDatabaseReference) {
         ref.observe(.value, with: { snapshot in
             if snapshot.hasChild("Following Players") {
@@ -55,11 +58,37 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         })
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    func chatroomExists(playerUsername: String, completion: @escaping chatroomExistsComplete) {
+        userRef!.observeSingleEvent(of: .value, with: {(snapshot) in
+            if snapshot.hasChild("Chatrooms") {
+                let myOpenChatRoomsRef = snapshot.childSnapshot(forPath: "Chatrooms")
+                let openChats = myOpenChatRoomsRef.value as? NSDictionary
+                let keys = openChats!.allKeys
+                for key in keys {
+                    let chatRoom = openChats?[key] as? NSDictionary
+                    if let chatParticipant = chatRoom?.allKeys[0] as? String {
+                        if chatParticipant == playerUsername {
+                            completion(true, chatRoom?[chatParticipant] as? String)
+                        }
+                    }
+                }
+                completion(false, nil)
+            } else {
+                completion(false, nil)
+            }
+        })
     }
     
+    func createNewChat(playerUsername: String, playerUserId: String) -> String{
+        let newChatRoomRef = chatRoomRef.childByAutoId()
+        newChatRoomRef.setValue(["Chat participants": [username!, playerUsername]])
+        ref.child(userID).child("Chatrooms").childByAutoId().setValue([playerUsername:newChatRoomRef.key])
+        ref.child(playerUserId).child("Chatrooms").childByAutoId().setValue([username!:newChatRoomRef.key])
+        return newChatRoomRef.key
+    }
+    
+    // MARK: - Table View Handling
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
@@ -80,7 +109,6 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
         self.selectedUsername = self.friendKeys![indexPath.row]
         let userInfo = self.friends[self.selectedUsername!] as! NSDictionary
         self.selectedUserId = userInfo["ID"] as? String
-        
         if segueType == "Game List" {
             performSegue(withIdentifier: "followedPlayerSegue", sender: nil)
         } else if segueType == "New Chat" {
@@ -93,12 +121,17 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
                     self.roomID = self.createNewChat(playerUsername: self.selectedUsername!, playerUserId: self.selectedUserId!)
                     self.performSegue(withIdentifier: "openChatSegue", sender: nil)
                 }
-                
             })
         }
-        
     }
     
+    // MARK: - IBAction functions
+    @IBAction func logOutTouched(_ sender: Any) {
+        try! FIRAuth.auth()!.signOut()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Segue Preparation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segueType == "Game List" {
             if let gamesVC = segue.destination as? FollowedPlayersGamesViewController {
@@ -112,43 +145,6 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
                 chatVC.myUsername = self.username
             }
         }
-    }
-        
-    
-    @IBAction func logOutTouched(_ sender: Any) {
-        try! FIRAuth.auth()!.signOut()
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func chatroomExists(playerUsername: String, completion: @escaping chatroomExistsComplete) {
-        userRef!.observeSingleEvent(of: .value, with: {(snapshot) in
-            if snapshot.hasChild("Chatrooms") {
-                let myOpenChatRoomsRef = snapshot.childSnapshot(forPath: "Chatrooms")
-                let openChats = myOpenChatRoomsRef.value as? NSDictionary
-                let keys = openChats!.allKeys
-                for key in keys {
-                    let chatRoom = openChats?[key] as? NSDictionary
-                    if let chatParticipant = chatRoom?.allKeys[0] as? String {
-                        if chatParticipant == playerUsername {
-                            completion(true, chatRoom?[chatParticipant] as? String)
-                        }
-                    }
-                }
-                
-                completion(false, nil)
-            } else {
-                completion(false, nil)
-            }
-        })
-        
-    }
-    
-    func createNewChat(playerUsername: String, playerUserId: String) -> String{
-        let newChatRoomRef = chatRoomRef.childByAutoId()
-        newChatRoomRef.setValue(["Chat participants": [username!, playerUsername]])
-        ref.child(userID).child("Chatrooms").childByAutoId().setValue([playerUsername:newChatRoomRef.key])
-        ref.child(playerUserId).child("Chatrooms").childByAutoId().setValue([username!:newChatRoomRef.key])
-        return newChatRoomRef.key
     }
 
 }

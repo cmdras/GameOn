@@ -11,26 +11,29 @@ import UIKit
 import Firebase
 
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet weak var chatListTable: UITableView!
+    // MARK: - Properties
     let userID: String = FIRAuth.auth()!.currentUser!.uid
+    let username = FIRAuth.auth()!.currentUser!.displayName
     var myChatsRef: FIRDatabaseReference?
     var roomKeys = [String]()
-    var username: String?
     var openChats = [String: String]()
     var selectedRoomID: String?
     var selectedPlayer: String?
     
-
+    // MARK: - Outlets
+    @IBOutlet weak var chatListTable: UITableView!
+    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         let userRef = FIRDatabase.database().reference().child("users").child(userID)
-        getUsername(ref: userRef)
         self.navigationItem.hidesBackButton = true
         self.tabBarController?.tabBar.isHidden = false
         retrieveOpenChats(ref: userRef)
         self.title = "My Chatrooms"
     }
     
+    // MARK: - Helper Functions
     func retrieveOpenChats(ref: FIRDatabaseReference) {
         ref.observe(.value, with: { (snapshot) in
             if snapshot.hasChild("Chatrooms") {
@@ -48,6 +51,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
+    // MARK: - Table View Handling
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return openChats.keys.count
     }
@@ -69,15 +73,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         performSegue(withIdentifier: "openChatSegue", sender: nil)
     }
     
+    // MARK: IBAction functions
     @IBAction func newChatTouched(_ sender: Any) {
         performSegue(withIdentifier: "newChatSegue", sender: nil)
-    }
-    
-    func getUsername(ref: FIRDatabaseReference) {
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            self.username = value?["username"] as? String
-        })
     }
     
     @IBAction func logOutTouched(_ sender: Any) {
@@ -85,7 +83,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         dismiss(animated: true, completion: nil)
     }
     
-    
+    // Segue Preparation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let chatUsersVC = segue.destination as? PlayersViewController {
             chatUsersVC.segueType = "New Chat"

@@ -11,26 +11,28 @@ import UIKit
 import Firebase
 
 class UsersGamesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet weak var gamesTable: UITableView!
-    
-    var usersGames = Array<Game>()
+    // MARK: - Properties
     let userID: String = FIRAuth.auth()!.currentUser!.uid
     let username = FIRAuth.auth()!.currentUser!.displayName
+    var usersGames = Array<Game>()
     var ref: FIRDatabaseReference!
     var gamesRef: FIRDatabaseReference!
-    
     var selectedGame: Game?
-
+    
+    // MARK: - Outlets
+    @IBOutlet weak var gamesTable: UITableView!
+    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
-        
         ref = FIRDatabase.database().reference(withPath: "users")
         gamesRef = FIRDatabase.database().reference(withPath: "Games")
         self.retrieveListOfGames(ref: ref)
         self.title = "My Games"
     }
     
+    // MARK: - Helper Functions
     func retrieveListOfGames(ref: FIRDatabaseReference) {
         ref.child(userID).child("Games").observe(.value, with: { snapshot in
             self.usersGames.removeAll()
@@ -50,11 +52,29 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
         game.summary = dict["summary"]
         return game
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    func deleteGame(childIWantToRemove: String) {
+        
+        ref.child(userID).child("Games").child(childIWantToRemove.replacingOccurrences(of: ".", with: " ")).removeValue { (error, ref) in
+            if error != nil {
+                let alertController = UIAlertController(title: "Oops", message: error?.localizedDescription, preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+        
+        gamesRef.child(childIWantToRemove.replacingOccurrences(of: ".", with: " ")).observeSingleEvent(of: .value, with: { snapshot in
+            
+            let value = snapshot.value as? NSDictionary
+            let newDict = value as? NSMutableDictionary
+            newDict?[self.username!] = nil
+            self.gamesRef.child(childIWantToRemove.replacingOccurrences(of: ".", with: " ")).setValue(newDict!)
+            
+        })
     }
     
+    // MARK: Table View Handling
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return usersGames.count
     }
@@ -82,42 +102,24 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            self.myDeleteFunction(childIWantToRemove: usersGames[indexPath.row].title!)
+            self.deleteGame(childIWantToRemove: usersGames[indexPath.row].title!)
             self.usersGames.remove(at: indexPath.row)
             gamesTable.reloadData()
             
         }
     }
     
-    func myDeleteFunction(childIWantToRemove: String) {
-        
-        ref.child(userID).child("Games").child(childIWantToRemove.replacingOccurrences(of: ".", with: " ")).removeValue { (error, ref) in
-            if error != nil {
-                let alertController = UIAlertController(title: "Oops", message: error?.localizedDescription, preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
-            }
-        }
-        
-        gamesRef.child(childIWantToRemove.replacingOccurrences(of: ".", with: " ")).observeSingleEvent(of: .value, with: { snapshot in
-            
-            let value = snapshot.value as? NSDictionary
-            let newDict = value as? NSMutableDictionary
-            newDict?[self.username!] = nil
-            self.gamesRef.child(childIWantToRemove.replacingOccurrences(of: ".", with: " ")).setValue(newDict!)
-        
-        })
+    // IBAction Functions
+    @IBAction func logoutPressed(_ sender: UIBarButtonItem) {
+        try! FIRAuth.auth()!.signOut()
+        dismiss(animated: true, completion: nil)
     }
     
+    // Segue Preparation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let infoVC = segue.destination as? GameInfoViewController {
             infoVC.selectedGame = self.selectedGame
         }
     }
     
-    @IBAction func logoutPressed(_ sender: UIBarButtonItem) {
-        try! FIRAuth.auth()!.signOut()
-        dismiss(animated: true, completion: nil)
-    }
 }

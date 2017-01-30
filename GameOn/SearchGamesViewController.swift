@@ -68,7 +68,6 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
                         } else {
                             game.coverUrl = ""
                         }
-                        
                         if let dateKey = gameData["release_dates"] {
                             let releaseDateArray = dateKey as! NSArray
                             let firstDateData = releaseDateArray[0] as! NSDictionary
@@ -93,15 +92,13 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    // MARK: - Table View Handler
+    // MARK: - Table View Handling
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = searchGamesTable.dequeueReusableCell(withIdentifier: "searchedGamesCell", for: indexPath)
-            as! SearchGameCell
-        
+        let cell = searchGamesTable.dequeueReusableCell(withIdentifier: "searchedGamesCell", for: indexPath) as! SearchGameCell
         cell.searchGameTitle.text = searchResults[indexPath.row].title!
         cell.searchGameRelease.text = searchResults[indexPath.row].releaseDate!
         if (searchResults[indexPath.row].coverUrl! != "") {
@@ -110,7 +107,6 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
         } else {
             cell.searchGameImage.image = #imageLiteral(resourceName: "stock")
         }
-        
         return cell
     }
     
@@ -142,7 +138,4 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
             infoVC.selectedGame = self.selectedGame
         }
     }
-    
-    
-    
 }
