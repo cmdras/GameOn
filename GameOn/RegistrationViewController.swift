@@ -107,10 +107,10 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         
         
         var data = Data()
-        data = UIImageJPEGRepresentation(profileImage.image!, 0.8)!
+        data = UIImagePNGRepresentation(profileImage.image!)!
         
         let metaData = FIRStorageMetadata()
-        metaData.contentType = "image/jpg"
+        metaData.contentType = "image/png"
         
         storageRef.child("Profile_Pictures").child(user.uid).put(data, metadata: metaData) {(metaData, error) in
             if let error = error {
@@ -148,6 +148,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     func commitChangesToFirebase(user: FIRUser?,changeRequest: FIRUserProfileChangeRequest?) {
         changeRequest?.commitChanges { error in
             if let error = error {
+                print("*******")
                 print(error)
             } else {
                 self.ref.child("usernames").child(user!.displayName!).setValue(["ID": user!.uid, "ProfileImage": "\(user!.photoURL!)"])

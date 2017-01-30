@@ -23,7 +23,7 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     var userRef: FIRDatabaseReference?
     var roomID: String?
     var segueType = ""
-    var friends = [String:String]()
+    var friends = [String:Any]()
     var friendKeys: [String]?
     var username: String?
     var selectedUsername: String?
@@ -50,7 +50,7 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
             if snapshot.hasChild("Following Players") {
                 let followedDict = snapshot.childSnapshot(forPath: "Following Players")
                 self.friends.removeAll()
-                self.friends = followedDict.value! as! [String:String]
+                self.friends = followedDict.value! as! [String:Any]
                 self.friendKeys = [String](self.friends.keys)
                 self.friendListTable.reloadData()
             }
@@ -70,15 +70,19 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
             as! FriendCell
         
         cell.username.text = self.friendKeys![indexPath.row]
+        let userInfo = self.friends[cell.username.text!] as! NSDictionary
+        let url = URL(string: (userInfo["image"] as! String))
+        print(url)
+        cell.profileImage.af_setImage(withURL: url!, placeholderImage: #imageLiteral(resourceName: "user_stock"), filter: nil,  imageTransition: .crossDissolve(0.5), runImageTransitionIfCached: true, completion: nil)
         
-        getUsersPhoto(username: self.friendKeys![indexPath.row], completion: {(imageURL) in
-            if imageURL != nil {
-                let url = URL(string: imageURL!)
-                cell.profileImage.af_setImage(withURL: url!, placeholderImage: #imageLiteral(resourceName: "user_stock"), filter: nil,  imageTransition: .crossDissolve(0.5), runImageTransitionIfCached: true, completion: nil)
-            } else {
-                cell.profileImage.image = #imageLiteral(resourceName: "user_stock")
-            }
-        })
+//        getUsersPhoto(username: self.friendKeys![indexPath.row], completion: {(imageURL) in
+//            if imageURL != nil {
+//                let url = URL(string: imageURL!)
+//
+//            } else {
+//                cell.profileImage.image = #imageLiteral(resourceName: "user_stock")
+//            }
+//        })
         
         return cell
     }
@@ -86,7 +90,9 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         friendListTable.deselectRow(at: indexPath, animated: true)
         self.selectedUsername = self.friendKeys![indexPath.row]
-        self.selectedUserId = self.friends[self.selectedUsername!]
+        let userInfo = self.friends[self.selectedUsername!] as! NSDictionary
+        self.selectedUserId = userInfo["ID"] as? String
+        
         if segueType == "Game List" {
             performSegue(withIdentifier: "followedPlayerSegue", sender: nil)
         } else if segueType == "New Chat" {
