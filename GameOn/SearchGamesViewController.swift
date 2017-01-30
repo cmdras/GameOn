@@ -14,21 +14,22 @@ import AlamofireImage
 import Firebase
 
 class SearchGamesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet weak var searchGamesTable: UITableView!
-    
-    @IBOutlet weak var searchField: UITextField!
-    
+    // MARK: - Properties
     let headers: HTTPHeaders = [
         "X-Mashape-Key": "ScI6t1sfIcmshy2tuxkm47C7jsQkp1iyIg1jsns01j23R4XUJ1",
         "Accept": "application/json"
     ]
-    
     var gameTitles = Array<String>()
     var gameDates = Array<String>()
     var gameImages = Array<String>()
     var searchResults = Array<Game>()
     var selectedGame: Game?
-
+    
+    // MARK: - Outlets
+    @IBOutlet weak var searchGamesTable: UITableView!
+    @IBOutlet weak var searchField: UITextField!
+    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Search Games" 
@@ -37,62 +38,12 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
         view.addGestureRecognizer(tap)
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     func dismissKeyboard() {
         view.endEditing(true)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = searchGamesTable.dequeueReusableCell(withIdentifier: "searchedGamesCell", for: indexPath)
-            as! SearchGameCell
-        
-        cell.searchGameTitle.text = searchResults[indexPath.row].title!
-        cell.searchGameRelease.text = searchResults[indexPath.row].releaseDate!
-        if (searchResults[indexPath.row].coverUrl! != "") {
-            let url = URL(string: searchResults[indexPath.row].coverUrl!)
-            cell.searchGameImage.af_setImage(withURL: url!, placeholderImage: #imageLiteral(resourceName: "stock"), filter: nil,  imageTransition: .crossDissolve(0.5), runImageTransitionIfCached: true, completion: nil)
-        } else {
-            cell.searchGameImage.image = #imageLiteral(resourceName: "stock")
-        }
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        searchGamesTable.deselectRow(at: indexPath, animated: true)
-        self.selectedGame = searchResults[indexPath.row]
-        self.searchField.text = ""
-        performSegue(withIdentifier: "gameSearchInfoSegue", sender: nil)
-    }
-
-    @IBAction func searchButtonTouched(_ sender: Any) {
-        if ((self.searchField.text?.characters.count)! < 3) {
-            let alertController = UIAlertController(title: "Oops", message: "Please enter at least 3 characters", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            self.present(alertController, animated: true, completion: nil)
-        } else {
-            self.searchResults.removeAll()
-            dataRequest(searchTerm: self.searchField.text!)
-        }
-        
-        view.endEditing(true)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let infoVC = segue.destination as? GameInfoViewController {
-            infoVC.selectedGame = self.selectedGame
-        }
-    }
-    
+    // MARK: - Helper Functions
     /// Retrieve data from IGDB API
     func dataRequest (searchTerm: String) -> Void {
         let noSpaceUrl = searchTerm.replacingOccurrences(of: " ", with: "+")
@@ -141,5 +92,57 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
         }
         
     }
+    
+    // MARK: - Table View Handler
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchResults.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = searchGamesTable.dequeueReusableCell(withIdentifier: "searchedGamesCell", for: indexPath)
+            as! SearchGameCell
+        
+        cell.searchGameTitle.text = searchResults[indexPath.row].title!
+        cell.searchGameRelease.text = searchResults[indexPath.row].releaseDate!
+        if (searchResults[indexPath.row].coverUrl! != "") {
+            let url = URL(string: searchResults[indexPath.row].coverUrl!)
+            cell.searchGameImage.af_setImage(withURL: url!, placeholderImage: #imageLiteral(resourceName: "stock"), filter: nil,  imageTransition: .crossDissolve(0.5), runImageTransitionIfCached: true, completion: nil)
+        } else {
+            cell.searchGameImage.image = #imageLiteral(resourceName: "stock")
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchGamesTable.deselectRow(at: indexPath, animated: true)
+        self.selectedGame = searchResults[indexPath.row]
+        self.searchField.text = ""
+        performSegue(withIdentifier: "gameSearchInfoSegue", sender: nil)
+    }
+    
+    // MARK: - IBAction functions
+    @IBAction func searchButtonTouched(_ sender: Any) {
+        if ((self.searchField.text?.characters.count)! < 3) {
+            let alertController = UIAlertController(title: "Oops", message: "Please enter at least 3 characters", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            self.searchResults.removeAll()
+            dataRequest(searchTerm: self.searchField.text!)
+        }
+        
+        view.endEditing(true)
+    }
+    
+    // MARK: - Segue Preparation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let infoVC = segue.destination as? GameInfoViewController {
+            infoVC.selectedGame = self.selectedGame
+        }
+    }
+    
+    
     
 }

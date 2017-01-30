@@ -13,22 +13,23 @@ import Firebase
 typealias imageUploaded = () -> ()
 
 class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    // MARK: - Properties
+    let ref = FIRDatabase.database().reference()
+    let stockURL = "https://firebasestorage.googleapis.com/v0/b/game-on-11c52.appspot.com/o/Profile_Pictures%2Fuser_stock.png?alt=media&token=d5f91d45-bf31-44d7-af92-ac734a1bdfff"
+    let imagePicker = UIImagePickerController()
+    var selectedProfileImage: String?
     
+    // MARK: - Outlets
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userNameInput: UITextField!
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
     
-    var ref: FIRDatabaseReference!
-    let stockURL = "https://firebasestorage.googleapis.com/v0/b/game-on-11c52.appspot.com/o/Profile_Pictures%2Fuser_stock.png?alt=media&token=d5f91d45-bf31-44d7-af92-ac734a1bdfff"
-    var selectedProfileImage: String?
-    
-    let imagePicker = UIImagePickerController()
-
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.passwordInput.isSecureTextEntry = true
-        ref = FIRDatabase.database().reference()
+        
         imagePicker.delegate = self
         profileImage.image = #imageLiteral(resourceName: "user_stock")
         makeImageTouchable(imageView: profileImage)
@@ -38,6 +39,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         ref.removeAllObservers()
     }
     
+    // MARK: - IBAction Functions
     @IBAction func registerTouched(_ sender: Any) {
         
         if self.emailInput.text == "" || self.passwordInput.text == "" || self.userNameInput.text == "" {
@@ -87,6 +89,12 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         
     }
     
+    @IBAction func cancelTouched(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Helper Functions
+    
     func imageTapped(gesture: UIGestureRecognizer) {
         if let imageView = gesture.view as? UIImageView {
             print("image tapped")
@@ -122,9 +130,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         imageView.isUserInteractionEnabled = true
     }
     
-    @IBAction func cancelTouched(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -138,8 +144,6 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     func commitChangesToFirebase(user: FIRUser?,changeRequest: FIRUserProfileChangeRequest?) {
         changeRequest?.commitChanges { error in
             if let error = error {
-                print("*******")
-                print(error)
                 let alertController = UIAlertController(title: "Oops", message: error.localizedDescription, preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 alertController.addAction(defaultAction)
