@@ -9,8 +9,6 @@
 import UIKit
 
 class ChatListCell: UITableViewCell {
-    
-    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var username: UILabel!
 
     override func awakeFromNib() {

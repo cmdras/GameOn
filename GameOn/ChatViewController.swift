@@ -62,7 +62,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         roomKeys = [String] (openChats.keys)
         cell.username.text = roomKeys[indexPath.row]
-        cell.profileImage.image = #imageLiteral(resourceName: "user_stock")
         return cell
     }
     

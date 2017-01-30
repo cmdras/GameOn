@@ -9,9 +9,7 @@
 import UIKit
 
 class GamePlayerCell: UITableViewCell {
-    @IBOutlet weak var playerImage: UIImageView!
     @IBOutlet weak var playerUsername: UILabel!
-    @IBOutlet weak var addPlayerButton: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
