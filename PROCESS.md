@@ -93,3 +93,8 @@ Usage: UIImage.af_setImage(withURL: url!)
 * The images are not loaded properly however, so I have to figure out a way that the image urls are retrieved easily
 * Fixed the issue that images are not placed in the right order. Downloading the images also seems to go faster, but not significantly, by following the tutorial on Ray Wenderlich (https://www.raywenderlich.com/140836/firebase-tutorial-real-time-chat-2)
 * **no other major issues**
+
+##### Day 16 30-1-2017
+* User images are now displayed in the followed players screen. Does take quite a bit of time for it to load however.
+* Removed video message functionality, that might be a future feature.
+* Organised the code quite a bit and added mark comments.
