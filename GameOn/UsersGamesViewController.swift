@@ -15,9 +15,10 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
     
     var usersGames = Array<Game>()
     let userID: String = FIRAuth.auth()!.currentUser!.uid
+    let username = FIRAuth.auth()!.currentUser!.displayName
     var ref: FIRDatabaseReference!
     var gamesRef: FIRDatabaseReference!
-    var username: String?
+    
     var selectedGame: Game?
 
     override func viewDidLoad() {
@@ -26,7 +27,6 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
         
         ref = FIRDatabase.database().reference(withPath: "users")
         gamesRef = FIRDatabase.database().reference(withPath: "Games")
-        self.getUsername(ref: ref, currentUser: userID)
         self.retrieveListOfGames(ref: ref)
         self.title = "My Games"
     }
@@ -39,13 +39,6 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
             }
             print("New data added")
             self.gamesTable.reloadData()
-        })
-    }
-    
-    func getUsername(ref: FIRDatabaseReference, currentUser: String) {
-        ref.child(currentUser).observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            self.username = value?["username"] as? String
         })
     }
     

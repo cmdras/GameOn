@@ -25,7 +25,7 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     var segueType = ""
     var friends = [String:Any]()
     var friendKeys: [String]?
-    var username: String?
+    var username = FIRAuth.auth()!.currentUser!.displayName
     var selectedUsername: String?
     var selectedUserId: String?
     var chatAlreadyExists: Bool?
@@ -39,7 +39,6 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
         self.title = "Followed Players"
         userRef = ref.child(userID)
         retrieveListOfFriends(ref: userRef!)
-        getUsername(ref: ref, currentUser: userID)
         self.navigationItem.hidesBackButton = true
         self.tabBarController?.tabBar.isHidden = false
 
@@ -72,18 +71,7 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.username.text = self.friendKeys![indexPath.row]
         let userInfo = self.friends[cell.username.text!] as! NSDictionary
         let url = URL(string: (userInfo["image"] as! String))
-        print(url)
         cell.profileImage.af_setImage(withURL: url!, placeholderImage: #imageLiteral(resourceName: "user_stock"), filter: nil,  imageTransition: .crossDissolve(0.5), runImageTransitionIfCached: true, completion: nil)
-        
-//        getUsersPhoto(username: self.friendKeys![indexPath.row], completion: {(imageURL) in
-//            if imageURL != nil {
-//                let url = URL(string: imageURL!)
-//
-//            } else {
-//                cell.profileImage.image = #imageLiteral(resourceName: "user_stock")
-//            }
-//        })
-        
         return cell
     }
     
@@ -132,13 +120,6 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
         dismiss(animated: true, completion: nil)
     }
     
-    func getUsername(ref: FIRDatabaseReference, currentUser: String) {
-        ref.child(currentUser).observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            self.username = value?["username"] as? String
-        })
-    }
-    
     func chatroomExists(playerUsername: String, completion: @escaping chatroomExistsComplete) {
         userRef!.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.hasChild("Chatrooms") {
@@ -160,18 +141,6 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         })
         
-    }
-    
-    func getUsersPhoto(username: String, completion: @escaping imageURLRetrieved) {
-        usernamesRef.child(username).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let userInfo = snapshot.value as? NSDictionary {
-                if userInfo["ProfileImage"] != nil {
-                    completion((userInfo["ProfileImage"]) as? String)
-                }
-            }
-        
-        
-        })
     }
     
     func createNewChat(playerUsername: String, playerUserId: String) -> String{
