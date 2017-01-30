@@ -14,11 +14,11 @@ typealias imageURLRetrieved = (String?) -> ()
 
 class PlayersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // MARK: - Properties
-    let ref = FIRDatabase.database().reference(withPath: "users")
-    let chatRoomRef = FIRDatabase.database().reference().child("Chatrooms")
-    let usernamesRef = FIRDatabase.database().reference().child("usernames")
     let username = FIRAuth.auth()!.currentUser!.displayName
     let userID = FIRAuth.auth()!.currentUser!.uid
+    var ref: FIRDatabaseReference!
+    var chatRoomRef: FIRDatabaseReference!
+    var usernamesRef: FIRDatabaseReference!
     var imageURLS = [String]()
     var userRef: FIRDatabaseReference?
     var roomID: String?
@@ -35,6 +35,10 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = FIRDatabase.database().reference(withPath: Constants.USERS)
+        chatRoomRef = FIRDatabase.database().reference().child(Constants.CHATROOMS)
+        usernamesRef = FIRDatabase.database().reference().child(Constants.USERNAMES)
+        
         if segueType != "New Chat" {
             segueType = "Game List"
         }
@@ -49,8 +53,8 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: - Helper Functions
     func retrieveListOfFriends(ref: FIRDatabaseReference) {
         ref.observe(.value, with: { snapshot in
-            if snapshot.hasChild("Following Players") {
-                let followedDict = snapshot.childSnapshot(forPath: "Following Players")
+            if snapshot.hasChild(Constants.FOLLOWING_PLAYERS) {
+                let followedDict = snapshot.childSnapshot(forPath: Constants.FOLLOWING_PLAYERS)
                 self.friends.removeAll()
                 self.friends = followedDict.value! as! [String:Any]
                 self.friendKeys = [String](self.friends.keys)
@@ -61,8 +65,8 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func chatroomExists(playerUsername: String, completion: @escaping chatroomExistsComplete) {
         userRef!.observeSingleEvent(of: .value, with: {(snapshot) in
-            if snapshot.hasChild("Chatrooms") {
-                let myOpenChatRoomsRef = snapshot.childSnapshot(forPath: "Chatrooms")
+            if snapshot.hasChild(Constants.CHATROOMS) {
+                let myOpenChatRoomsRef = snapshot.childSnapshot(forPath: Constants.CHATROOMS)
                 let openChats = myOpenChatRoomsRef.value as? NSDictionary
                 let keys = openChats!.allKeys
                 for key in keys {
@@ -83,8 +87,8 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     func createNewChat(playerUsername: String, playerUserId: String) -> String{
         let newChatRoomRef = chatRoomRef.childByAutoId()
         newChatRoomRef.setValue(["Chat participants": [username!, playerUsername]])
-        ref.child(userID).child("Chatrooms").childByAutoId().setValue([playerUsername:newChatRoomRef.key])
-        ref.child(playerUserId).child("Chatrooms").childByAutoId().setValue([username!:newChatRoomRef.key])
+        ref.child(userID).child(Constants.CHATROOMS).childByAutoId().setValue([playerUsername:newChatRoomRef.key])
+        ref.child(playerUserId).child(Constants.CHATROOMS).childByAutoId().setValue([username!:newChatRoomRef.key])
         return newChatRoomRef.key
     }
     

@@ -11,7 +11,7 @@ import Firebase
 
 class FollowedPlayersGamesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // MARK: - Properties
-    let ref = FIRDatabase.database().reference(withPath: "users")
+    var ref: FIRDatabaseReference!
     var games = [Game?]()
     var username: String?
     var userID: String?
@@ -23,6 +23,7 @@ class FollowedPlayersGamesViewController: UIViewController, UITableViewDataSourc
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = FIRDatabase.database().reference(withPath: Constants.USERS)
         self.title = "Games played by \(username!)"
         retrieveListOfGames(ref: ref)
     }
@@ -30,15 +31,15 @@ class FollowedPlayersGamesViewController: UIViewController, UITableViewDataSourc
     // MARK: - Helper Functions
     func recreateGame(dict: [String: String]) -> Game {
         let game = Game()
-        game.title = dict["title"]
-        game.releaseDate = dict["releaseDate"]
-        game.coverUrl = dict["coverUrl"]
-        game.summary = dict["summary"]
+        game.title = dict[Constants.TITLE]
+        game.releaseDate = dict[Constants.RELEASE_DATE]
+        game.coverUrl = dict[Constants.COVER_URL]
+        game.summary = dict[Constants.SUMMARY]
         return game
     }
     
     func retrieveListOfGames(ref: FIRDatabaseReference) {
-        ref.child(userID!).child("Games").observe(.value, with: { snapshot in
+        ref.child(userID!).child(Constants.GAMES).observe(.value, with: { snapshot in
             self.games.removeAll()
             for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
                 self.games.append(self.recreateGame(dict: child.value! as! [String : String]))

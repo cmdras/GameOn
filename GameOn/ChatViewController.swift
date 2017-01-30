@@ -14,7 +14,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Properties
     let userID: String = FIRAuth.auth()!.currentUser!.uid
     let username = FIRAuth.auth()!.currentUser!.displayName
-    var myChatsRef: FIRDatabaseReference?
     var roomKeys = [String]()
     var openChats = [String: String]()
     var selectedRoomID: String?
@@ -26,7 +25,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let userRef = FIRDatabase.database().reference().child("users").child(userID)
+        let userRef = FIRDatabase.database().reference().child(Constants.USERS).child(userID)
         self.navigationItem.hidesBackButton = true
         self.tabBarController?.tabBar.isHidden = false
         retrieveOpenChats(ref: userRef)
@@ -36,8 +35,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Helper Functions
     func retrieveOpenChats(ref: FIRDatabaseReference) {
         ref.observe(.value, with: { (snapshot) in
-            if snapshot.hasChild("Chatrooms") {
-                let chatRoomRef = snapshot.childSnapshot(forPath: "Chatrooms")
+            if snapshot.hasChild(Constants.CHATROOMS) {
+                let chatRoomRef = snapshot.childSnapshot(forPath: Constants.CHATROOMS)
                 let chatrooms = chatRoomRef.value as! NSDictionary
                 for room in chatrooms.allKeys {
                     let roomInfo = chatrooms[room] as? [String: String]

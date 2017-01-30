@@ -11,7 +11,7 @@ import Firebase
 
 class GameInfoViewController: UIViewController {
     // MARK: - Properties
-    let ref = FIRDatabase.database().reference()
+    var ref: FIRDatabaseReference!
     var selectedGame: Game?
     
     // MARK: - Outlets
@@ -24,6 +24,7 @@ class GameInfoViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = FIRDatabase.database().reference()
         if (selectedGame != nil) {
             loadGame(game: selectedGame!)
         }

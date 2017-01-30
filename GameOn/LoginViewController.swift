@@ -11,7 +11,7 @@ import Firebase
 
 class LoginViewController: UIViewController {
     // MARK: - Properties
-    let ref = FIRDatabase.database().reference()
+    var ref: FIRDatabaseReference!
     var userID: String?
     
     // MARK: - Outlets
@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ref = FIRDatabase.database().reference()
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
             if user != nil {
                 self.userID = user!.uid

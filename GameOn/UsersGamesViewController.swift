@@ -26,36 +26,35 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
-        ref = FIRDatabase.database().reference(withPath: "users")
-        gamesRef = FIRDatabase.database().reference(withPath: "Games")
+        ref = FIRDatabase.database().reference(withPath: Constants.USERS)
+        gamesRef = FIRDatabase.database().reference(withPath: Constants.GAMES)
         self.retrieveListOfGames(ref: ref)
         self.title = "My Games"
     }
     
     // MARK: - Helper Functions
     func retrieveListOfGames(ref: FIRDatabaseReference) {
-        ref.child(userID).child("Games").observe(.value, with: { snapshot in
+        ref.child(userID).child(Constants.GAMES).observe(.value, with: { snapshot in
             self.usersGames.removeAll()
             for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
                 self.usersGames.append(self.recreateGame(dict: child.value! as! [String : String]))
             }
-            print("New data added")
             self.gamesTable.reloadData()
         })
     }
     
     func recreateGame(dict: [String: String]) -> Game {
         let game = Game()
-        game.title = dict["title"]
-        game.releaseDate = dict["releaseDate"]
-        game.coverUrl = dict["coverUrl"]
-        game.summary = dict["summary"]
+        game.title = dict[Constants.TITLE]
+        game.releaseDate = dict[Constants.RELEASE_DATE]
+        game.coverUrl = dict[Constants.COVER_URL]
+        game.summary = dict[Constants.SUMMARY]
         return game
     }
     
     func deleteGame(childIWantToRemove: String) {
         
-        ref.child(userID).child("Games").child(childIWantToRemove.replacingOccurrences(of: ".", with: " ")).removeValue { (error, ref) in
+        ref.child(userID).child(Constants.GAMES).child(childIWantToRemove.replacingOccurrences(of: ".", with: " ")).removeValue { (error, ref) in
             if error != nil {
                 let alertController = UIAlertController(title: "Oops", message: error?.localizedDescription, preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)

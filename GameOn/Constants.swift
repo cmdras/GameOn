@@ -10,6 +10,22 @@
 import Foundation
 
 class Constants {
+    // ref strings
+    static let USERS = "users"
+    static let GAMES = "Games"
+    static let USERNAMES = "usernames"
+    static let PROFILE_PICTURES = "Profile_Pictures"
+    static let CHATROOMS = "Chatrooms"
+    static let FOLLOWING_PLAYERS = "Following Players"
+    static let MESSAGES = "Messages"
+    static let MEDIA_MESSAGES = "Media Messages"
+    
+    // Game attributes
+    static let TITLE = "title"
+    static let RELEASE_DATE = "releaseDate"
+    static let COVER_URL = "coverUrl"
+    static let SUMMARY = "summary"
+    
     // messages
     static let TEXT = "text"
     static let SENDER_ID = "sender_id"

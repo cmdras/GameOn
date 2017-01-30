@@ -14,7 +14,7 @@ typealias imageUploaded = () -> ()
 
 class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     // MARK: - Properties
-    let ref = FIRDatabase.database().reference()
+    var ref: FIRDatabaseReference!
     let stockURL = "https://firebasestorage.googleapis.com/v0/b/game-on-11c52.appspot.com/o/Profile_Pictures%2Fuser_stock.png?alt=media&token=d5f91d45-bf31-44d7-af92-ac734a1bdfff"
     let imagePicker = UIImagePickerController()
     var selectedProfileImage: String?
@@ -29,7 +29,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         self.passwordInput.isSecureTextEntry = true
-        
+        ref = FIRDatabase.database().reference()
         imagePicker.delegate = self
         profileImage.image = #imageLiteral(resourceName: "user_stock")
         makeImageTouchable(imageView: profileImage)
@@ -49,7 +49,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             
             self.present(alertController, animated: true, completion: nil)
         }else {
-            ref.child("usernames").observeSingleEvent(of: .value, with: { (snapshot) in
+            ref.child(Constants.USERNAMES).observeSingleEvent(of: .value, with: { (snapshot) in
                 if(snapshot.hasChild(self.userNameInput.text!)) {
                     let alertController = UIAlertController(title: "Oops", message: "Username already taken. Try a different username.", preferredStyle: .alert)
                     let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
@@ -61,7 +61,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                 } else {
                     FIRAuth.auth()?.createUser(withEmail: self.emailInput.text!, password: self.passwordInput.text!, completion: { (user, error) in
                         if error == nil {
-                            self.ref.child("users").child(user!.uid).setValue(["username": self.userNameInput.text!])
+                            self.ref.child(Constants.USERS).child(user!.uid).setValue(["username": self.userNameInput.text!])
                             
                             let changeRequest = user?.profileChangeRequest()
                             changeRequest?.displayName = self.userNameInput.text
@@ -97,7 +97,6 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     
     func imageTapped(gesture: UIGestureRecognizer) {
         if let imageView = gesture.view as? UIImageView {
-            print("image tapped")
             imagePicker.allowsEditing = false
             imagePicker.sourceType = .photoLibrary
             present(imagePicker, animated: true, completion: nil)
@@ -112,9 +111,12 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         let metaData = FIRStorageMetadata()
         metaData.contentType = "image/png"
         
-        storageRef.child("Profile_Pictures").child(user.uid).put(data, metadata: metaData) {(metaData, error) in
+        storageRef.child(Constants.PROFILE_PICTURES).child(user.uid).put(data, metadata: metaData) {(metaData, error) in
             if let error = error {
-                print(error.localizedDescription)
+                let alertController = UIAlertController(title: "Oops", message: error.localizedDescription, preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
                 return
             } else {
                 self.selectedProfileImage = metaData!.downloadURL()!.absoluteString
@@ -149,7 +151,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                 alertController.addAction(defaultAction)
                 self.present(alertController, animated: true, completion: nil)
             } else {
-                self.ref.child("usernames").child(user!.displayName!).setValue(["ID": user!.uid, "ProfileImage": "\(user!.photoURL!)"])
+                self.ref.child(Constants.USERNAMES).child(user!.displayName!).setValue(["ID": user!.uid, "ProfileImage": "\(user!.photoURL!)"])
             }
         }
     }

@@ -11,7 +11,6 @@
 import UIKit
 import Alamofire
 import AlamofireImage
-import Firebase
 
 class SearchGamesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // MARK: - Properties

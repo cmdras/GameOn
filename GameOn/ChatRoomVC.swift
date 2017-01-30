@@ -17,7 +17,7 @@ import Photos
 
 class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     // MARK: - Properties
-    let ref = FIRDatabase.database().reference().child("users")
+    let ref = FIRDatabase.database().reference().child(Constants.USERS)
     let currentUser = FIRAuth.auth()?.currentUser!.uid
     let picker = UIImagePickerController()
     private var messages = [JSQMessage]()
@@ -45,9 +45,9 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
         imgBackground.contentMode = UIViewContentMode.scaleAspectFill
         imgBackground.clipsToBounds = true
         self.collectionView.backgroundView = imgBackground
-        roomRef = FIRDatabase.database().reference().child("Chatrooms").child(roomID!)
-        messagesRef = roomRef!.child("Messages")
-        mediaRef = roomRef!.child("Media Messages")
+        roomRef = FIRDatabase.database().reference().child(Constants.CHATROOMS).child(roomID!)
+        messagesRef = roomRef!.child(Constants.MESSAGES)
+        mediaRef = roomRef!.child(Constants.MEDIA_MESSAGES)
         observeMessages(messagesRef: messagesRef!)
         self.scrollToBottom(animated: true)
     }
@@ -65,12 +65,12 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let mediaMessagesRef = FIRDatabase.database().reference().child("Chatrooms").child(roomID!)
+        //let mediaMessagesRef = FIRDatabase.database().reference().child(Constants.CHATROOMS).child(roomID!)
         
         if let pic = info[UIImagePickerControllerOriginalImage] as? UIImage {
             let data = UIImageJPEGRepresentation(pic, 0.01)
             
-            MessageHandler.Instance.storeMedia(image: data, video: nil, senderID: senderId, senderName: senderDisplayName, mediaMessagesRef: mediaMessagesRef)
+            MessageHandler.Instance.storeMedia(image: data, video: nil, senderID: senderId, senderName: senderDisplayName, mediaMessagesRef: roomRef!)
             
         }
         self.dismiss(animated: true, completion: nil)
@@ -206,9 +206,9 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
-        let messagesRef = FIRDatabase.database().reference().child("Chatrooms").child(roomID!)
+        //let messagesRef = FIRDatabase.database().reference().child("Chatrooms").child(roomID!)
         
-        MessageHandler.Instance.sendMessage(senderID: senderId, senderName: senderDisplayName, text: text, messagesRef: messagesRef)
+        MessageHandler.Instance.sendMessage(senderID: senderId, senderName: senderDisplayName, text: text, messagesRef: roomRef!)
         
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         finishSendingMessage()

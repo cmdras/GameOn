@@ -20,12 +20,12 @@ class Game {
     /// Saves the game in Firebase
     func saveToFirebase(myFirebase: FIRDatabaseReference) {
         let currentUser = FIRAuth.auth()!.currentUser!.uid
-        let dict = ["title": self.title!, "releaseDate": self.releaseDate!, "coverUrl": self.coverUrl!, "summary": self.summary!]
-        myFirebase.child("users").child(currentUser).observeSingleEvent(of: .value, with: { (snapshot) in
+        let dict = [Constants.TITLE: self.title!, Constants.RELEASE_DATE: self.releaseDate!, Constants.COVER_URL: self.coverUrl!, Constants.SUMMARY: self.summary!]
+        myFirebase.child(Constants.USERS).child(currentUser).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             self.username = value?["username"] as? String
             
-            myFirebase.child("users").child(currentUser).child("Games").child(self.title!.replacingOccurrences(of: ".", with: " ")).setValue(dict)
+            myFirebase.child(Constants.USERS).child(currentUser).child("Games").child(self.title!.replacingOccurrences(of: ".", with: " ")).setValue(dict)
             self.addToDict(ref: myFirebase, key: self.username!, value: currentUser, gameTitle: self.title!.replacingOccurrences(of: ".", with: " "))
             
         }) { (error) in

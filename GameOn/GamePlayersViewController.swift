@@ -11,9 +11,9 @@ import Firebase
 
 class GamePlayersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // MARK: - Properties
-    let ref = FIRDatabase.database().reference(withPath: "users")
-    let gamesRef = FIRDatabase.database().reference(withPath: "Games")
-    let usernamesRef = FIRDatabase.database().reference(withPath: "usernames")
+    let ref = FIRDatabase.database().reference(withPath: Constants.USERS)
+    let gamesRef = FIRDatabase.database().reference(withPath: Constants.GAMES)
+    let usernamesRef = FIRDatabase.database().reference(withPath: Constants.USERNAMES)
     let username = FIRAuth.auth()?.currentUser?.displayName
     var currentUser = FIRAuth.auth()!.currentUser!.uid
     var selectedGame: Game?
@@ -56,14 +56,14 @@ class GamePlayersViewController: UIViewController, UITableViewDataSource, UITabl
                 if let userData = usernamesSnapshot.value as? NSDictionary {
                     imageURL = userData["ProfileImage"] as! String
                 }
-                if snapshot.hasChild("Following Players") {
-                    let followedPlayers = snapshot.childSnapshot(forPath: "Following Players")
+                if snapshot.hasChild(Constants.FOLLOWING_PLAYERS) {
+                    let followedPlayers = snapshot.childSnapshot(forPath: Constants.FOLLOWING_PLAYERS)
                     let dict = followedPlayers.value as! NSDictionary
                     let newDict = dict as! NSMutableDictionary
                     newDict[key] = ["ID": value, "image": imageURL]
-                    ref.child("Following Players").setValue(newDict)
+                    ref.child(Constants.FOLLOWING_PLAYERS).setValue(newDict)
                 } else {
-                    ref.child("Following Players").setValue([key: ["ID": value, "image": imageURL]])
+                    ref.child(Constants.FOLLOWING_PLAYERS).setValue([key: ["ID": value, "image": imageURL]])
                 }
             })
         })
