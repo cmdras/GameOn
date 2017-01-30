@@ -32,8 +32,6 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         imagePicker.delegate = self
         profileImage.image = #imageLiteral(resourceName: "user_stock")
         makeImageTouchable(imageView: profileImage)
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -65,7 +63,6 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                             
                             let changeRequest = user?.profileChangeRequest()
                             changeRequest?.displayName = self.userNameInput.text
-                            
                             if self.profileImage.image == #imageLiteral(resourceName: "user_stock") {
                                 changeRequest?.photoURL = URL(string: self.stockURL)
                                 self.commitChangesToFirebase(user: user, changeRequest: changeRequest)
@@ -74,9 +71,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                                     changeRequest?.photoURL = URL(string: self.selectedProfileImage!)
                                     self.commitChangesToFirebase(user: user, changeRequest: changeRequest)
                                 })
-                                
                             }
-                            
                             self.performSegue(withIdentifier: "loginSegue", sender: nil)
                         } else {
                             let alertController = UIAlertController(title: "Oops", message: error?.localizedDescription, preferredStyle: .alert)
@@ -103,9 +98,6 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     
     func uploadProfileImageToFirebase(user: FIRUser, completion: @escaping imageUploaded) {
         let storageRef = FIRStorage.storage().reference(forURL: "gs://game-on-11c52.appspot.com")
-        //let filePath = "\(user.uid)"
-        
-        
         var data = Data()
         data = UIImagePNGRepresentation(profileImage.image!)!
         
@@ -120,9 +112,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                 self.selectedProfileImage = metaData!.downloadURL()!.absoluteString
                 completion()
             }
-        
         }
-        
     }
     
     func makeImageTouchable(imageView: UIImageView) {
@@ -150,9 +140,12 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             if let error = error {
                 print("*******")
                 print(error)
+                let alertController = UIAlertController(title: "Oops", message: error.localizedDescription, preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
             } else {
                 self.ref.child("usernames").child(user!.displayName!).setValue(["ID": user!.uid, "ProfileImage": "\(user!.photoURL!)"])
-                print("Success")
             }
         }
     }

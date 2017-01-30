@@ -93,9 +93,10 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
         
         ref.child(userID).child("Games").child(childIWantToRemove.replacingOccurrences(of: ".", with: " ")).removeValue { (error, ref) in
             if error != nil {
-                print("error \(error)")
-            } else {
-                print("success *******")
+                let alertController = UIAlertController(title: "Oops", message: error?.localizedDescription, preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
             }
         }
         
@@ -105,7 +106,6 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
             let newDict = value as? NSMutableDictionary
             newDict?[self.username!] = nil
             self.gamesRef.child(childIWantToRemove.replacingOccurrences(of: ".", with: " ")).setValue(newDict!)
-            print("success &&&&&&&&")
         
         })
     }
@@ -120,8 +120,4 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
         try! FIRAuth.auth()!.signOut()
         dismiss(animated: true, completion: nil)
     }
-    
-    
-
-
 }

@@ -29,12 +29,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tabBarController?.tabBar.isHidden = false
         retrieveOpenChats(ref: userRef)
         self.title = "My Chatrooms"
-        
     }
     
     func retrieveOpenChats(ref: FIRDatabaseReference) {
         ref.observe(.value, with: { (snapshot) in
-            
             if snapshot.hasChild("Chatrooms") {
                 let chatRoomRef = snapshot.childSnapshot(forPath: "Chatrooms")
                 let chatrooms = chatRoomRef.value as! NSDictionary
@@ -43,7 +41,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     for roomKey in roomInfo!.keys {
                         self.openChats[roomKey] = roomInfo![roomKey]
                     }
-                    
                 }
                 self.chatListTable.reloadData()
             }
@@ -98,6 +95,4 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             chatVC.myUsername = username
         }
     }
-    
-
 }

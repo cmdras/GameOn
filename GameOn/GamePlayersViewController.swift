@@ -91,7 +91,6 @@ class GamePlayersViewController: UIViewController, UITableViewDataSource, UITabl
                 if let userData = usernamesSnapshot.value as? NSDictionary {
                     imageURL = userData["ProfileImage"] as! String
                 }
-                
                 if snapshot.hasChild("Following Players") {
                     let followedPlayers = snapshot.childSnapshot(forPath: "Following Players")
                     let dict = followedPlayers.value as! NSDictionary

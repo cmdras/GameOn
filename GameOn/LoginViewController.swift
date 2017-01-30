@@ -42,7 +42,6 @@ class LoginViewController: UIViewController {
             let alertController = UIAlertController(title: "Oops", message: "Please enter an email and password", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
-            
             self.present(alertController, animated: true, completion: nil)
         } else {
             FIRAuth.auth()?.signIn(withEmail: self.emailText.text!, password: self.passwordText.text!, completion: { (user, error) in

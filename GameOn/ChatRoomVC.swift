@@ -214,9 +214,7 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
             })
         }
     }
-    
 
-    
     func observeMessages(messagesRef: FIRDatabaseReference) {
         messagesRef.observe(FIRDataEventType.childAdded) { (snapshot: FIRDataSnapshot) in
             if let data = snapshot.value as? NSDictionary {
@@ -234,8 +232,6 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
                                 }
                             }
                         }
-                        
-                        
                     }
                     
                 }
@@ -256,7 +252,6 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
             }
         })
     }
-    
     
     func back(sender: UIBarButtonItem) {
         self.tabBarController?.tabBar.isHidden = false

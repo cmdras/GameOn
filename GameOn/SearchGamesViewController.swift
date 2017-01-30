@@ -55,9 +55,7 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
             as! SearchGameCell
         
         cell.searchGameTitle.text = searchResults[indexPath.row].title!
-       
         cell.searchGameRelease.text = searchResults[indexPath.row].releaseDate!
-        
         if (searchResults[indexPath.row].coverUrl! != "") {
             let url = URL(string: searchResults[indexPath.row].coverUrl!)
             cell.searchGameImage.af_setImage(withURL: url!, placeholderImage: #imageLiteral(resourceName: "stock"), filter: nil,  imageTransition: .crossDissolve(0.5), runImageTransitionIfCached: true, completion: nil)
@@ -80,7 +78,6 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
             let alertController = UIAlertController(title: "Oops", message: "Please enter at least 3 characters", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
-            
             self.present(alertController, animated: true, completion: nil)
         } else {
             self.searchResults.removeAll()
@@ -88,7 +85,6 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
         }
         
         view.endEditing(true)
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
