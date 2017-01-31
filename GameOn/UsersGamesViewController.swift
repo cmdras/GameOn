@@ -6,6 +6,8 @@
 //  Copyright © 2017 Chris Ras. All rights reserved.
 //
 //  Delete functionality adapted from: http://stackoverflow.com/questions/39631998/how-to-delete-from-firebase-database
+//
+//  This view shows the games which are stored in the users personal list. By tapping on a game, the user is presented info about the game.
 
 import UIKit
 import Firebase
@@ -111,9 +113,9 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
     // IBAction Functions
     @IBAction func logoutPressed(_ sender: UIBarButtonItem) {
         try! FIRAuth.auth()!.signOut()
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let loginViewContoller = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        self.present(loginViewContoller, animated:true, completion:nil)
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            delegate.animateToDestinationController(storyboardId: "LoginViewController")
+        }
     }
     
     // Segue Preparation
@@ -122,5 +124,4 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
             infoVC.selectedGame = self.selectedGame
         }
     }
-    
 }

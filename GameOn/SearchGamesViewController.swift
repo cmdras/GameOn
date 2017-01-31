@@ -7,6 +7,8 @@
 //  
 //  Keyboard hiding code adapted from: http://stackoverflow.com/questions/24126678/close-ios-keyboard-by-touching-anywhere-using-swift
 //  Image download code adapted from: https://www.youtube.com/watch?v=1m-VLnoixz8
+//
+//  In this view, the user can search for games on the IGDB Database. Touching a game will show the user information of that game
 
 import UIKit
 import Alamofire

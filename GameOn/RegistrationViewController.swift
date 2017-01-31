@@ -6,6 +6,8 @@
 //  Copyright © 2017 Chris Ras. All rights reserved.
 //
 //  Gesture recognizer code adapted from: http://stackoverflow.com/questions/29202882/how-to-you-make-a-uiimageview-on-the-storyboard-clickable-swift
+//
+//  Users can register for an account to use the GameOn app. If wanted, users can also add a profile image. Otherwise, a stock image is used
 
 import UIKit
 import Firebase

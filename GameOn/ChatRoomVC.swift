@@ -6,6 +6,11 @@
 //  Copyright © 2017 Chris Ras. All rights reserved.
 //
 //  Back button code adapted from http://stackoverflow.com/questions/27713747/execute-action-when-back-bar-button-of-uinavigationcontroller-is-pressed
+//  Tutorials for ChatroomVC adapted from 2 places: AwesomeTuts Tutorials, and Ray Wenderlich
+//  AwesomeTuts (https://www.youtube.com/playlist?list=PLZhNP5qJ2IA0ZamF_MDzvmb3bNMv-mLt5)
+//  Ray Wenderlich (https://www.raywenderlich.com/140836/firebase-tutorial-real-time-chat-2)
+//
+//  In this view the Chatroom is displayed between two users. Users can send messages and send images to another user.
 
 import Firebase
 import UIKit

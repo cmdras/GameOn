@@ -5,6 +5,7 @@
 //  Created by Christopher Ras on 09/01/2017.
 //  Copyright © 2017 Chris Ras. All rights reserved.
 //
+//  Logout animation by Dax
 
 import UIKit
 import Firebase
@@ -39,6 +40,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return "LoginViewController"
         }
     }
+    
+    
+    func animateToDestinationController(storyboardId: String) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: storyboardId)
+        
+        let overlayView = UIScreen.main.snapshotView(afterScreenUpdates: false)
+        initialViewController.view.addSubview(overlayView)
+        
+        self.window?.rootViewController = initialViewController
+        
+        UIView.animate(withDuration: 0.4, delay: 0, options: .transitionCrossDissolve, animations: {
+            overlayView.alpha = 0
+        }, completion: { finished in
+            overlayView.removeFromSuperview()
+        })
+    }
+    
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

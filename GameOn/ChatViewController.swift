@@ -6,6 +6,8 @@
 //  Copyright © 2017 Chris Ras. All rights reserved.
 //
 //  Pop to specific view adapted from: http://stackoverflow.com/questions/26132658/pop-2-view-controllers-in-nav-controller-in-swift
+//
+//  In this View, the user can see in which open chats the user is participating in. By touching an open chat, that chatroom is opened. Otherwise the user can open a new chat with someone the user is following.
 
 import UIKit
 import Firebase
@@ -78,9 +80,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func logOutTouched(_ sender: Any) {
         try! FIRAuth.auth()!.signOut()
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let loginViewContoller = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        self.present(loginViewContoller, animated:true, completion:nil)
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            delegate.animateToDestinationController(storyboardId: "LoginViewController")
+        }
     }
     
     // Segue Preparation

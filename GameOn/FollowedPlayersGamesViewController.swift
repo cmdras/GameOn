@@ -5,6 +5,7 @@
 //  Created by Christopher Ras on 19/01/2017.
 //  Copyright © 2017 Chris Ras. All rights reserved.
 //
+//  This View shows which games a user is playing. By tapping a game, the user can then get info from that game, and even add the game the the user's personal list.
 
 import UIKit
 import Firebase

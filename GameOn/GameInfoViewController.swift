@@ -5,6 +5,7 @@
 //  Created by Christopher Ras on 15/01/2017.
 //  Copyright © 2017 Chris Ras. All rights reserved.
 //
+//  This View displays information about a specific game. It also allows the user to add the game to the user's personal list. Furthermore, the user can see which players are currently playing the game
 
 import UIKit
 import Firebase

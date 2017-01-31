@@ -4,7 +4,9 @@
 //
 //  Created by Christopher Ras on 10/01/2017.
 //  Copyright © 2017 Chris Ras. All rights reserved.
-//
+//  
+//  Users can login to their account, which is stored on Firebase.
+//  If no account is made, the user can touch the register button to create a new account.
 
 import UIKit
 import Firebase
@@ -23,14 +25,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = FIRDatabase.database().reference()
-        
-//        FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
-//            if user != nil {
-//                self.userID = user!.uid
-//                self.performSegue(withIdentifier: "loginSegue", sender: nil)
-//            }
-//        }
-//        self.passwordText.isSecureTextEntry = true
     }
     
     override func viewDidDisappear(_ animated: Bool) {

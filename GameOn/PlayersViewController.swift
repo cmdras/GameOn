@@ -5,6 +5,7 @@
 //  Created by Christopher Ras on 11/01/2017.
 //  Copyright © 2017 Chris Ras. All rights reserved.
 //
+//  This View shows which players the user is currently following. By pressing on a player, the user can see which games the user is playing.
 
 import UIKit
 import Firebase
@@ -132,9 +133,9 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: - IBAction functions
     @IBAction func logOutTouched(_ sender: Any) {
         try! FIRAuth.auth()!.signOut()
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let loginViewContoller = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        self.present(loginViewContoller, animated:true, completion:nil)
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            delegate.animateToDestinationController(storyboardId: "LoginViewController")
+        }
     }
     
     // MARK: - Segue Preparation

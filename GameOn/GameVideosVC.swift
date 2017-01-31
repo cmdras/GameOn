@@ -5,6 +5,7 @@
 //  Created by Christopher Ras on 24/01/2017.
 //  Copyright © 2017 Chris Ras. All rights reserved.
 //
+// This View shows the users a list of videos on Youtube of a specific game in a . The user can then continue to watch the videos in the web
 
 import UIKit
 
