@@ -26,6 +26,8 @@ class GameVideosVC: UIViewController, UIWebViewDelegate {
     
     // MARK: - Helper Functions
     func makeSearchQuery(game: Game) {
+        // Replacing spaces by "+" helps in the Youtube search query
+        // There should be more replacements however, such as for "é"
         let searchTitle = game.title!.replacingOccurrences(of: " ", with: "+")
         if let url = URL(string: "https://m.youtube.com/results?q=\(searchTitle)") {
             print(url)

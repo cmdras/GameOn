@@ -44,7 +44,8 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
             self.gamesTable.reloadData()
         })
     }
-    
+
+    /// Recreate a Game object from data retrieved from Firebase
     func recreateGame(dict: [String: String]) -> Game {
         let game = Game()
         game.title = dict[Constants.TITLE]
@@ -54,8 +55,8 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
         return game
     }
     
+    /// Delete a game from Firebase
     func deleteGame(childIWantToRemove: String) {
-        
         ref.child(userID).child(Constants.GAMES).child(childIWantToRemove.replacingOccurrences(of: ".", with: " ")).removeValue { (error, ref) in
             if error != nil {
                 let alertController = UIAlertController(title: "Oops", message: error?.localizedDescription, preferredStyle: .alert)

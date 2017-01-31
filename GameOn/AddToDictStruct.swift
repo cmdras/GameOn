@@ -1,5 +1,5 @@
 //
-//  DictStruct.swift
+//  AddToDictStruct.swift
 //  GameOn
 //
 //  Created by Christopher Ras on 31/01/2017.
@@ -10,7 +10,7 @@
 
 import Foundation
 
-struct DictStruct {
+struct AddToDictStruct {
     let key, value, gameTitle: String
     init(key: String, value: String, gameTitle: String) {
         self.key = key

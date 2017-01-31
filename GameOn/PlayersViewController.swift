@@ -64,6 +64,7 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
         })
     }
     
+    /// Checks if a chatroom between two players already exists or not
     func chatroomExists(playerUsername: String, completion: @escaping chatroomExistsComplete) {
         userRef!.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.hasChild(Constants.CHATROOMS) {

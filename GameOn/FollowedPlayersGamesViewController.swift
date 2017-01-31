@@ -30,6 +30,7 @@ class FollowedPlayersGamesViewController: UIViewController, UITableViewDataSourc
     }
     
     // MARK: - Helper Functions
+    /// Recreate a Game object from data retrieved from Firebase
     func recreateGame(dict: [String: String]) -> Game {
         let game = Game()
         game.title = dict[Constants.TITLE]
@@ -39,6 +40,7 @@ class FollowedPlayersGamesViewController: UIViewController, UITableViewDataSourc
         return game
     }
     
+    /// Retrieve the list of Games stored in Firebase
     func retrieveListOfGames(ref: FIRDatabaseReference) {
         ref.child(userID!).child(Constants.GAMES).observe(.value, with: { snapshot in
             self.games.removeAll()
@@ -50,7 +52,6 @@ class FollowedPlayersGamesViewController: UIViewController, UITableViewDataSourc
     }
     
     // MARK: - Table View Handling
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return games.count
     }

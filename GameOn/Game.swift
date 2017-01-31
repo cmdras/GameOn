@@ -10,6 +10,7 @@
 //  A Game class, which contains information about a specific game, and a function to store the game in Firebase
 import Foundation
 import Firebase
+
 class Game {
     var title: String?
     var releaseDate: String?
@@ -27,17 +28,16 @@ class Game {
             
             myFirebase.child(Constants.USERS).child(currentUser).child(Constants.GAMES).child(self.title!.replacingOccurrences(of: ".", with: " ")).setValue(dict)
             
-            let gameStruct = DictStruct(key: self.username!, value: currentUser, gameTitle: self.title!.replacingOccurrences(of: ".", with: " "))
+            let gameStruct = AddToDictStruct(key: self.username!, value: currentUser, gameTitle: self.title!.replacingOccurrences(of: ".", with: " "))
             self.addToDict(ref: myFirebase, valueStruct: gameStruct)
             
         }) { (error) in
             print(error.localizedDescription)
         }
-        
     }
     
     /// Function that can add a new key-value pair to an existing Firebase child
-    private func addToDict(ref: FIRDatabaseReference, valueStruct: DictStruct) {
+    private func addToDict(ref: FIRDatabaseReference, valueStruct: AddToDictStruct) {
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild(Constants.GAMES) {
                 let gameList = snapshot.childSnapshot(forPath: Constants.GAMES)

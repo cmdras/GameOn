@@ -33,7 +33,6 @@ class LoginViewController: UIViewController {
     
     // MARK: - IBAction Functions
     @IBAction func loginAction(_ sender: Any) {
-        
         if self.emailText.text == "" || self.passwordText.text == "" {
             let alertController = UIAlertController(title: "Oops", message: "Please enter an email and password", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
