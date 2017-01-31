@@ -98,3 +98,9 @@ Usage: UIImage.af_setImage(withURL: url!)
 * User images are now displayed in the followed players screen. Does take quite a bit of time for it to load however.
 * Removed video message functionality, that might be a future feature.
 * Organised the code quite a bit and added mark comments.
+
+##### Day 17 31-1-2017
+* I fixed the double login problem (with a lot of help from Dax)
+* Added descriptive comments to most files
+* Created a LICENSE file
+* Fixed the web view button
