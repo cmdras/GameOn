@@ -49,7 +49,10 @@ class GameInfoViewController: UIViewController {
         performSegue(withIdentifier: "playersOfGameSegue", sender: nil)
     }
     
-    @IBAction func watchGamesButtonTouched(_ sender: Any) {
+//    @IBAction func watchGamesButtonTouched(_ sender: Any) {
+//        performSegue(withIdentifier: "watchVideos", sender: nil)
+//    }
+    @IBAction func gameVideosButtonTouched(_ sender: Any) {
         performSegue(withIdentifier: "watchVideos", sender: nil)
     }
     
