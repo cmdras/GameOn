@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 class LoginViewController: UIViewController {
+    
     // MARK: - Properties
     var ref: FIRDatabaseReference!
     var userID: String?
@@ -22,13 +23,14 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = FIRDatabase.database().reference()
-        FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
-            if user != nil {
-                self.userID = user!.uid
-                self.performSegue(withIdentifier: "loginSegue", sender: nil)
-            }
-        }
-        self.passwordText.isSecureTextEntry = true
+        
+//        FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
+//            if user != nil {
+//                self.userID = user!.uid
+//                self.performSegue(withIdentifier: "loginSegue", sender: nil)
+//            }
+//        }
+//        self.passwordText.isSecureTextEntry = true
     }
     
     override func viewDidDisappear(_ animated: Bool) {

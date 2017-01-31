@@ -65,27 +65,20 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        //let mediaMessagesRef = FIRDatabase.database().reference().child(Constants.CHATROOMS).child(roomID!)
-        
         if let pic = info[UIImagePickerControllerOriginalImage] as? UIImage {
             let data = UIImageJPEGRepresentation(pic, 0.01)
-            
             MessageHandler.Instance.storeMedia(image: data, video: nil, senderID: senderId, senderName: senderDisplayName, mediaMessagesRef: roomRef!)
-            
-        }
+            }
         self.dismiss(animated: true, completion: nil)
         collectionView.reloadData()
     }
     
     func messageReceived(senderID: String, senderName: String, text: String) {
         messages.append(JSQMessage(senderId: senderID, displayName: senderName, text: text))
-        
         if senderID != self.senderId {
             JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
             JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
-            
         }
-        
         collectionView.reloadData()
         self.scrollToBottom(animated: true)
     }
@@ -93,11 +86,9 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
     private func addPhotoMessage(withId id: String, key: String, mediaItem: JSQPhotoMediaItem) {
         if let message = JSQMessage(senderId: id, displayName: "", media: mediaItem) {
             messages.append(message)
-            
             if (mediaItem.image == nil) {
                 photoMessageMap[key] = mediaItem
             }
-            
             collectionView.reloadData()
             self.scrollToBottom(animated: true)
         }
@@ -107,12 +98,12 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
         let storageRef = FIRStorage.storage().reference(forURL: photoURL)
         storageRef.data(withMaxSize: INT64_MAX){ (data, error) in
             if let error = error {
-                print("Error downloading image data: \(error)")
+                self.alertFromError(alertMessage: error)
                 return
             }
             storageRef.metadata(completion: { (metadata, metadataErr) in
                 if let error = metadataErr {
-                    print("Error downloading metadata: \(error)")
+                    self.alertFromError(alertMessage: error)
                     return
                 }
                 if (metadata?.contentType == "image/gif") {
@@ -206,8 +197,6 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
-        //let messagesRef = FIRDatabase.database().reference().child("Chatrooms").child(roomID!)
-        
         MessageHandler.Instance.sendMessage(senderID: senderId, senderName: senderDisplayName, text: text, messagesRef: roomRef!)
         
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
@@ -224,5 +213,13 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
         alert.addAction(photos)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func alertFromError(alertMessage: Error?) {
+        let alertController = UIAlertController(title: "Oops", message: alertMessage?.localizedDescription, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }

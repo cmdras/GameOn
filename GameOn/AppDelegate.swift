@@ -16,8 +16,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         FIRApp.configure()
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: checkIfLoggedIn())
+        
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+        
         return true
+    }
+    
+    private func checkIfLoggedIn() -> String {
+        
+        if FIRAuth.auth()?.currentUser != nil {
+            return "TabbarController"
+        } else {
+            return "LoginViewController"
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

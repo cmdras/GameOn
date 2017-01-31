@@ -25,8 +25,10 @@ class Game {
             let value = snapshot.value as? NSDictionary
             self.username = value?["username"] as? String
             
-            myFirebase.child(Constants.USERS).child(currentUser).child("Games").child(self.title!.replacingOccurrences(of: ".", with: " ")).setValue(dict)
-            self.addToDict(ref: myFirebase, key: self.username!, value: currentUser, gameTitle: self.title!.replacingOccurrences(of: ".", with: " "))
+            myFirebase.child(Constants.USERS).child(currentUser).child(Constants.GAMES).child(self.title!.replacingOccurrences(of: ".", with: " ")).setValue(dict)
+            
+            let gameStruct = DictStruct(key: self.username!, value: currentUser, gameTitle: self.title!.replacingOccurrences(of: ".", with: " "))
+            self.addToDict(ref: myFirebase, valueStruct: gameStruct)
             
         }) { (error) in
             print(error.localizedDescription)
@@ -35,21 +37,21 @@ class Game {
     }
     
     /// Function that can add a new key-value pair to an existing Firebase child
-    private func addToDict(ref: FIRDatabaseReference, key: String, value: String, gameTitle: String) {
+    private func addToDict(ref: FIRDatabaseReference, valueStruct: DictStruct) {
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            if snapshot.hasChild("Games") {
-                let gameList = snapshot.childSnapshot(forPath: "Games")
-                    if gameList.hasChild(gameTitle) {
-                        let gameKey = gameList.childSnapshot(forPath: gameTitle)
+            if snapshot.hasChild(Constants.GAMES) {
+                let gameList = snapshot.childSnapshot(forPath: Constants.GAMES)
+                    if gameList.hasChild(valueStruct.gameTitle) {
+                        let gameKey = gameList.childSnapshot(forPath: valueStruct.gameTitle)
                         let dict = gameKey.value as! NSDictionary
                         let newDict = dict as! NSMutableDictionary
-                        newDict[key] = value
-                        ref.child("Games").child(gameTitle).setValue(newDict)
+                        newDict[valueStruct.key] = valueStruct.value
+                        ref.child(Constants.GAMES).child(valueStruct.gameTitle).setValue(newDict)
                     } else {
-                        ref.child("Games").child(gameTitle).setValue([key: value])
+                        ref.child(Constants.GAMES).child(valueStruct.gameTitle).setValue([valueStruct.key: valueStruct.value])
                     }
             } else {
-                ref.child("Games").child(gameTitle).setValue([key: value])
+                ref.child(Constants.GAMES).child(valueStruct.gameTitle).setValue([valueStruct.key: valueStruct.value])
             }
         })
     }
