@@ -6,6 +6,8 @@
 //  Copyright © 2017 Chris Ras. All rights reserved.
 //
 //  Adapted from https://www.youtube.com/watch?v=A5xxGXUfpBM
+//
+//  This MessageHandler class ensures that a message is stored in Firebase properly. The main reason for this was to put less code in ChatroomVC, which is already packed with code.
 
 import Foundation
 import Firebase

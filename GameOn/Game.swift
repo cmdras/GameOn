@@ -7,7 +7,7 @@
 //
 //  Storage in firebase code adapted from: http://stackoverflow.com/questions/38231055/save-array-of-classes-into-firebase-database-using-swift
 //
-
+//  A Game class, which contains information about a specific game, and a function to store the game in Firebase
 import Foundation
 import Firebase
 class Game {
