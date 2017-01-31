@@ -111,7 +111,9 @@ class UsersGamesViewController: UIViewController, UITableViewDataSource, UITable
     // IBAction Functions
     @IBAction func logoutPressed(_ sender: UIBarButtonItem) {
         try! FIRAuth.auth()!.signOut()
-        dismiss(animated: true, completion: nil)
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let loginViewContoller = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        self.present(loginViewContoller, animated:true, completion:nil)
     }
     
     // Segue Preparation

@@ -132,7 +132,9 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: - IBAction functions
     @IBAction func logOutTouched(_ sender: Any) {
         try! FIRAuth.auth()!.signOut()
-        dismiss(animated: true, completion: nil)
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let loginViewContoller = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        self.present(loginViewContoller, animated:true, completion:nil)
     }
     
     // MARK: - Segue Preparation
