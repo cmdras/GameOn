@@ -91,6 +91,8 @@ class ChatRoomVC: JSQMessagesViewController, UIImagePickerControllerDelegate, UI
     private func addPhotoMessage(withId id: String, key: String, mediaItem: JSQPhotoMediaItem) {
         if let message = JSQMessage(senderId: id, displayName: "", media: mediaItem) {
             messages.append(message)
+            JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
+            JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
             if (mediaItem.image == nil) {
                 photoMessageMap[key] = mediaItem
             }

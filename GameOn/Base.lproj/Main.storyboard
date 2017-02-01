@@ -1003,6 +1003,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="1" green="0.72192192799999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="1" green="0.72192192799999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="fE6-AB-6tL" kind="relationship" relationship="viewControllers" id="i0z-xC-LqQ"/>
@@ -1018,7 +1020,7 @@
         <scene sceneID="J3L-Ay-SDh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fE6-AB-6tL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Games" id="s3d-b7-KUw"/>
+                    <tabBarItem key="tabBarItem" title="Games" image="games" id="s3d-b7-KUw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kR0-eF-Ruz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1037,7 +1039,7 @@
         <scene sceneID="9K3-65-wgp">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cRE-Dn-LQp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Players" id="FAw-AU-bdC"/>
+                    <tabBarItem key="tabBarItem" title="Players" image="players" id="FAw-AU-bdC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RRx-Af-WC2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1056,7 +1058,7 @@
         <scene sceneID="drK-Af-RfE">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KIT-tq-3NL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chat" id="RLb-7q-5Ww"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="chat" id="RLb-7q-5Ww"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4SM-te-WYs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1074,12 +1076,15 @@
     </scenes>
     <resources>
         <image name="GameOnScreen" width="414" height="736"/>
+        <image name="chat" width="25" height="25"/>
+        <image name="games" width="25" height="25"/>
+        <image name="players" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QUg-RE-vYX"/>
         <segue reference="ohc-va-7cy"/>
-        <segue reference="EvT-qt-6hx"/>
-        <segue reference="Xt1-Hk-1aB"/>
+        <segue reference="PFp-rN-FwY"/>
         <segue reference="B6w-je-AkM"/>
+        <segue reference="QUg-RE-vYX"/>
+        <segue reference="N2q-yX-0is"/>
     </inferredMetricsTieBreakers>
 </document>
