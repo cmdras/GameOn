@@ -6,6 +6,22 @@
 * Friendlist management - **Firebase** to store the friendlist
 * Chatrooms - A combination of **Firebase** and **JSQMessageViewController**
 
+#### Minimum Viable Product
+
+* Users are able to create an account, which is stored in a database
+* Users are able to look up games and be presented information about that game. User should also be able to store the games in a personal list
+* Users should be able to see what other users are playing a specific game
+* Users should be able to send text messages to other users
+
+#### Optional Features
+
+* Users should be able to follow other players, and see what other games that user is playing
+* Users should be able to receive notifications when a followed player adds a new game
+* Users should be able to receive notifications when a message has been received
+* Users should be able to send images and/or videos via chat
+* Users should be able to view videos of a specific game via Youtube and/or Twitch
+
+
 
 #### Storyboard
 <img src="https://github.com/cmdras/GameOn/blob/master/doc/login_screen_alpha.png" alt="Login Screen" width="165" height="300">
@@ -30,5 +46,6 @@ is pressed, a tableview of all followed players will be presented. If a cell of 
 opened with that user. A mockup of the chatscreen:
 
 <img src="https://github.com/cmdras/GameOn/blob/master/doc/chatroom_screen_alpha.png" alt="Chatroom" width="165" height="300">
+
 
 
