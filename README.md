@@ -13,21 +13,6 @@ This app can be useful for Gamers who want to meet new people who share their in
 * A list of games stored in a database.
   * This could be either in an existing database or a database that the users can add to.
 
-#### Decomposing the problem
-* Login/Registration
-* Users list of games
-* Searching players by game and following them
-* Friendlist management
-* Chatrooms
-
-#### Discord
-Discord is a similar app which is used by many gamers to interact with each other. The difference is that GameOn will allow users to find players by game rather than by channel (Not to say that it isn't possible to find game channels in Discord). 
-
-#### Optional features
-* Chat with multiple people
-* Recent player activity
-* Youtube videos for user's games
-
 #### Screens
 <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/LoginScreen.png" alt="Login Screen" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/MyGamesScren.png" alt="My Games Screen" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/GameInfoScreen.png" alt="Game Info Screen" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/YoutubeScreen.png" alt="Youtube Screen" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/FollowedPlayersScreen.png" alt="Followed Players screen" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/ChatScreen.png" alt="Chat Screen" width="165" height="300">
 
