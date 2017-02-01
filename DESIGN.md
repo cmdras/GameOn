@@ -47,5 +47,5 @@ opened with that user. A mockup of the chatscreen:
 
 <img src="https://github.com/cmdras/GameOn/blob/master/doc/chatroom_screen_alpha.png" alt="Chatroom" width="165" height="300">
 
-
-
+#### Dataflow
+<img src="https://github.com/cmdras/GameOn/blob/master/doc/Dataflow.png" alt="Chatroom" width="375" height="225">
