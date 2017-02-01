@@ -32,4 +32,4 @@ Discord is a similar app which is used by many gamers to interact with each othe
 <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/LoginScreen.png" alt="Login Screen" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/MyGamesScren.png" alt="My Games Screen" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/GameInfoScreen.png" alt="Game Info Screen" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/YoutubeScreen.png" alt="Youtube Screen" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/FollowedPlayersScreen.png" alt="Followed Players screen" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/ChatScreen.png" alt="Chat Screen" width="165" height="300">
 
 
-Copyright 2017-present Christopher Ras
+© 2017 Christopher Ras
