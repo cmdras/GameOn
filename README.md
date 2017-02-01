@@ -1,10 +1,11 @@
 # Game On
 #### A gaming messenger app
+#### Chris Ras. 10689958
 
 In the Game On app, gamers can reach out and chat to other players playing the same game. Users will be able to manage a list of games that they are playing, and find players that are playing the same game. Users will be able to chat with each other. 
 
-
-This app can be useful for Gamers who want to meet new people who share their interest in particular games, and for gamers who are looking for people to play online with. 
+#### Purpose
+This app can be useful for Gamers who want to meet new people who share their interest in particular games, and for gamers who are looking for people to play online with. It is also useful for people who need help getting through a particular stage, or for gamers who are trying to form a team. In short, it's an app that helps Gamers communicate with each other about specific games. 
 
 #### What will be needed:
 * A live database API for user management (Such as Firebase)
