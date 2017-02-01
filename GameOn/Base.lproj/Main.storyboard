@@ -238,7 +238,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="15X-Bv-3ry">
-                                <rect key="frame" x="0.0" y="28" width="375" height="639"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="546"/>
                                 <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="friendListCell" id="O2u-gV-2DJ" customClass="FriendCell" customModule="GameOn" customModuleProvider="target">
@@ -293,7 +293,6 @@
                             <constraint firstItem="15X-Bv-3ry" firstAttribute="top" secondItem="IL5-jb-5Su" secondAttribute="bottom" constant="8" symbolic="YES" id="B3Q-Cb-mhx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="15X-Bv-3ry" secondAttribute="trailing" constant="-16" id="BtL-mY-XWI"/>
                             <constraint firstItem="kU0-Sz-9sr" firstAttribute="top" secondItem="aid-pl-08U" secondAttribute="top" id="ix1-VS-GmG"/>
-                            <constraint firstItem="2W0-gQ-KVZ" firstAttribute="top" secondItem="kU0-Sz-9sr" secondAttribute="bottom" id="qy5-2W-0gT"/>
                             <constraint firstItem="kU0-Sz-9sr" firstAttribute="width" secondItem="kU0-Sz-9sr" secondAttribute="height" multiplier="375:667" id="yd3-wM-xcO"/>
                         </constraints>
                     </view>
@@ -334,7 +333,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZW-XK-bYY">
-                                <rect key="frame" x="281" y="20" width="68" height="30"/>
+                                <rect key="frame" x="281" y="64" width="68" height="30"/>
                                 <state key="normal" title="New Chat">
                                     <color key="titleColor" red="1" green="0.72192192799999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -343,7 +342,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oPn-4Z-hsI">
-                                <rect key="frame" x="0.0" y="50" width="375" height="617"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="524"/>
                                 <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatUserCell" id="bog-5n-xIb" customClass="ChatListCell" customModule="GameOn" customModuleProvider="target">
@@ -383,7 +382,6 @@
                             <constraint firstItem="oPn-4Z-hsI" firstAttribute="leading" secondItem="1wk-HI-Vg0" secondAttribute="leading" id="SeX-rq-SD9"/>
                             <constraint firstItem="kcU-mw-Bl5" firstAttribute="top" secondItem="oPn-4Z-hsI" secondAttribute="bottom" id="VV3-Oj-WoE"/>
                             <constraint firstItem="O4D-y0-WpJ" firstAttribute="top" secondItem="1wk-HI-Vg0" secondAttribute="top" id="YTg-vU-iog"/>
-                            <constraint firstItem="kcU-mw-Bl5" firstAttribute="top" secondItem="O4D-y0-WpJ" secondAttribute="bottom" id="eTk-8S-ghv"/>
                             <constraint firstItem="lZW-XK-bYY" firstAttribute="leading" secondItem="1wk-HI-Vg0" secondAttribute="leadingMargin" constant="265" id="gXC-sa-5zA"/>
                             <constraint firstItem="lZW-XK-bYY" firstAttribute="top" secondItem="oQL-io-j3I" secondAttribute="bottom" id="qHA-Sl-F7g"/>
                             <constraint firstItem="O4D-y0-WpJ" firstAttribute="width" secondItem="O4D-y0-WpJ" secondAttribute="height" multiplier="375:667" id="vQk-T5-iEa"/>
@@ -447,7 +445,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9FT-hj-q3w">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" red="0.0" green="0.31651117750000002" blue="0.44090025910000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="followedGameCell" id="dMS-TD-NgD" customClass="FollowedPlayerGameCell" customModule="GameOn" customModuleProvider="target">
@@ -517,7 +515,6 @@
                             <constraint firstItem="9FT-hj-q3w" firstAttribute="leading" secondItem="qOE-2V-3CQ" secondAttribute="leading" id="JG8-6c-lUe"/>
                             <constraint firstItem="atn-kV-o76" firstAttribute="top" secondItem="9FT-hj-q3w" secondAttribute="bottom" id="TZZ-zL-37K"/>
                             <constraint firstItem="zBA-Wo-bNt" firstAttribute="leading" secondItem="qOE-2V-3CQ" secondAttribute="leading" id="Wbi-w6-vWR"/>
-                            <constraint firstItem="atn-kV-o76" firstAttribute="top" secondItem="zBA-Wo-bNt" secondAttribute="bottom" id="XUC-fe-edZ"/>
                             <constraint firstItem="zBA-Wo-bNt" firstAttribute="width" secondItem="zBA-Wo-bNt" secondAttribute="height" multiplier="375:667" id="hCM-eo-l2M"/>
                             <constraint firstItem="zBA-Wo-bNt" firstAttribute="top" secondItem="qOE-2V-3CQ" secondAttribute="top" id="vaC-kP-yZq"/>
                             <constraint firstAttribute="trailing" secondItem="zBA-Wo-bNt" secondAttribute="trailing" id="xhk-JT-inR"/>
@@ -1081,10 +1078,10 @@
         <image name="players" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ohc-va-7cy"/>
+        <segue reference="EvT-qt-6hx"/>
         <segue reference="PFp-rN-FwY"/>
-        <segue reference="B6w-je-AkM"/>
-        <segue reference="QUg-RE-vYX"/>
-        <segue reference="N2q-yX-0is"/>
+        <segue reference="ohc-va-7cy"/>
+        <segue reference="yP3-W6-Qtn"/>
+        <segue reference="ogZ-kh-qD6"/>
     </inferredMetricsTieBreakers>
 </document>
