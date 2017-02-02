@@ -58,10 +58,11 @@ All features that are part of the Minimum Viable Product have been implemented, 
   * I only implemented sending text and images via chat. At first I wanted to send video as well, but it was challenging enough to store images in Firebase Storage and in the chat. I would need a lot more time to figure out how to store videos as well. Therefore I gave priority to solving other issues first
 
 * Twitch
-  * An idea was to allow users to view videos and live streams on Youtube and Twitch. At first I wanted to implement the API versions of both, but as time grew shorter I made the decision to just use a web view with a custom search query. Twitch does not directly support this, so only Youtube was implemented.
+  * An idea was to allow users to view videos and live streams on Youtube and Twitch. At first I wanted to implement the API versions of both, but as time grew shorter I made the decision to just use a web view with a custom search query. Twitch does not directly support this, so only Youtube was implemented. The downside is that some games that have weird symbols in them will not work in this way, such as Pokemon. 
   
 * Multiple Users Chat
   * As extra feature I wanted users to be able to chat with multiple people at the same time. As there were many other tasks on my to-do list I gave this feature a low priority and couldn't get to it. This feature is something I would like to implement in the future however, just as challenge
 
 #### Bugs
 * When sending an image in chat, the image is stored correctly in Firebase. The CollectionView does not reload however, so for the sender it is not visible. By exiting the chat and re-entering, the user can see the sent image.
+* Youtube videos do not work for all games. Games with symbols in the title will not work in this way, such as Pokemon.
