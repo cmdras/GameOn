@@ -37,7 +37,12 @@ This is the third view on the TabBarController. This screen shows a table of pla
 ###### ChatroomVC
 In this view, a chat is presented between the user and another player. The user can send/receive text messages or photos.
 
- 
+##### Technical Details
+There are several modules and classes used in the GameOn app. The main one is Firebase. Firebase is used to store information online. Firstly, account info is kept in Firebase. When a user makes an account, a username, email, password, and profile image is stored in Firebase, which can later be retrieved.
+If a user searches for a game, a HTTP request is made to the IGDB database, using Alamofire the module. This returns a JSON object which contains multiple games and information of that game. When a game is selected, a Game object is made. A Game object has a title, release date, a cover url, and a summary. It also has methods that can store the game info in a dictionary in Firebase under the correct user. When retrieving this dictionary, it is remade into a Game object.
+The players that the user is following is stored into Firebase. On the **PlayersViewController**, this dict is retrieved and presented in the table. 
+Chatrooms are also stored in Firebase, as a dictionary. It has the keys "Chat participants" and "Messages". When a message is sent, the string is stored in the "Messages" child of the database. To display the message in a nice way in the **ChatroomVC**, JSQMessageViewController is used. It is a module that displays messages in a CollectionView, and looks like iMessage. By implementing the several functions that came with JSQMessageViewController, chat functionality is provided. 
+
 #### Challenges
 //TODO
  
