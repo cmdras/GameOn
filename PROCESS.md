@@ -104,3 +104,13 @@ Usage: UIImage.af_setImage(withURL: url!)
 * Added descriptive comments to most files
 * Created a LICENSE file
 * Fixed the web view button
+
+##### Day 18 1-2-2017
+* Fixed the design document (which I should have done in week 2)
+* Updated the README
+* Made the LICENSE
+* Added some icons for the TabBar
+
+##### Day 19 2-2-2017
+* Added an image for the Youtube button
+* Made the REPORT
