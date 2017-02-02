@@ -24,13 +24,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GameOnScreen" translatesAutoresizingMaskIntoConstraints="NO" id="ipx-S3-3k8">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375.5" height="667"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ipx-S3-3k8" secondAttribute="height" multiplier="375:667" id="a8U-Uf-iJC"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game On" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbD-jc-I4v">
-                                <rect key="frame" x="120" y="28" width="136" height="61"/>
+                                <rect key="frame" x="119.5" y="28" width="136" height="61"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="61" id="8hn-mc-nJq"/>
                                     <constraint firstAttribute="width" constant="136" id="zci-u3-jfV"/>
@@ -86,7 +86,6 @@
                             <constraint firstItem="bbD-jc-I4v" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="B2d-zW-5wz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DQ3-6A-JKW" secondAttribute="trailing" id="HUu-dg-mKO"/>
                             <constraint firstItem="ipx-S3-3k8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="N3z-AB-GtH"/>
-                            <constraint firstAttribute="trailing" secondItem="ipx-S3-3k8" secondAttribute="trailing" id="Sh6-SA-nFP"/>
                             <constraint firstItem="ipx-S3-3k8" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="TCL-wN-vzn"/>
                             <constraint firstItem="DQ3-6A-JKW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="dcy-r1-xdA"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ipx-S3-3k8" secondAttribute="bottom" id="kaX-6n-DAR"/>
@@ -153,7 +152,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXO-5d-gao">
-                                <rect key="frame" x="151" y="200" width="73" height="30"/>
+                                <rect key="frame" x="16" y="200" width="343" height="30"/>
                                 <state key="normal" title="Register">
                                     <color key="titleColor" red="1" green="0.72192192799999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -181,7 +180,6 @@
                         <constraints>
                             <constraint firstItem="tqT-GN-YIx" firstAttribute="top" secondItem="eDO-J7-cQY" secondAttribute="bottom" id="3vN-w5-DXp"/>
                             <constraint firstItem="KIh-yu-hbU" firstAttribute="leading" secondItem="sjk-vf-2vh" secondAttribute="leading" id="4wc-Ou-6TM"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="CXO-5d-gao" secondAttribute="trailing" constant="135" id="DCL-2X-3Yq"/>
                             <constraint firstItem="CNN-Op-ulf" firstAttribute="top" secondItem="KIh-yu-hbU" secondAttribute="bottom" constant="42" id="Hda-ha-L8e"/>
                             <constraint firstItem="F30-b4-dvG" firstAttribute="leading" secondItem="sjk-vf-2vh" secondAttribute="leadingMargin" constant="8" id="KHR-rX-efr"/>
                             <constraint firstItem="F30-b4-dvG" firstAttribute="top" secondItem="y9i-DV-zEZ" secondAttribute="bottom" constant="8" id="Ktz-kF-4or"/>
@@ -190,13 +188,12 @@
                             <constraint firstItem="y9i-DV-zEZ" firstAttribute="top" secondItem="CNN-Op-ulf" secondAttribute="bottom" constant="8" id="UXp-5K-1Vn"/>
                             <constraint firstItem="ZG8-nf-Qar" firstAttribute="top" secondItem="N1S-EC-e85" secondAttribute="bottom" constant="8" id="W5N-eM-1eW"/>
                             <constraint firstItem="KIh-yu-hbU" firstAttribute="top" secondItem="sjk-vf-2vh" secondAttribute="top" id="ZtK-fI-qdw"/>
-                            <constraint firstAttribute="trailing" secondItem="eDO-J7-cQY" secondAttribute="trailing" id="bVE-Df-9uD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CXO-5d-gao" secondAttribute="trailing" id="bsl-oi-CD6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="F30-b4-dvG" secondAttribute="trailing" constant="8" id="c33-V2-hdh"/>
                             <constraint firstItem="N1S-EC-e85" firstAttribute="leading" secondItem="sjk-vf-2vh" secondAttribute="leadingMargin" constant="109" id="caK-Lf-ct8"/>
+                            <constraint firstItem="CXO-5d-gao" firstAttribute="leading" secondItem="sjk-vf-2vh" secondAttribute="leadingMargin" id="fAo-Cr-6Y6"/>
                             <constraint firstItem="ZG8-nf-Qar" firstAttribute="leading" secondItem="sjk-vf-2vh" secondAttribute="leadingMargin" constant="70" id="gbI-7H-fOA"/>
-                            <constraint firstItem="CXO-5d-gao" firstAttribute="leading" secondItem="sjk-vf-2vh" secondAttribute="leadingMargin" constant="135" id="hq4-Al-840"/>
                             <constraint firstItem="KIh-yu-hbU" firstAttribute="centerX" secondItem="CNN-Op-ulf" secondAttribute="centerX" id="jyX-N4-Qs7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZG8-nf-Qar" secondAttribute="trailing" constant="70" id="mOO-UJ-uYz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="N1S-EC-e85" secondAttribute="trailing" constant="109" id="nlh-mD-Qjb"/>
                             <constraint firstItem="N1S-EC-e85" firstAttribute="top" secondItem="CXO-5d-gao" secondAttribute="bottom" constant="41" id="qR5-vK-5bW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="y9i-DV-zEZ" secondAttribute="trailing" constant="8" id="sIY-ab-r8R"/>
@@ -838,10 +835,11 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lN-s6-OyB">
-                                <rect key="frame" x="319" y="145" width="22" height="22"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lN-s6-OyB">
+                                <rect key="frame" x="318" y="144" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="1" green="0.72192192799999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="YouTube"/>
                                 <connections>
                                     <action selector="gameVideosButtonTouched:" destination="OX8-6s-T1p" eventType="touchUpInside" id="xU4-TU-cIZ"/>
                                 </connections>
@@ -1073,14 +1071,15 @@
     </scenes>
     <resources>
         <image name="GameOnScreen" width="414" height="736"/>
+        <image name="YouTube" width="25" height="25"/>
         <image name="chat" width="25" height="25"/>
         <image name="games" width="25" height="25"/>
         <image name="players" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EvT-qt-6hx"/>
-        <segue reference="PFp-rN-FwY"/>
         <segue reference="ohc-va-7cy"/>
+        <segue reference="PFp-rN-FwY"/>
+        <segue reference="EvT-qt-6hx"/>
         <segue reference="yP3-W6-Qtn"/>
         <segue reference="ogZ-kh-qD6"/>
     </inferredMetricsTieBreakers>

@@ -52,38 +52,46 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
             .responseJSON { (responseData) -> Void in
                 if((responseData.result.value) != nil) {
                     let json = responseData.result.value as! NSArray
-                    for i in stride(from: 0, to: json.count, by: 1) {
-                        let game = Game()
-                        let gameData = json[i] as! NSDictionary
+                    if json.count == 0 {
+                        let alertController = UIAlertController(title: "No records found :(", message: "We can't find any games named \(searchTerm)", preferredStyle: .alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                        alertController.addAction(defaultAction)
                         
-                        if let nameKey = gameData["name"] {
-                            game.title = nameKey as? String
-                        } else {
-                            // If no name is found, skip this game
-                            // To prevent empty cells
-                            continue
+                        self.present(alertController, animated: true, completion: nil)
+                    } else {
+                        for i in stride(from: 0, to: json.count, by: 1) {
+                            let game = Game()
+                            let gameData = json[i] as! NSDictionary
+                            
+                            if let nameKey = gameData["name"] {
+                                game.title = nameKey as? String
+                            } else {
+                                // If no name is found, skip this game
+                                // To prevent empty cells
+                                continue
+                            }
+                            if  let coverKey = gameData["cover"] {
+                                let coverData = coverKey as! NSDictionary
+                                game.coverUrl = "https:\(coverData["url"]!)"
+                            } else {
+                                game.coverUrl = ""
+                            }
+                            if let dateKey = gameData["release_dates"] {
+                                let releaseDateArray = dateKey as! NSArray
+                                let firstDateData = releaseDateArray[0] as! NSDictionary
+                                let releaseDate = firstDateData["human"] as! String
+                                self.gameDates.append(releaseDate)
+                                game.releaseDate = releaseDate
+                            } else {
+                                game.releaseDate = "Release date unknown"
+                            }
+                            if let summaryKey = gameData["summary"] {
+                                game.summary = summaryKey as? String
+                            } else {
+                                game.summary = "No summary found"
+                            }
+                            self.searchResults.append(game)
                         }
-                        if  let coverKey = gameData["cover"] {
-                            let coverData = coverKey as! NSDictionary
-                            game.coverUrl = "https:\(coverData["url"]!)"
-                        } else {
-                            game.coverUrl = ""
-                        }
-                        if let dateKey = gameData["release_dates"] {
-                            let releaseDateArray = dateKey as! NSArray
-                            let firstDateData = releaseDateArray[0] as! NSDictionary
-                            let releaseDate = firstDateData["human"] as! String
-                            self.gameDates.append(releaseDate)
-                            game.releaseDate = releaseDate
-                        } else {
-                            game.releaseDate = "Release date unknown"
-                        }
-                        if let summaryKey = gameData["summary"] {
-                            game.summary = summaryKey as? String
-                        } else {
-                            game.summary = "No summary found"
-                        }
-                        self.searchResults.append(game)
                     }
                     self.searchGamesTable.reloadData()
                 } else {
@@ -99,6 +107,7 @@ class SearchGamesViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = searchGamesTable.dequeueReusableCell(withIdentifier: "searchedGamesCell", for: indexPath) as! SearchGameCell
         cell.searchGameTitle.text = searchResults[indexPath.row].title!
         cell.searchGameRelease.text = searchResults[indexPath.row].releaseDate!
