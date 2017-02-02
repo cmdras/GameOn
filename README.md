@@ -7,12 +7,6 @@ In the GameOn app, gamers can reach out and chat to other players playing the sa
 #### Purpose
 This app can be useful for Gamers who want to meet new people who share their interest in particular games, and for gamers who are looking for people to play online with. It is also useful for people who need help getting through a particular stage, or for gamers who are trying to form a team. In short, it's an app that helps Gamers communicate with each other about specific games. 
 
-#### What will be needed:
-* A live database API for user management (Such as Firebase)
-* A chat API
-* A list of games stored in a database.
-  * This could be either in an existing database or a database that the users can add to.
-
 #### External Sources
 To implement my idea, several external libraries and API's had been used. The most important ones are the Firebase platform, the IGDB API, and the JSQMessageViewController library. 
 
