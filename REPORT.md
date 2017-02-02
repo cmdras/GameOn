@@ -44,7 +44,24 @@ The players that the user is following is stored into Firebase. On the **Players
 Chatrooms are also stored in Firebase, as a dictionary. It has the keys "Chat participants" and "Messages". When a message is sent, the string is stored in the "Messages" child of the database. To display the message in a nice way in the **ChatroomVC**, JSQMessageViewController is used. It is a module that displays messages in a CollectionView, and looks like iMessage. By implementing the several functions that came with JSQMessageViewController, chat functionality is provided. 
 
 #### Challenges
-//TODO
- 
-#### Future Features
-//TODO
+During development many challenges were met. One of the first major challenges was displaying the games properly in the search results. The main problem was to get the correct images to display next to the game. Eventually the solution lay in AlamofireImage. It has an extension function for UIImageViews, which given a url will download an image asynchronously. 
+Another part that was challenging for me was the Firebase structure. The amount of branches in this database is much higher than my previous project, which made the traversal of the database more complicated. As time went on, I learned how to use the observe and observeSingleEvent methods to correctly retrieve the information.
+One of the more difficult problems for me was the use of completion handlers. In the beginning I used completion handlers provided in tutorials, but around the third week I had a problem that would require a completion handler. If a chat between two user exists, and a new chat is attempted to be made with the same users, the old chat would be overwritten. A check had to be implemented to see if a chat already exists, and if so to segue to the already existing chatroom. The problem was that before the check happened the segue already started, which would crash the app. Dax helped me implement a completion handler, that would allow the check to finish before performing a segue. This helped me understand how a typealias worked, which I also implemented afterwards to allow an image URL to finish downloading before proceeding. 
+
+#### Changes
+All features that are part of the Minimum Viable Product have been implemented, and not many design changes have been made. Of the additional features, quite a few of them have been scratched. 
+
+* Notifications
+  * Notifications when receiving new messages or if a followed player adds a new game was not implemented. This is more of a time issue, as I could not find out how to continue observing changes in Firebase even if the app closed. 
+
+*  Video messages
+  * I only implemented sending text and images via chat. At first I wanted to send video as well, but it was challenging enough to store images in Firebase Storage and in the chat. I would need a lot more time to figure out how to store videos as well. Therefore I gave priority to solving other issues first
+
+* Twitch
+  * An idea was to allow users to view videos and live streams on Youtube and Twitch. At first I wanted to implement the API versions of both, but as time grew shorter I made the decision to just use a web view with a custom search query. Twitch does not directly support this, so only Youtube was implemented.
+  
+* Multiple Users Chat
+  * As extra feature I wanted users to be able to chat with multiple people at the same time. As there were many other tasks on my to-do list I gave this feature a low priority and couldn't get to it. This feature is something I would like to implement in the future however, just as challenge
+
+#### Bugs
+* When sending an image in chat, the image is stored correctly in Firebase. The CollectionView does not reload however, so for the sender it is not visible. By exiting the chat and re-entering, the user can see the sent image.
