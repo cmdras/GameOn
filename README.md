@@ -25,5 +25,18 @@ Besides the above 3, other resources were also used. AlamoFire and AlamoFireImag
 #### Screens
 <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/LoginScreen.png" alt="Login Screen" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/MyGamesScren.png" alt="My Games Screen" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/GameInfoScreen.png" alt="Game Info Screen" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/YoutubeScreen.png" alt="Youtube Screen" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/FollowedPlayersScreen.png" alt="Followed Players screen" width="165" height="300"> <img src="https://github.com/cmdras/GameOn/blob/master/doc/GameOn%20Screens%20FINAL/ChatScreen.png" alt="Chat Screen" width="165" height="300">
 
+#### Tutorials/External Code Used
+* [Game Object Storage](http://stackoverflow.com/questions/38231055/save-array-of-classes-into-firebase-database-using-swift)
+* [Constants Class](https://www.youtube.com/channel/UC5c-DuzPdH9iaWYdI0v0uzw)
+* [Message Handler](https://www.youtube.com/watch?v=A5xxGXUfpBM)
+* [Gesture Recognizer](http://stackoverflow.com/questions/29202882/how-to-you-make-a-uiimageview-on-the-storyboard-clickable-swift)
+* [Keyboard Hiding](http://stackoverflow.com/questions/24126678/close-ios-keyboard-by-touching-anywhere-using-swift)
+* [Image Downloading Cells](https://www.youtube.com/watch?v=1m-VLnoixz8)
+* [Cell Deletion](http://stackoverflow.com/questions/39631998/how-to-delete-from-firebase-database)
+* [Pop To View](http://stackoverflow.com/questions/26132658/pop-2-view-controllers-in-nav-controller-in-swift)
+* [Back Button Code](http://stackoverflow.com/questions/27713747/execute-action-when-back-bar-button-of-uinavigationcontroller-is-pressed)
+* Chatroom: [AwesomeTuts](https://www.youtube.com/playlist?list=PLZhNP5qJ2IA0ZamF_MDzvmb3bNMv-mLt5) and [Ray Wenderlich](https://www.raywenderlich.com/140836/firebase-tutorial-real-time-chat-2)
+
+<img src='https://bettercodehub.com/edge/badge/cmdras/GameOn'>
 
 © 2017 Christopher Ras
